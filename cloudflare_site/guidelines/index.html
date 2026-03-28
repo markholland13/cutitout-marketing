@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18042857892"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18042857892');
+    </script>
+    <title>Design Guidelines | Cut It Out</title>
+    <style>
+        :root {
+            --brand-deep: #1f4e5f;
+            --brand-mid: #3f6d80;
+            --brand-soft: #dbe8ee;
+            --brand-mist: #eef3f6;
+            --ink: #102a43;
+            --muted: #52606d;
+            --surface: rgba(255, 255, 255, 0.96);
+            --border: rgba(16, 42, 67, 0.12);
+            --shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Avenir Next", "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(63, 109, 128, 0.16), transparent 36%),
+                radial-gradient(circle at top right, rgba(31, 78, 95, 0.08), transparent 30%),
+                linear-gradient(180deg, #f7f9fb 0%, #eff4f7 58%, #e9eff3 100%);
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.32), transparent 22%),
+                radial-gradient(circle at 20% 0%, rgba(255,255,255,0.45), transparent 28%);
+            opacity: 0.85;
+        }
+        a { color: inherit; }
+        .shell {
+            position: relative;
+            z-index: 1;
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .site-header {
+            position: relative;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(31, 78, 95, 0.1);
+            box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(16px);
+        }
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .site-logo img { height: 42px; display: block; }
+        .site-menu-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 14px;
+            border: 1px solid rgba(31, 78, 95, 0.12);
+            border-radius: 999px;
+            background: rgba(244,248,250,0.96);
+            color: var(--brand-deep);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .site-menu-toggle:hover {
+            transform: translateY(-1px);
+        }
+        .site-banner {
+            margin: 0 0 18px;
+            padding: 14px 18px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(194, 65, 12, 0.96), rgba(234, 88, 12, 0.9));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 18px 36px rgba(194, 65, 12, 0.16);
+        }
+        .site-banner strong {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+            letter-spacing: 0.03em;
+        }
+        .site-banner p {
+            margin: 0;
+            color: rgba(255,255,255,0.92);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+        .site-nav {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(244,248,250,0.92);
+            border: 1px solid rgba(31, 78, 95, 0.08);
+        }
+        .site-nav a {
+            text-decoration: none;
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            color: var(--brand-deep);
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        .site-nav a.active,
+        .site-nav a.primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
+        }
+        .account-menu {
+            position: relative;
+        }
+        .account-menu::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 100%;
+            height: 12px;
+        }
+        .account-trigger {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            color: var(--brand-deep);
+            background: transparent;
+            border: 1px solid transparent;
+            gap: 8px;
+        }
+        .account-trigger::after {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+            transform: rotate(45deg) translateY(-1px);
+            opacity: 0.75;
+        }
+        .account-menu:hover .account-trigger,
+        .account-menu:focus-within .account-trigger {
+            color: #fff;
+            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            border-color: transparent;
+            box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
+        }
+        .account-dropdown {
+            position: absolute;
+            top: calc(100% + 2px);
+            right: 0;
+            min-width: 200px;
+            padding: 8px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.98);
+            border: 1px solid rgba(31, 78, 95, 0.12);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+            display: none;
+            gap: 6px;
+            z-index: 60;
+        }
+        .account-menu:hover .account-dropdown,
+        .account-menu:focus-within .account-dropdown {
+            display: grid;
+        }
+        .account-dropdown a {
+            display: inline-flex;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(31, 78, 95, 0.97), rgba(63, 109, 128, 0.94));
+            color: #fff;
+            border-radius: 30px;
+            padding: 36px;
+            box-shadow: 0 24px 58px rgba(19, 46, 64, 0.18);
+        }
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            right: -80px;
+            bottom: -90px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+        }
+        .eyebrow {
+            display: inline-flex;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .hero-card h1 {
+            margin: 14px 0 10px;
+            font-size: clamp(34px, 5vw, 64px);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            max-width: 760px;
+        }
+        .hero-card p {
+            margin: 0;
+            max-width: 700px;
+            font-size: 18px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.88);
+        }
+        .cta-row {
+            margin-top: 22px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 800;
+            border: 1px solid rgba(255,255,255,0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .button.light {
+            background: rgba(255,255,255,0.14);
+            color: #fff;
+        }
+        .button.white {
+            background: #fff;
+            color: var(--brand-deep);
+            border-color: transparent;
+        }
+        .section-grid {
+            display: grid;
+            gap: 22px;
+            margin-top: 24px;
+        }
+        .section-grid.two {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .section-grid.three {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 44px rgba(15, 23, 42, 0.07);
+        }
+        .card h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+            letter-spacing: -0.02em;
+        }
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 18px;
+        }
+        .card p, .card li {
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 15px;
+        }
+        .card ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 18px;
+        }
+        .metric {
+            padding: 18px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(239,244,247,0.92));
+            border: 1px solid rgba(16, 42, 67, 0.08);
+        }
+        .metric .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            font-weight: 800;
+        }
+        .metric .value {
+            margin-top: 8px;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--brand-deep);
+        }
+        .page-intro {
+            margin-bottom: 24px;
+        }
+        .page-intro h1 {
+            margin: 0 0 10px;
+            font-size: clamp(30px, 4vw, 52px);
+            letter-spacing: -0.03em;
+        }
+        .page-intro p {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.65;
+        }
+        .eyebrow-dark {
+            display: inline-flex;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(31, 78, 95, 0.08);
+            color: var(--brand-deep);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .split-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+        .surface-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 20px 44px rgba(15, 23, 42, 0.07);
+        }
+        .surface-panel h2,
+        .surface-panel h3 {
+            margin: 0 0 10px;
+            letter-spacing: -0.02em;
+        }
+        .surface-panel p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+        .info-stack {
+            display: grid;
+            gap: 16px;
+        }
+        .check-list {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .check-list div {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+        .check-list div::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            margin-top: 7px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            flex: 0 0 auto;
+        }
+        .stats-band {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .stats-band .stat {
+            padding: 20px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.82);
+            border: 1px solid rgba(16, 42, 67, 0.08);
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.05);
+        }
+        .stats-band .stat-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            font-weight: 800;
+        }
+        .stats-band .stat-value {
+            margin-top: 10px;
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--brand-deep);
+        }
+        .content-block {
+            margin-top: 26px;
+        }
+        .section-heading {
+            margin: 0 0 16px;
+            font-size: clamp(28px, 3vw, 40px);
+            letter-spacing: -0.03em;
+        }
+        .section-copy {
+            margin: 0;
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        .highlight-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(241,246,249,0.94));
+        }
+        .highlight-card::after {
+            content: "";
+            position: absolute;
+            right: -40px;
+            top: -40px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(63, 109, 128, 0.08);
+        }
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .pill-row span {
+            display: inline-flex;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(31, 78, 95, 0.08);
+            border: 1px solid rgba(31, 78, 95, 0.08);
+            color: var(--brand-deep);
+            font-size: 13px;
+            font-weight: 800;
+        }
+        .media-card {
+            overflow: hidden;
+            padding: 0;
+        }
+        .media-frame {
+            position: relative;
+            min-height: 240px;
+            background:
+                radial-gradient(circle at top right, rgba(63, 109, 128, 0.18), transparent 34%),
+                linear-gradient(145deg, #fbfdff 0%, #edf3f7 65%, #e2ebf0 100%);
+        }
+        .media-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .media-placeholder {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            text-align: center;
+            color: var(--brand-deep);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+        .media-caption {
+            padding: 18px 22px 22px;
+            border-top: 1px solid rgba(16, 42, 67, 0.08);
+        }
+        .media-caption h3 {
+            margin: 0 0 8px;
+            font-size: 19px;
+            letter-spacing: -0.02em;
+        }
+        .media-caption p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        .site-footer {
+            margin: 32px 0 8px;
+            padding: 22px 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(16,42,67,0.08);
+            background: rgba(255,255,255,0.72);
+            color: var(--muted);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .site-footer strong {
+            color: var(--ink);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        .site-footer-copy {
+            max-width: 640px;
+            line-height: 1.6;
+        }
+        .site-footer-links {
+            display: inline-flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .site-footer-links a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(244,248,250,0.9);
+            border: 1px solid rgba(31, 78, 95, 0.08);
+            color: var(--brand-deep);
+            font-weight: 700;
+        }
+        .button:hover,
+        .site-nav a:hover {
+            transform: translateY(-1px);
+        }
+        @media (max-width: 960px) {
+            .section-grid.two, .section-grid.three, .metric-row, .split-hero, .stats-band { grid-template-columns: 1fr; }
+            .site-header { flex-direction: column; align-items: flex-start; }
+            .site-nav {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                border-radius: 24px;
+                padding: 10px;
+            }
+            .site-nav a,
+            .account-trigger {
+                width: 100%;
+                min-height: 44px;
+                justify-content: center;
+                text-align: center;
+            }
+            .account-menu {
+                width: 100%;
+            }
+            .account-menu::after {
+                display: none;
+            }
+            .account-dropdown {
+                position: static;
+                top: auto;
+                right: auto;
+                min-width: 0;
+                margin-top: 8px;
+                box-shadow: none;
+                border-radius: 18px;
+            }
+            .account-dropdown a:first-child {
+                display: none;
+            }
+            .hero-card, .card { padding: 20px; }
+            .shell { padding: 16px; }
+            .site-footer { padding: 18px; }
+        }
+        @media (max-width: 900px) {
+            .site-header {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .site-menu-toggle {
+                display: inline-flex;
+                margin-left: auto;
+            }
+            .site-nav {
+                display: none;
+            }
+            .site-nav.is-open {
+                display: grid;
+            }
+        }
+        @media (max-width: 640px) {
+            .site-logo img {
+                height: 36px;
+            }
+            .site-nav {
+                grid-template-columns: 1fr;
+            }
+            .hero-card {
+                padding: 18px;
+                border-radius: 24px;
+            }
+            .hero-card h1 {
+                font-size: clamp(30px, 10vw, 42px);
+                line-height: 1.02;
+            }
+            .hero-card p,
+            .page-intro p,
+            .section-copy {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            .surface-panel,
+            .card {
+                border-radius: 20px;
+                padding: 18px;
+            }
+            .stats-band .stat,
+            .metric {
+                padding: 16px;
+            }
+            .stats-band .stat-value,
+            .metric .value {
+                font-size: 22px;
+            }
+            .media-frame {
+                min-height: 190px;
+            }
+            .site-footer {
+                border-radius: 20px;
+            }
+            .site-footer-links {
+                width: 100%;
+            }
+            .site-footer-links a {
+                flex: 1 1 calc(50% - 10px);
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+    
+<style>
+    .guidelines-shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 24px;
+        margin-top: 26px;
+    }
+    .guidelines-nav {
+        position: sticky;
+        top: 96px;
+        align-self: start;
+    }
+    .guidelines-nav .card {
+        padding: 18px;
+    }
+    .guidelines-nav a {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 12px;
+        color: var(--muted);
+        font-weight: 700;
+        text-decoration: none;
+        border: 1px solid transparent;
+    }
+    .guidelines-nav a:hover {
+        color: var(--ink);
+        background: rgba(31, 78, 95, 0.06);
+        border-color: rgba(31, 78, 95, 0.12);
+    }
+    .guidelines-content {
+        display: grid;
+        gap: 24px;
+    }
+    .guidelines-summary {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 22px;
+    }
+    .summary-pill {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(16, 42, 67, 0.08);
+        color: var(--brand-deep);
+        font-weight: 800;
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.04);
+    }
+    .summary-pill span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .rule-grid {
+        display: grid;
+        gap: 20px;
+    }
+    .rule-card {
+        overflow: hidden;
+        padding: 0;
+    }
+    .rule-layout {
+        display: grid;
+        grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+        gap: 0;
+        align-items: stretch;
+    }
+    .rule-media {
+        min-height: 100%;
+        background:
+            radial-gradient(circle at top right, rgba(63, 109, 128, 0.18), transparent 34%),
+            linear-gradient(145deg, #fbfdff 0%, #edf3f7 65%, #e2ebf0 100%);
+        border-right: 1px solid rgba(16, 42, 67, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+    }
+    .rule-media img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: 320px;
+        object-fit: contain;
+    }
+    .rule-body {
+        padding: 24px;
+    }
+    .rule-body h2 {
+        margin: 10px 0 10px;
+        font-size: 28px;
+        letter-spacing: -0.03em;
+    }
+    .rule-body p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+        font-size: 15px;
+    }
+    .tip-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 18px;
+    }
+    .tip-list div {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--muted);
+        line-height: 1.55;
+    }
+    .tip-list div::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-top: 7px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+        flex: 0 0 auto;
+    }
+    .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 24px;
+    }
+    .faq-card {
+        padding: 22px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.88);
+        border: 1px solid rgba(16, 42, 67, 0.08);
+        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
+    }
+    .faq-card h3 {
+        margin: 0 0 8px;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+    }
+    .faq-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+    }
+    .guidelines-band {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 22px;
+        align-items: start;
+    }
+    @media (max-width: 1040px) {
+        .guidelines-shell,
+        .guidelines-band,
+        .faq-grid {
+            grid-template-columns: 1fr;
+        }
+        .guidelines-nav {
+            position: static;
+        }
+    }
+    @media (max-width: 860px) {
+        .guidelines-summary,
+        .rule-layout {
+            grid-template-columns: 1fr;
+        }
+        .rule-media {
+            border-right: 0;
+            border-bottom: 1px solid rgba(16, 42, 67, 0.08);
+        }
+    }
+    @media (max-width: 640px) {
+        .guidelines-nav .card,
+        .rule-body,
+        .faq-card {
+            padding: 16px;
+        }
+        .guidelines-nav a {
+            padding: 9px 10px;
+            font-size: 14px;
+        }
+        .summary-pill {
+            padding: 14px;
+        }
+        .rule-body h2 {
+            font-size: 24px;
+        }
+        .rule-media {
+            padding: 12px;
+        }
+        .rule-media img {
+            max-height: 240px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="shell">
+        <header class="site-header">
+            <a class="site-logo" href="https://www.cutitout.uk/">
+                <img src="https://static.wixstatic.com/media/af18ab_fc9dd1013070496da0aac5b4783e25b2~mv2.png" alt="Cut It Out">
+            </a>
+            <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">Menu</button>
+            <nav class="site-nav" id="siteMenu">
+                <a href="https://app.cutitout.uk/quote" class="">Quote</a>
+                <a href="https://www.cutitout.uk/guidelines" class="active">Guidelines</a>
+                <a href="https://www.cutitout.uk/materials" class="">Materials</a>
+                <a href="https://www.cutitout.uk/services" class="">Services</a>
+                <a href="https://www.cutitout.uk/contact" class="">Contact</a>
+                <a href="https://app.cutitout.uk/cart" class="">Cart</a>
+                
+                <a href="https://app.cutitout.uk/my-account" class="">My Account</a>
+                <a href="https://app.cutitout.uk/account/login" class="">Customer Login</a>
+                
+            </nav>
+        </header>
+
+        
+
+        
+
+
+
+
+
+
+
+
+
+<section class="hero-card">
+    <div class="guidelines-band">
+        <div>
+            <div class="eyebrow">Design Guidelines</div>
+            <h1>send cleaner files and get cleaner quotes the first time</h1>
+            <p>
+                Following these guidelines helps your parts quote more accurately, reduces delays, and makes it easier to move straight into production.
+            </p>
+            <div class="cta-row">
+                <a class="button white" href="https://app.cutitout.uk/quote">Upload A DXF</a>
+                <a class="button light" href="https://www.cutitout.uk/contact">Need Manual Help?</a>
+            </div>
+            <div class="guidelines-summary">
+                <div class="summary-pill">1:1 Scale<span>Export at final size in mm</span></div>
+                <div class="summary-pill">DXF Preferred<span>Cut geometry only</span></div>
+                <div class="summary-pill">Closed Paths<span>No broken contours</span></div>
+                <div class="summary-pill">Max 900 mm<span>Per part in either direction</span></div>
+            </div>
+        </div>
+        <article class="surface-panel">
+            <div class="eyebrow-dark">Quick Checklist</div>
+            <div class="check-list">
+                <div>Draw in millimetres at full 1:1 scale</div>
+                <div>Keep only the part geometry and cut paths in the file</div>
+                <div>Convert text to outlines before exporting</div>
+                <div>Add bridges to stencil-style text and enclosed islands</div>
+                <div>Avoid overlaps, duplicate lines, and open contours</div>
+                <div>Keep parts within 900 × 900 mm</div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<div class="guidelines-shell">
+    <aside class="guidelines-nav">
+        <div class="card">
+            <div class="eyebrow-dark" style="margin-bottom:10px;">On This Page</div>
+            <a href="#scale">Scale 1:1</a>
+            <a href="#drawing">Cut Paths Only</a>
+            <a href="#text">Convert Text</a>
+            <a href="#stencil">Stencil Bridges</a>
+            <a href="#holes">Small Holes & Cutouts</a>
+            <a href="#intersections">Avoid Intersections</a>
+            <a href="#contours">Close Open Contours</a>
+            <a href="#size">Maximum Part Size</a>
+            <a href="#faq">FAQs</a>
+        </div>
+    </aside>
+
+    <div class="guidelines-content">
+        <section class="content-block">
+            <div class="eyebrow-dark">Why It Matters</div>
+            <h2 class="section-heading">good file preparation reduces delays before production starts</h2>
+            <p class="section-copy">
+                Most quoting problems come from scale issues, stray geometry, open paths, or features that are too small for the selected material. A cleaner drawing makes the price more reliable and reduces manual checking.
+            </p>
+        </section>
+
+        <section class="rule-grid">
+            <article class="card rule-card" id="scale">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/Scale.webp" alt="Scale artwork to 1 to 1" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 1</div>
+                        <h2>scale artwork to 1:1</h2>
+                        <p>
+                            Send the drawing at the exact size you want it cut. Work in millimetres and export at full size. Written notes asking for a different size can cause confusion if the geometry itself is not scaled correctly.
+                        </p>
+                        <div class="tip-list">
+                            <div>Check your document units are set to mm before exporting.</div>
+                            <div>Print at 100% or measure a known feature if you want a quick sanity check.</div>
+                            <div>If the drawing is not at final size, fix the geometry before upload rather than adding a note.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="drawing">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/Drawing.webp" alt="Include only parts and cut paths" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 2</div>
+                        <h2>include only the part and its cut paths</h2>
+                        <p>
+                            Remove dimensions, title blocks, notes, page borders, and any other non-cutting information. The file should contain only the geometry that needs to be cut or engraved.
+                        </p>
+                        <div class="tip-list">
+                            <div>Delete any hidden objects, spare sketches, or duplicated parts left outside the job area.</div>
+                            <div>Keep each file focused on one part or one intended grouped assembly.</div>
+                            <div>Use sensible filenames because they carry through to quotes, orders, and production paperwork.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="text">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/convert-text.webp" alt="Convert text to outlines" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 3</div>
+                        <h2>convert text to outlines or curves</h2>
+                        <p>
+                            Editable text should not be left in the cutting file. Convert it to shapes first so the geometry stays exactly as intended and does not rely on missing fonts or software substitutions.
+                        </p>
+                        <div class="tip-list">
+                            <div>In CAD or vector software this may be called outline, expand, explode, or convert to curves.</div>
+                            <div>Do this before export so the quote reflects the actual geometry rather than a font dependency.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="stencil">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/untabbed.webp" alt="Stencilise fonts and shapes" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 4</div>
+                        <h2>add bridges to stencil-style text and internal islands</h2>
+                        <p>
+                            Enclosed shapes will fall out unless they are connected back to the main part. If you want letters or islands to remain attached, add bridges so the finished part stays in one piece.
+                        </p>
+                        <div class="tip-list">
+                            <div>Letters such as A, O, P, R, and enclosed logos usually need bridges.</div>
+                            <div>Place bridges where they look deliberate and are wide enough for the chosen material.</div>
+                            <div>If you want a fully cut-out centre section, no bridge is needed.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="holes">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/small-holes.webp" alt="Small holes and cutouts" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 5</div>
+                        <h2>size holes and small cutouts correctly</h2>
+                        <p>
+                            Very small internal features may not cut cleanly. As a practical rule, holes and cutouts should be at least 50% of the material thickness, and no smaller than the process can produce reliably.
+                        </p>
+                        <div class="tip-list">
+                            <div>Example: in 3 mm material, a reliable minimum hole is usually around 1.5 mm.</div>
+                            <div>Tighter features may need manual review or a design adjustment before production.</div>
+                            <div>Allow sensible clearance if the part needs to fit bolts, tabs, or mating components.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="intersections">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/intersecting-lines.webp" alt="Avoid intersecting or common lines" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 6</div>
+                        <h2>avoid intersecting, overlapping, or common lines</h2>
+                        <p>
+                            Overlapping geometry can create double cuts, uncertain paths, or quoting errors. Keep the drawing tidy so each cut path exists once and the intended shape is obvious.
+                        </p>
+                        <div class="tip-list">
+                            <div>Delete duplicate entities before export.</div>
+                            <div>Trim intersections properly rather than leaving crossing lines in place.</div>
+                            <div>If separate parts are meant to be separate, do not let their geometry overlap.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="contours">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/Broken-lines.webp" alt="Close open contours" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 7</div>
+                        <h2>remove open contours and broken lines</h2>
+                        <p>
+                            Closed geometry is much easier to quote and manufacture reliably. Small gaps, unjoined endpoints, or broken contour segments can prevent a file from behaving like a proper closed part profile.
+                        </p>
+                        <div class="tip-list">
+                            <div>Join endpoints and close small gaps before exporting.</div>
+                            <div>Use proper arcs and circles where possible rather than fragmented line segments.</div>
+                            <div>Delete floating fragments that are not part of the final part.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card rule-card" id="size">
+                <div class="rule-layout">
+                    <div class="rule-media">
+                        <img src="/static/img/guidelines/max-size.webp" alt="Maximum part size" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="rule-body">
+                        <div class="eyebrow-dark">Rule 8</div>
+                        <h2>keep parts within 900 × 900 mm</h2>
+                        <p>
+                            The online service is set up around a maximum part size of 900 mm by 900 mm. Larger parts should be discussed before quoting so handling, material availability, and delivery can be checked properly.
+                        </p>
+                        <div class="tip-list">
+                            <div>Measure the largest overall width and height of the part, not just the main body.</div>
+                            <div>If a part is too large, splitting it into sections may be a better option.</div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section class="content-block" id="faq">
+            <div class="eyebrow-dark">FAQs</div>
+            <h2 class="section-heading">common questions before upload</h2>
+            <div class="faq-grid">
+                <article class="faq-card">
+                    <h3>What file type should I send?</h3>
+                    <p>DXF is the preferred format for online quoting. Keep the file clean and exported at full size in millimetres.</p>
+                </article>
+                <article class="faq-card">
+                    <h3>Can I include notes in the file?</h3>
+                    <p>No. Remove notes, dimensions, title blocks, and page borders. Only include the actual part geometry and any intended cut or engrave paths.</p>
+                </article>
+                <article class="faq-card">
+                    <h3>What if my file does not meet the guidelines?</h3>
+                    <p>The job may fail to quote cleanly, need manual review, or need adjustment before production. Cleaner files reduce that back-and-forth.</p>
+                </article>
+                <article class="faq-card">
+                    <h3>Can I still ask for help with a difficult file?</h3>
+                    <p>Yes. If the drawing is unusual, oversized, or needs review, get in touch before ordering and we can check what is workable.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-block section-grid two">
+            <article class="card">
+                <h2>Need material information?</h2>
+                <p>Check the available materials, thicknesses, and finishes before uploading a new job.</p>
+                <div class="cta-row">
+                    <a class="button white" href="https://www.cutitout.uk/materials">View Materials</a>
+                </div>
+            </article>
+            <article class="card">
+                <h2>Ready to upload a file?</h2>
+                <p>If your drawing is clean and sized correctly, move straight into quoting.</p>
+                <div class="cta-row">
+                    <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
+                </div>
+            </article>
+        </section>
+    </div>
+</div>
+
+
+        <footer class="site-footer">
+            <div class="site-footer-copy">
+                <strong>Cut It Out</strong>
+                Upload DXF files, get instant pricing, and keep quoting, order handling, and production in one cleaner workflow.
+            </div>
+            <div class="site-footer-links">
+                <a href="https://app.cutitout.uk/quote">Start Quote</a>
+                <a href="https://www.cutitout.uk/guidelines">Guidelines</a>
+                <a href="https://www.cutitout.uk/contact">Contact</a>
+                <a href="https://www.cutitout.uk/terms">Terms</a>
+                <a href="https://www.cutitout.uk/privacy">Privacy</a>
+                <a href="https://www.cutitout.uk/delivery-returns">Delivery & Returns</a>
+                <a href="https://www.cutitout.uk/company">Company</a>
+            </div>
+        </footer>
+    </div>
+    <script>
+        const siteMenu = document.getElementById('siteMenu');
+        const siteMenuToggle = document.getElementById('siteMenuToggle');
+
+        if (siteMenu && siteMenuToggle) {
+            const collapseMenu = () => {
+                siteMenu.classList.remove('is-open');
+                siteMenuToggle.setAttribute('aria-expanded', 'false');
+            };
+
+            siteMenuToggle.addEventListener('click', () => {
+                const isOpen = !siteMenu.classList.contains('is-open');
+                if (isOpen) {
+                    siteMenu.classList.add('is-open');
+                    siteMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    collapseMenu();
+                }
+            });
+
+            siteMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (window.matchMedia('(max-width: 900px)').matches) {
+                        collapseMenu();
+                    }
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                if (!window.matchMedia('(max-width: 900px)').matches) {
+                    collapseMenu();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
