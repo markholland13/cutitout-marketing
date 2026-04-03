@@ -762,203 +762,319 @@
 }
 </script>
 <style>
-    .hero-wrap {
+    .home-banner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .home-banner .button {
+        min-height: 48px;
+    }
+    .home-hero {
+        padding: 42px;
+    }
+    .home-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 12% 18%, rgba(255,255,255,0.14), transparent 28%),
+            linear-gradient(120deg, rgba(255,255,255,0.06), transparent 42%);
+        pointer-events: none;
+    }
+    .hero-layout {
+        position: relative;
+        z-index: 1;
         display: grid;
-        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
         gap: 26px;
         align-items: stretch;
     }
     .hero-copy {
-        position: relative;
-        z-index: 1;
+        display: grid;
+        gap: 18px;
+        align-content: start;
+    }
+    .hero-copy h1 {
+        max-width: 760px;
+        margin-bottom: 0;
     }
     .hero-copy p {
         max-width: 640px;
     }
-    .hero-cta-stack {
+    .hero-actions {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-        margin-top: 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 8px;
     }
-    .hero-cta-note {
-        font-size: 14px;
-        line-height: 1.5;
-        color: rgba(255,255,255,0.84);
-        font-weight: 700;
+    .hero-actions .button {
+        min-height: 60px;
+        padding: 16px 26px;
+        font-size: 17px;
+        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+    }
+    .hero-actions .button.light {
+        background: rgba(255,255,255,0.12);
+    }
+    .hero-subtext {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 6px;
+    }
+    .hero-subtext span {
+        display: inline-flex;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.16);
+        font-size: 13px;
+        font-weight: 800;
         letter-spacing: 0.01em;
+        color: rgba(255,255,255,0.92);
     }
-    .hero-cta-note strong {
-        color: #fff;
-    }
-    .hero-primary-cta {
-        min-height: 62px;
-        padding: 16px 28px;
-        font-size: 18px;
-        letter-spacing: 0.01em;
-        box-shadow: 0 20px 34px rgba(15, 23, 42, 0.16);
-    }
-    .hero-primary-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 24px 40px rgba(15, 23, 42, 0.2);
-    }
-    .hero-points {
+    .hero-evidence {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
-        margin-top: 24px;
+        margin-top: 10px;
     }
-    .hero-point {
-        padding: 16px 18px;
-        border-radius: 18px;
+    .hero-evidence-card {
+        padding: 18px;
+        border-radius: 20px;
         background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.14);
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(8px);
     }
-    .hero-point .label {
+    .hero-evidence-card .label {
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.12em;
-        color: rgba(255,255,255,0.68);
+        color: rgba(255,255,255,0.66);
         font-weight: 800;
     }
-    .hero-point strong {
+    .hero-evidence-card strong {
         display: block;
-        margin-top: 8px;
-        font-size: 18px;
-        line-height: 1.3;
-        color: #fff;
+        margin-top: 9px;
+        font-size: 19px;
+        line-height: 1.25;
     }
-    .hero-media {
+    .quote-panel {
         position: relative;
-        min-height: 100%;
-        display: grid;
-        gap: 14px;
         z-index: 1;
-    }
-    .hero-image-card {
-        position: relative;
-        overflow: hidden;
-        min-height: 430px;
+        display: grid;
+        gap: 16px;
+        padding: 24px;
         border-radius: 28px;
-        background:
-            radial-gradient(circle at top right, rgba(63, 109, 128, 0.2), transparent 36%),
-            linear-gradient(145deg, rgba(255,255,255,0.94), rgba(235,242,246,0.92));
-        border: 1px solid rgba(255,255,255,0.18);
-        box-shadow: 0 24px 44px rgba(19, 46, 64, 0.12);
-        overflow: hidden;
-    }
-    .hero-image-card img,
-    .mini-media img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .hero-note {
-        position: absolute;
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-        padding: 16px 18px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.94);
         border: 1px solid rgba(16, 42, 67, 0.08);
         color: var(--ink);
-        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
+        box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
     }
-    .hero-note strong {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--brand-deep);
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-    .hero-note p {
+    .quote-panel h2 {
         margin: 0;
+        font-size: 28px;
+        letter-spacing: -0.03em;
+    }
+    .quote-panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+    .quote-steps {
+        display: grid;
+        gap: 12px;
+    }
+    .quote-step {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 16px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(244,248,250,0.92), rgba(235,242,246,0.92));
+        border: 1px solid rgba(16, 42, 67, 0.08);
+    }
+    .quote-step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+        color: #fff;
+        font-weight: 900;
+        box-shadow: 0 12px 24px rgba(31, 78, 95, 0.14);
+    }
+    .quote-step strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 15px;
+        color: var(--brand-deep);
+    }
+    .quote-step span {
         color: var(--muted);
         font-size: 14px;
         line-height: 1.55;
     }
-    .mini-media-row {
+    .quote-panel-cta {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
+        gap: 12px;
     }
-    .mini-media {
-        min-height: 154px;
-        border-radius: 22px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.16);
-        background:
-            radial-gradient(circle at top right, rgba(63, 109, 128, 0.18), transparent 36%),
-            linear-gradient(145deg, rgba(255,255,255,0.94), rgba(235,242,246,0.92));
+    .quote-panel-cta .button {
+        min-height: 58px;
+        font-size: 17px;
     }
-    .service-strip {
+    .quote-note {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(31, 78, 95, 0.07);
+        color: var(--brand-deep);
+        font-size: 14px;
+        line-height: 1.55;
+        font-weight: 700;
+    }
+    .home-metric-band {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         margin-top: 24px;
     }
-    .service-tile {
+    .home-metric {
         padding: 22px;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.88);
+        border-radius: 24px;
+        background: rgba(255,255,255,0.9);
         border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
     }
-    .service-tile h3 {
-        margin: 0 0 8px;
-        font-size: 19px;
-        letter-spacing: -0.02em;
-    }
-    .service-tile p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-    }
-    .trust-band {
-        display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
-        gap: 22px;
-        margin-top: 28px;
-    }
-    .trust-copy h2 {
-        margin: 10px 0 12px;
-        font-size: clamp(28px, 3vw, 40px);
-        letter-spacing: -0.03em;
-    }
-    .trust-copy p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 16px;
-        line-height: 1.7;
-        max-width: 700px;
-    }
-    .trust-metrics {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-    .trust-metric {
-        padding: 20px;
-        border-radius: 20px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(239,244,247,0.92));
-        border: 1px solid rgba(16, 42, 67, 0.08);
-    }
-    .trust-metric .label {
+    .home-metric .label {
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.12em;
         color: var(--muted);
         font-weight: 800;
     }
-    .trust-metric .value {
+    .home-metric .value {
         margin-top: 10px;
         font-size: 28px;
-        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
         color: var(--brand-deep);
+        font-weight: 900;
+    }
+    .home-metric p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 14px;
+    }
+    .story-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+        gap: 22px;
+        margin-top: 24px;
+    }
+    .story-panel {
+        position: relative;
+        overflow: hidden;
+        padding: 30px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(239,244,247,0.92));
+        border: 1px solid rgba(16, 42, 67, 0.08);
+        box-shadow: 0 22px 40px rgba(15, 23, 42, 0.07);
+    }
+    .story-panel h2 {
+        margin: 12px 0 14px;
+        font-size: clamp(30px, 3vw, 42px);
+        letter-spacing: -0.03em;
+    }
+    .story-panel p {
+        margin: 0;
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.72;
+    }
+    .story-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 20px;
+    }
+    .story-list div {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 15px 16px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(16, 42, 67, 0.08);
+        color: var(--ink);
+    }
+    .story-list div::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        margin-top: 8px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+        flex: 0 0 auto;
+    }
+    .spotlight-stack {
+        display: grid;
+        gap: 16px;
+    }
+    .spotlight-card {
+        padding: 24px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, rgba(31, 78, 95, 0.98), rgba(63, 109, 128, 0.94));
+        color: #fff;
+        box-shadow: 0 22px 42px rgba(19, 46, 64, 0.14);
+    }
+    .spotlight-card h3 {
+        margin: 0 0 8px;
+        font-size: 22px;
+        letter-spacing: -0.02em;
+    }
+    .spotlight-card p {
+        margin: 0;
+        color: rgba(255,255,255,0.84);
+        line-height: 1.65;
+    }
+    .spotlight-grid {
+        display: grid;
+        gap: 14px;
+    }
+    .spotlight-tile {
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.9);
+        border: 1px solid rgba(16, 42, 67, 0.08);
+        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.05);
+    }
+    .spotlight-tile strong {
+        display: block;
+        color: var(--brand-deep);
+        font-size: 17px;
+        margin-bottom: 6px;
+    }
+    .spotlight-tile p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+    .section-heading-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+    .section-heading-row .button {
+        min-height: 50px;
     }
     .pricing-grid {
         display: grid;
@@ -969,22 +1085,23 @@
     .pricing-card {
         overflow: hidden;
         padding: 0;
+        border-radius: 26px;
     }
     .pricing-card .media-frame {
-        min-height: 230px;
+        min-height: 240px;
     }
     .pricing-body {
         padding: 22px;
     }
     .pricing-body h3 {
         margin: 0 0 8px;
-        font-size: 20px;
+        font-size: 21px;
         letter-spacing: -0.02em;
     }
     .pricing-body p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.6;
+        line-height: 1.62;
     }
     .price-stack {
         display: grid;
@@ -1003,122 +1120,103 @@
     .price-line strong {
         color: var(--ink);
     }
-    .materials-grid {
+    .quick-route-grid {
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 18px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 22px;
         margin-top: 24px;
     }
-    .material-card {
-        overflow: hidden;
-        padding: 0;
-    }
-    .material-card .media-frame {
-        min-height: 190px;
-    }
-    .material-body {
-        padding: 20px 20px 22px;
-    }
-    .material-body h3 {
-        margin: 0 0 6px;
-        font-size: 20px;
-        letter-spacing: -0.02em;
-    }
-    .material-body p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-    }
-    .applications {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 24px;
-    }
-    .application-chip {
-        padding: 18px 14px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.84);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        color: var(--brand-deep);
-        font-weight: 800;
-        text-align: center;
-    }
-    .value-list {
-        display: grid;
-        gap: 12px;
-        margin-top: 18px;
-    }
-    .value-item {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        padding: 14px 16px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.84);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        color: var(--ink);
-    }
-    .value-item strong {
-        color: var(--brand-deep);
-    }
-    .value-item-mark {
-        flex: 0 0 auto;
-        width: 28px;
-        height: 28px;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, rgba(31, 78, 95, 0.16), rgba(63, 109, 128, 0.2));
-        color: var(--brand-deep);
-        font-weight: 900;
-    }
-    .process-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 24px;
-    }
-    .process-step {
-        padding: 24px;
-        border-radius: 24px;
+    .route-panel {
+        padding: 28px;
+        border-radius: 28px;
         background: rgba(255,255,255,0.94);
         border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
+        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
     }
-    .process-step .step-number {
+    .route-panel h2 {
+        margin: 12px 0 10px;
+        font-size: 30px;
+        letter-spacing: -0.03em;
+    }
+    .route-panel p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.68;
+    }
+    .process-rail {
+        display: grid;
+        gap: 14px;
+        margin-top: 20px;
+    }
+    .process-card {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 14px;
+        padding: 16px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(244,248,250,0.92), rgba(235,242,246,0.9));
+        border: 1px solid rgba(16, 42, 67, 0.08);
+    }
+    .process-card-number {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 14px;
         background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
         color: #fff;
-        font-size: 18px;
         font-weight: 900;
-        box-shadow: 0 14px 24px rgba(31, 78, 95, 0.16);
     }
-    .process-step h3 {
-        margin: 16px 0 8px;
-        font-size: 21px;
-        letter-spacing: -0.02em;
+    .process-card strong {
+        display: block;
+        color: var(--brand-deep);
+        margin-bottom: 5px;
     }
-    .process-step p {
+    .process-card span {
+        color: var(--muted);
+        line-height: 1.58;
+        font-size: 14px;
+    }
+    .materials-mini-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 20px;
+    }
+    .materials-mini-card {
+        overflow: hidden;
+        padding: 0;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.96);
+        border: 1px solid rgba(16, 42, 67, 0.08);
+    }
+    .materials-mini-card .media-frame {
+        min-height: 160px;
+    }
+    .materials-mini-card .body {
+        padding: 16px 18px 18px;
+    }
+    .materials-mini-card strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 18px;
+        color: var(--ink);
+    }
+    .materials-mini-card p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.65;
+        line-height: 1.58;
     }
     .faq-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
         margin-top: 24px;
     }
     .faq-item {
-        padding: 20px 22px;
-        border-radius: 22px;
+        padding: 22px;
+        border-radius: 24px;
         background: rgba(255,255,255,0.94);
         border: 1px solid rgba(16, 42, 67, 0.08);
         box-shadow: 0 18px 36px rgba(15, 23, 42, 0.05);
@@ -1133,62 +1231,155 @@
         color: var(--muted);
         line-height: 1.65;
     }
-    @media (max-width: 1080px) {
-        .hero-wrap,
-        .trust-band,
-        .service-strip,
-        .pricing-grid,
-        .materials-grid,
-        .applications,
-        .process-grid,
-        .faq-grid {
+    .closing-cta {
+        position: relative;
+        overflow: hidden;
+        padding: 34px;
+        border-radius: 30px;
+        background: linear-gradient(135deg, rgba(31, 78, 95, 0.98), rgba(63, 109, 128, 0.94));
+        color: #fff;
+        box-shadow: 0 26px 46px rgba(19, 46, 64, 0.16);
+    }
+    .closing-cta::after {
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        right: -80px;
+        top: -70px;
+        background: rgba(255,255,255,0.08);
+    }
+    .closing-cta-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 24px;
+        align-items: center;
+    }
+    .closing-cta h2 {
+        margin: 10px 0 8px;
+        font-size: clamp(30px, 3vw, 44px);
+        letter-spacing: -0.03em;
+    }
+    .closing-cta p {
+        margin: 0;
+        max-width: 700px;
+        color: rgba(255,255,255,0.84);
+        line-height: 1.7;
+        font-size: 16px;
+    }
+    .closing-cta .button {
+        min-height: 60px;
+        min-width: 220px;
+        font-size: 17px;
+        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
+    }
+    .quote-dock {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        z-index: 80;
+        width: min(960px, calc(100% - 28px));
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        padding: 14px 16px;
+        border-radius: 24px;
+        background: rgba(12, 27, 37, 0.88);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.24);
+        backdrop-filter: blur(16px);
+    }
+    .quote-dock-copy strong {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 4px;
+    }
+    .quote-dock-copy span {
+        color: rgba(255,255,255,0.76);
+        font-size: 13px;
+        line-height: 1.45;
+    }
+    .quote-dock-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .quote-dock .button {
+        min-height: 48px;
+        padding: 12px 18px;
+    }
+    .quote-dock .button.light {
+        background: rgba(255,255,255,0.1);
+        color: #fff;
+    }
+    @media (max-width: 1120px) {
+        .hero-layout,
+        .story-grid,
+        .quick-route-grid,
+        .closing-cta-inner {
             grid-template-columns: 1fr;
         }
-        .hero-points,
-        .trust-metrics,
-        .mini-media-row {
-            grid-template-columns: 1fr 1fr;
+        .home-metric-band,
+        .pricing-grid,
+        .faq-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
     }
-    @media (max-width: 720px) {
-        .hero-points,
-        .trust-metrics,
-        .mini-media-row {
+    @media (max-width: 820px) {
+        .home-hero {
+            padding: 24px;
+        }
+        .hero-evidence,
+        .home-metric-band,
+        .pricing-grid,
+        .faq-grid,
+        .materials-mini-grid {
             grid-template-columns: 1fr;
         }
-        .hero-image-card {
-            min-height: 320px;
+        .quote-dock {
+            width: calc(100% - 20px);
+            bottom: 10px;
+            padding: 12px;
+            border-radius: 20px;
         }
-        .hero-note {
-            position: static;
-            margin: 14px;
+        .quote-dock,
+        .quote-dock-actions {
+            flex-direction: column;
+            align-items: stretch;
         }
-        .hero-primary-cta {
+        .quote-dock .button {
             width: 100%;
         }
-        .pricing-card .media-frame {
-            min-height: 190px;
-        }
-        .material-card .media-frame {
-            min-height: 170px;
-        }
-        .pricing-body,
-        .material-body {
-            padding: 18px;
-        }
     }
-    @media (max-width: 520px) {
-        .service-tile,
-        .application-chip {
-            padding: 16px;
+    @media (max-width: 640px) {
+        .home-banner {
+            align-items: flex-start;
         }
-        .hero-point strong {
-            font-size: 16px;
+        .home-banner .button,
+        .hero-actions .button,
+        .quote-panel-cta .button,
+        .closing-cta .button {
+            width: 100%;
+        }
+        .hero-actions,
+        .hero-subtext {
+            display: grid;
         }
         .price-line {
             flex-direction: column;
             align-items: flex-start;
             gap: 4px;
+        }
+        .story-panel,
+        .route-panel,
+        .closing-cta {
+            padding: 22px;
         }
     }
 </style>
@@ -1202,7 +1393,7 @@
             </a>
             <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">Menu</button>
             <nav class="site-nav" id="siteMenu">
-                <a href="https://app.cutitout.uk/quote" class="">Quote</a>
+                <a href="https://app.cutitout.uk/quote" class="primary">Quote</a>
                 <a href="https://www.cutitout.uk/guidelines" class="">Guidelines</a>
                 <a href="https://www.cutitout.uk/materials" class="">Materials</a>
                 <a href="https://www.cutitout.uk/services" class="">Services</a>
@@ -1215,342 +1406,317 @@
             </nav>
         </header>
 
-        
 
-        
-
-
-
-
-
-
-
-
-<section class="hero-card">
-    <div class="hero-wrap">
-        <div class="hero-copy">
-            <div class="eyebrow">Made In The UK</div>
-            <h1>upload your design and get a laser cutting quote in seconds</h1>
-            <p>
-                Quote laser cut parts online without the usual back-and-forth. Upload your DXF, choose steel, stainless, aluminium, or acrylic, then order online with fast UK turnaround and repeat ordering built in.
-            </p>
-            <div class="hero-cta-stack">
-                <a class="button white hero-primary-cta" href="https://app.cutitout.uk/quote">Upload Your File</a>
-                <div class="hero-cta-note"><strong>Typical flow:</strong> Upload your DXF, get instant pricing, and move straight into checkout.</div>
-                <div class="cta-row">
-                    <a class="button light" href="https://www.cutitout.uk/guidelines">Check File Guidelines</a>
+        <section class="site-banner">
+            <div class="home-banner">
+                <div>
+                    <strong>Need a price quickly?</strong>
+                    <p>Upload a DXF, choose the material, and go straight to an instant quote without waiting around for emails.</p>
                 </div>
+                <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
             </div>
-            <div class="hero-points">
-                <div class="hero-point">
-                    <div class="label">Quote Speed</div>
-                    <strong>Instant online pricing</strong>
-                </div>
-                <div class="hero-point">
-                    <div class="label">Materials</div>
-                    <strong>Steel, stainless, aluminium, acrylic</strong>
-                </div>
-                <div class="hero-point">
-                    <div class="label">Turnaround</div>
-                    <strong>Fast UK mainland delivery</strong>
-                </div>
-            </div>
-        </div>
-        <div class="hero-media">
-            <div class="hero-image-card">
-                <img src="/static/img/home/hero-parts.webp" alt="Laser cut parts" loading="lazy" onerror="this.style.display='none';">
-                <div class="hero-note">
-                    <strong>Online Ordering</strong>
-                    <p>Quote, order, and reorder custom parts without sending drawings back and forth by email.</p>
-                </div>
-            </div>
-            <div class="mini-media-row">
-                <div class="mini-media">
-                    <img src="/static/img/home/example-parts.webp" alt="Example laser cut parts" loading="lazy" onerror="this.style.display='none';">
-                </div>
-                <div class="mini-media">
-                    <img src="/static/img/home/powder-coated-parts.webp" alt="Powder coated parts" loading="lazy" onerror="this.style.display='none';">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<section class="service-strip">
-    <article class="service-tile">
-        <h3>Laser Cutting</h3>
-        <p>Upload DXF files and price parts online for one-offs, repeat jobs, and production batches.</p>
-    </article>
-    <article class="service-tile">
-        <h3>Powder Coating</h3>
-        <p>Add powder coating during quoting where a durable, ready-to-fit finish is required.</p>
-    </article>
-    <article class="service-tile">
-        <h3>Customer Account</h3>
-        <p>Keep your order history, delivery updates, and repeat jobs in one account.</p>
-    </article>
-    <article class="service-tile">
-        <h3>Repeat Ordering</h3>
-        <p>Reorder saved parts without rebuilding the same job from scratch every time.</p>
-    </article>
-</section>
+        <section class="hero-card home-hero">
+            <div class="hero-layout">
+                <div class="hero-copy">
+                    <div class="eyebrow">Instant Online Quoting</div>
+                    <h1>upload your DXF and get an instant laser cutting quote</h1>
+                    <p>
+                        Built for one-off parts, repeat jobs, and small runs. Upload your file, choose the material, and go straight to pricing online.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
+                        <a class="button light" href="https://www.cutitout.uk/guidelines">Check File Guidelines</a>
+                    </div>
+                    <div class="hero-subtext">
+                        <span>One-off parts welcome</span>
+                        <span>From £0.50 on simple parts</span>
+                        <span>Steel, stainless, aluminium, acrylic</span>
+                        <span>UK-made and delivered</span>
+                    </div>
+                    <div class="hero-evidence">
+                        <div class="hero-evidence-card">
+                            <div class="label">Quote Speed</div>
+                            <strong>Instant online pricing</strong>
+                        </div>
+                        <div class="hero-evidence-card">
+                            <div class="label">Order Size</div>
+                            <strong>From one-off parts upwards</strong>
+                        </div>
+                        <div class="hero-evidence-card">
+                            <div class="label">Lead Time</div>
+                            <strong>Faster route from file to order</strong>
+                        </div>
+                    </div>
+                </div>
+                <aside class="quote-panel">
+                    <div class="eyebrow-dark">Go Straight To Quote</div>
+                    <h2>the fastest route is simple</h2>
+                    <p>If the file is ready, go straight to quote online.</p>
+                    <div class="quote-steps">
+                        <div class="quote-step">
+                            <div class="quote-step-number">1</div>
+                            <div>
+                                <strong>Upload your DXF</strong>
+                                <span>Start with a clean drawing at full size in millimetres.</span>
+                            </div>
+                        </div>
+                        <div class="quote-step">
+                            <div class="quote-step-number">2</div>
+                            <div>
+                                <strong>Choose material and thickness</strong>
+                                <span>Select the specification, quantity, and any finishing needed.</span>
+                            </div>
+                        </div>
+                        <div class="quote-step">
+                            <div class="quote-step-number">3</div>
+                            <div>
+                                <strong>See the price and order</strong>
+                                <span>Move straight into checkout if the job is ready to go.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote-panel-cta">
+                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
+                        <div class="quote-note">Simple small parts can be from £0.50 depending on geometry, material, and quantity.</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
 
-<section class="content-block">
-    <div class="trust-band">
-        <article class="surface-panel trust-copy">
-            <div class="eyebrow-dark">Why Cut It Out</div>
-            <h2>a simpler route from drawing to finished part, with clear pricing and less friction</h2>
-            <p>
-                Cut It Out is built for customers who want a straightforward way to order custom laser cut parts online. Quote instantly, choose from common materials, reorder repeat jobs, and keep everything in one place instead of chasing updates by email.
-            </p>
-            <div class="value-list">
-                <div class="value-item">
-                    <span class="value-item-mark">1</span>
-                    <div><strong>Instant pricing</strong> for DXF-based jobs, so you can decide quickly instead of waiting for a manual quote.</div>
-                </div>
-                <div class="value-item">
-                    <span class="value-item-mark">2</span>
-                    <div><strong>UK-based fulfilment</strong> with delivery across the mainland and quoting that includes the real job options customers ask about.</div>
-                </div>
-                <div class="value-item">
-                    <span class="value-item-mark">3</span>
-                    <div><strong>No need to start from scratch</strong> when repeating parts, because past jobs and account history are kept together.</div>
-                </div>
-            </div>
-        </article>
-        <div class="trust-metrics">
-            <div class="trust-metric">
-                <div class="label">File Format</div>
-                <div class="value">DXF Upload</div>
-            </div>
-            <div class="trust-metric">
-                <div class="label">Quote Speed</div>
-                <div class="value">Instant</div>
-            </div>
-            <div class="trust-metric">
-                <div class="label">Finishing</div>
+        <section class="home-metric-band">
+            <article class="home-metric">
+                <div class="label">Built For</div>
+                <div class="value">One-offs</div>
+                <p>Useful when you only need a single part and still want a fast route to ordering.</p>
+            </article>
+            <article class="home-metric">
+                <div class="label">File Type</div>
+                <div class="value">DXF</div>
+                <p>The quote flow is built around clean DXF drawings prepared at final size.</p>
+            </article>
+            <article class="home-metric">
+                <div class="label">Materials</div>
+                <div class="value">4 main ranges</div>
+                <p>Mild steel, stainless steel, aluminium, and acrylic can all be priced online.</p>
+            </article>
+            <article class="home-metric">
+                <div class="label">After Cutting</div>
                 <div class="value">Powder Coat</div>
-            </div>
-            <div class="trust-metric">
-                <div class="label">Delivery Area</div>
-                <div class="value">UK Mainland</div>
-            </div>
-        </div>
-    </div>
-</section>
+                <p>Add powder coating during quoting where a finished result is needed.</p>
+            </article>
+        </section>
 
-<section class="content-block">
-    <div class="eyebrow-dark">How It Works</div>
-    <h2 class="section-heading">from file upload to delivered parts in three clear steps</h2>
-    <p class="section-copy">
-        Keep the process simple: send a usable drawing, confirm the specification, and place the order online.
-    </p>
-    <div class="process-grid">
-        <article class="process-step">
-            <div class="step-number">1</div>
-            <h3>Upload your drawing</h3>
-            <p>Start with a DXF file, then choose the material, thickness, quantity, and any finishing needed for the job.</p>
-        </article>
-        <article class="process-step">
-            <div class="step-number">2</div>
-            <h3>Get an instant quote</h3>
-            <p>See pricing straight away, check the job details, and confirm the order without waiting for a manual response.</p>
-        </article>
-        <article class="process-step">
-            <div class="step-number">3</div>
-            <h3>We cut and ship</h3>
-            <p>Your order moves into production, then dispatch updates and repeat ordering stay available through your account.</p>
-        </article>
-    </div>
-</section>
-
-<section class="content-block">
-    <div class="eyebrow-dark">Pricing Examples</div>
-    <h2 class="section-heading">pricing depends on material, geometry, quantity, and finishing</h2>
-    <p class="section-copy">
-        Example pricing helps set expectations, but every quote still depends on the file itself. Simple parts and repeat runs are usually cheaper per unit, while denser geometry, thicker sheet, and finishing increase cost.
-    </p>
-    <div class="pricing-grid">
-        <article class="card pricing-card">
-            <div class="media-frame">
-                <img src="/static/img/home/Parts.webp" alt="Small laser cut steel parts" loading="lazy" onerror="this.style.display='none';">
-            </div>
-            <div class="pricing-body">
-                <h3>Small Laser Cut Parts</h3>
-                <p>Simple steel parts can be very cost-effective when the geometry is straightforward and no finishing is needed.</p>
-                <div class="price-stack">
-                    <div class="price-line"><span>Qty 1</span><strong>From £0.50</strong></div>
-                    <div class="price-line"><span>Complexity</span><strong>Simple shapes cost less to cut</strong></div>
-                    <div class="price-line"><span>Repeat jobs</span><strong>Larger runs reduce cost per part</strong></div>
+        <section class="content-block">
+            <div class="story-grid">
+                <article class="story-panel">
+                    <div class="eyebrow-dark">Why This Site Exists</div>
+                    <h2>built to get customers to a usable quote fast, not to trap them in email chains</h2>
+                    <p>
+                        A lot of customers do not want a drawn-out quoting process. They just want to upload a file, choose the material, and know whether the part is worth making. Cut It Out is built around that need, especially for one-off parts and smaller runs where waiting on emails can slow everything down.
+                    </p>
+                    <div class="story-list">
+                        <div><strong>Fast first step:</strong> upload a usable DXF and move straight into pricing if the job is ready.</div>
+                        <div><strong>Real examples:</strong> actual parts and pricing guidance make the service feel grounded rather than generic.</div>
+                        <div><strong>Useful fallback:</strong> if the job is unusual, you can still get guidance without losing momentum.</div>
+                    </div>
+                </article>
+                <div class="spotlight-stack">
+                    <article class="spotlight-card">
+                        <div class="eyebrow">Best Route</div>
+                        <h3>ready file, ready quote</h3>
+                        <p>If the drawing is clean and the material is standard, the fastest route is to go straight to quote and order online.</p>
+                    </article>
+                    <div class="spotlight-grid">
+                        <article class="spotlight-tile">
+                            <strong>One-offs welcome</strong>
+                            <p>The service is useful even when you only need a single part rather than a large production order.</p>
+                        </article>
+                        <article class="spotlight-tile">
+                            <strong>Less waiting around</strong>
+                            <p>The goal is to reduce the usual delay before pricing, so customers can decide more quickly.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
-        </article>
-        <article class="card pricing-card">
-            <div class="media-frame">
-                <img src="/static/img/home/car.webp" alt="Laser cut car model powder coated black" loading="lazy" onerror="this.style.display='none';">
+        </section>
+
+        <section class="content-block">
+            <div class="section-heading-row">
+                <div>
+                    <div class="eyebrow-dark">Pricing Examples</div>
+                    <h2 class="section-heading">example parts you can price online</h2>
+                    <p class="section-copy">Every quote depends on the file itself, but these examples show the kind of work customers commonly upload and order.</p>
+                </div>
+                <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
             </div>
-            <div class="pricing-body">
-                <h3>Powder Coated Car Model</h3>
-                <p>Laser cut steel car model finished with a black powder coat after cutting.</p>
-                <div class="price-stack">
-                    <div class="price-line"><span>Finish</span><strong>Powder coating adds durability and appearance</strong></div>
-                    <div class="price-line"><span>Geometry</span><strong>Detailed profiles take longer to cut</strong></div>
-                    <div class="price-line"><span>Order size</span><strong>Finishing cost depends on the job size</strong></div>
+            <div class="pricing-grid">
+                <article class="card pricing-card">
+                    <div class="media-frame">
+                        <img src="/static/img/home/Parts.webp" alt="Small laser cut steel parts" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="pricing-body">
+                        <h3>Small Laser Cut Parts</h3>
+                        <p>Simple steel parts can be very cost-effective when the shape is straightforward and no finishing is needed.</p>
+                        <div class="price-stack">
+                            <div class="price-line"><span>Qty 1</span><strong>From £0.50</strong></div>
+                            <div class="price-line"><span>Complexity</span><strong>Simple shapes cost less to cut</strong></div>
+                            <div class="price-line"><span>Repeat jobs</span><strong>Larger runs reduce cost per part</strong></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card pricing-card">
+                    <div class="media-frame">
+                        <img src="/static/img/home/car.webp" alt="Laser cut car model powder coated black" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="pricing-body">
+                        <h3>Powder Coated Car Model</h3>
+                        <p>Laser cut steel car model finished with a black powder coat after cutting for a cleaner visual result.</p>
+                        <div class="price-stack">
+                            <div class="price-line"><span>Finish</span><strong>Powder coating adds durability and appearance</strong></div>
+                            <div class="price-line"><span>Geometry</span><strong>Detailed profiles take longer to cut</strong></div>
+                            <div class="price-line"><span>Order size</span><strong>Finishing cost depends on the job size</strong></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="card pricing-card">
+                    <div class="media-frame">
+                        <img src="/static/img/home/Acrylic Part.webp" alt="Small acrylic part" loading="lazy" onerror="this.style.display='none';">
+                    </div>
+                    <div class="pricing-body">
+                        <h3>Acrylic Part</h3>
+                        <p>Small acrylic parts are priced by material choice, thickness, and the amount of detail in the design.</p>
+                        <div class="price-stack">
+                            <div class="price-line"><span>Material</span><strong>Colour and thickness affect cost</strong></div>
+                            <div class="price-line"><span>Geometry</span><strong>More cut detail increases cut time</strong></div>
+                            <div class="price-line"><span>Use case</span><strong>Suitable for smaller display and non-metal parts</strong></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="quick-route-grid">
+                <article class="route-panel">
+                    <div class="eyebrow-dark">Fastest Route</div>
+                    <h2>if the file is ready, the quote page should be your first stop</h2>
+                    <p>For standard jobs, the fastest route is simple: upload the drawing, choose the specification, and go straight to an online price.</p>
+                    <div class="process-rail">
+                        <div class="process-card">
+                            <div class="process-card-number">1</div>
+                            <div>
+                                <strong>Prepare the file</strong>
+                                <span>Use a clean DXF with the part at final size and only the intended cut geometry included.</span>
+                            </div>
+                        </div>
+                        <div class="process-card">
+                            <div class="process-card-number">2</div>
+                            <div>
+                                <strong>Choose the specification</strong>
+                                <span>Select the material, thickness, quantity, and any finishing needed for the job.</span>
+                            </div>
+                        </div>
+                        <div class="process-card">
+                            <div class="process-card-number">3</div>
+                            <div>
+                                <strong>Order when ready</strong>
+                                <span>See the price online and move straight into checkout if everything looks right.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cta-row">
+                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
+                    </div>
+                </article>
+                <article class="route-panel">
+                    <div class="eyebrow-dark">Need Help First?</div>
+                    <h2>guidance is easy to find, but it does not get in the way of quoting</h2>
+                    <p>If the part needs checking first, or you want to confirm the material before uploading, the next best route is still quick and clear.</p>
+                    <div class="materials-mini-grid">
+                        <article class="materials-mini-card">
+                            <div class="media-frame">
+                                <img src="/static/img/home/Mild-steel.webp" alt="Mild steel laser cutting material" loading="lazy" onerror="this.style.display='none';">
+                            </div>
+                            <div class="body">
+                                <strong>Check Materials</strong>
+                                <p>Review the available metals and acrylic options before you price the part.</p>
+                            </div>
+                        </article>
+                        <article class="materials-mini-card">
+                            <div class="media-frame">
+                                <img src="/static/img/home/example-parts.webp" alt="DXF and laser cut part examples" loading="lazy" onerror="this.style.display='none';">
+                            </div>
+                            <div class="body">
+                                <strong>Check File Rules</strong>
+                                <p>Make sure the drawing is clean enough to move straight into quoting and production.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="cta-row">
+                        <a class="button white" href="https://www.cutitout.uk/guidelines">Read Guidelines</a>
+                        <a class="button light" href="https://www.cutitout.uk/materials">View Materials</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="eyebrow-dark">Frequently Asked Questions</div>
+            <h2 class="section-heading">the main questions customers ask before they upload a file</h2>
+            <p class="section-copy">These stay on the homepage because they remove hesitation, but the main action is still to move the customer toward the quote page.</p>
+            <div class="faq-grid">
+                <article class="faq-item">
+                    <h3>What file types do you accept?</h3>
+                    <p>The quote flow is built around DXF files. Start with a clean DXF and check the file guidance before upload.</p>
+                </article>
+                <article class="faq-item">
+                    <h3>What materials can I quote online?</h3>
+                    <p>Common online options include mild steel, stainless steel, aluminium, and acrylic, with material and thickness selected during quoting.</p>
+                </article>
+                <article class="faq-item">
+                    <h3>Can I order one-offs as well as batches?</h3>
+                    <p>Yes. The service is set up for one-off parts, repeat jobs, and small production runs, with quantity affecting the price per part.</p>
+                </article>
+                <article class="faq-item">
+                    <h3>Can I add powder coating?</h3>
+                    <p>Yes, where supported. Finishing can be added during quoting so the total price reflects both cutting and coating requirements.</p>
+                </article>
+                <article class="faq-item">
+                    <h3>Do you deliver across the UK?</h3>
+                    <p>Yes, the service is aimed at UK mainland delivery, and shipping is included as part of the online order flow.</p>
+                </article>
+                <article class="faq-item">
+                    <h3>Can I reorder a part later?</h3>
+                    <p>Yes. Previous jobs can be found again through your account, which makes repeat ordering much quicker.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <div class="closing-cta">
+                <div class="closing-cta-inner">
+                    <div>
+                        <div class="eyebrow">Ready To Upload?</div>
+                        <h2>if the drawing is ready, go straight to the quote page now</h2>
+                        <p>That should be the clearest next step on the whole page. Upload the DXF, choose the specification, and see the price online.</p>
+                    </div>
+                    <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
                 </div>
             </div>
-        </article>
-        <article class="card pricing-card">
-            <div class="media-frame">
-                <img src="/static/img/home/Acrylic Part.webp" alt="Small acrylic part" loading="lazy" onerror="this.style.display='none';">
-            </div>
-            <div class="pricing-body">
-                <h3>Acrylic Part</h3>
-                <p>Small acrylic parts are priced by material choice, thickness, and the amount of cutting detail in the design.</p>
-                <div class="price-stack">
-                    <div class="price-line"><span>Material</span><strong>Colour and thickness affect cost</strong></div>
-                    <div class="price-line"><span>Geometry</span><strong>More cut detail increases cut time</strong></div>
-                    <div class="price-line"><span>Use case</span><strong>Suitable for smaller display and non-metal parts</strong></div>
-                </div>
-            </div>
-        </article>
-    </div>
-</section>
+        </section>
 
-<section class="content-block">
-    <div class="eyebrow-dark">Materials</div>
-    <h2 class="section-heading">common materials available to quote online</h2>
-    <p class="section-copy">
-        Choose the right material and thickness at quote stage, then order with the same specification saved against the job.
-    </p>
-    <div class="materials-grid">
-        <article class="card material-card">
-            <div class="media-frame">
-                <img src="/static/img/home/Mild-steel.webp" alt="Mild steel" loading="lazy" onerror="this.style.display='none';">
+        <div class="quote-dock">
+            <div class="quote-dock-copy">
+                <strong>Upload your DXF and quote online</strong>
+                <span>For standard jobs, this should be the obvious next step from anywhere on the page.</span>
             </div>
-            <div class="material-body">
-                <h3>Mild Steel</h3>
-                <p>Suitable for brackets, covers, panels, and general fabrication work.</p>
+            <div class="quote-dock-actions">
+                <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
+                <a class="button light" href="https://www.cutitout.uk/guidelines">Check File Rules</a>
             </div>
-        </article>
-        <article class="card material-card">
-            <div class="media-frame">
-                <img src="/static/img/home/stainless.webp" alt="Stainless steel" loading="lazy" onerror="this.style.display='none';">
-            </div>
-            <div class="material-body">
-                <h3>Stainless Steel</h3>
-                <p>Chosen where corrosion resistance and a cleaner finish matter.</p>
-            </div>
-        </article>
-        <article class="card material-card">
-            <div class="media-frame">
-                <img src="/static/img/home/Aluminium.webp" alt="Aluminium" loading="lazy" onerror="this.style.display='none';">
-            </div>
-            <div class="material-body">
-                <h3>Aluminium</h3>
-                <p>Lightweight and widely used for covers, plates, and general components.</p>
-            </div>
-        </article>
-        <article class="card material-card">
-            <div class="media-frame">
-                <img src="/static/img/home/acrylic.webp" alt="Acrylic" loading="lazy" onerror="this.style.display='none';">
-            </div>
-            <div class="material-body">
-                <h3>Acrylic</h3>
-                <p>Ideal for display parts, panels, signage, and lighter non-metal jobs.</p>
-            </div>
-        </article>
-    </div>
-</section>
-
-<section class="content-block">
-    <div class="eyebrow-dark">Typical Applications</div>
-    <h2 class="section-heading">used for one-off parts, repeat orders, and small production runs</h2>
-    <p class="section-copy">
-        Common jobs include brackets, covers, signage, repair parts, enclosures, and workshop components that need to be ordered again without rebuilding the quote.
-    </p>
-    <div class="applications">
-        <div class="application-chip">Brackets</div>
-        <div class="application-chip">Panels & Covers</div>
-        <div class="application-chip">Signage</div>
-        <div class="application-chip">Repair Parts</div>
-        <div class="application-chip">Production Runs</div>
-    </div>
-</section>
-
-<section class="content-block">
-    <div class="eyebrow-dark">Frequently Asked Questions</div>
-    <h2 class="section-heading">answers to the questions customers usually ask before ordering</h2>
-    <p class="section-copy">
-        These cover the common points that slow down first-time orders and help customers decide whether they are ready to upload a file.
-    </p>
-    <div class="faq-grid">
-        <article class="faq-item">
-            <h3>What file types do you accept?</h3>
-            <p>The quoting flow is built around DXF files. If you are preparing a job for pricing, start with a clean DXF and check the file guidance before upload.</p>
-        </article>
-        <article class="faq-item">
-            <h3>What materials can I quote online?</h3>
-            <p>Common online options include mild steel, stainless steel, aluminium, and acrylic, with material and thickness selected during quoting.</p>
-        </article>
-        <article class="faq-item">
-            <h3>Can I order one-offs as well as batches?</h3>
-            <p>Yes. The site is set up for one-off parts, repeat jobs, and small production runs, with quantity affecting the price per part.</p>
-        </article>
-        <article class="faq-item">
-            <h3>Can I add powder coating?</h3>
-            <p>Yes, where supported. Finishing can be added during quoting so the total price reflects both cutting and coating requirements.</p>
-        </article>
-        <article class="faq-item">
-            <h3>Do you deliver across the UK?</h3>
-            <p>Yes, the service is aimed at UK mainland delivery, and shipping is included as part of the online order flow.</p>
-        </article>
-        <article class="faq-item">
-            <h3>Can I reorder a part later?</h3>
-            <p>Yes. Repeat ordering is one of the core strengths of the site, so previous jobs can be found again through your account.</p>
-        </article>
-    </div>
-</section>
-
-<section class="content-block section-grid two">
-    <article class="surface-panel">
-        <div class="eyebrow-dark">Need A Custom Quote?</div>
-        <h2>need help with an unusual drawing or specification?</h2>
-        <p>
-            If your drawing is unusual, the material you need is not listed online, or you want to discuss a larger repeat order, get in touch and we can advise before you place the order.
-        </p>
-        <div class="cta-row">
-            <a class="button white" href="https://www.cutitout.uk/contact">Contact Us</a>
-            <a class="button light" href="https://app.cutitout.uk/quote">Try Instant Quote</a>
         </div>
-    </article>
-    <article class="surface-panel">
-        <div class="eyebrow-dark">Best Fit For Online Quoting</div>
-        <h2>the quickest route is a clean DXF with a standard material and thickness</h2>
-        <div class="check-list">
-            <div>Single-part or repeat jobs that already exist as a usable DXF</div>
-            <div>Standard online materials such as mild steel, stainless, aluminium, and acrylic</div>
-            <div>Customers who want a fast price, online checkout, and simple repeat ordering</div>
-            <div>Jobs that do not need special purchasing, engineering discussion, or manual setup</div>
-        </div>
-    </article>
-</section>
-
-<section class="content-block section-grid two">
-    <article class="card">
-        <h2>Need file guidance first?</h2>
-        <p>Check the design rules, supported materials, and upload requirements before sending a file through for pricing.</p>
-        <div class="cta-row">
-            <a class="button white" href="https://www.cutitout.uk/guidelines">Read Guidelines</a>
-        </div>
-    </article>
-    <article class="card">
-        <h2>Ready to get an instant quote?</h2>
-        <p>Upload your file, choose the specification, and move straight into pricing and checkout.</p>
-        <div class="cta-row">
-            <a class="button white" href="https://app.cutitout.uk/quote">Get Instant Quote</a>
-        </div>
-    </article>
-</section>
 
 
         <footer class="site-footer">
