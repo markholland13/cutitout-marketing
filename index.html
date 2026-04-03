@@ -784,21 +784,22 @@
     }
     .hero-copy {
         display: grid;
-        gap: 16px;
+        gap: 12px;
         align-content: start;
     }
     .hero-copy h1 {
-        max-width: 720px;
+        max-width: 620px;
         margin-bottom: 0;
     }
     .hero-copy p {
-        max-width: 600px;
+        max-width: 500px;
     }
     .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 6px;
+        margin-top: 4px;
+        align-items: center;
     }
     .hero-actions .button {
         min-height: 58px;
@@ -807,101 +808,67 @@
         box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
     }
     .hero-actions .button.light {
-        background: rgba(255,255,255,0.12);
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        min-height: 0;
+        color: rgba(255,255,255,0.82);
+        font-size: 15px;
+        font-weight: 700;
     }
-    .hero-subtext {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 2px;
+    .hero-actions .button.light:hover {
+        color: #fff;
+        transform: none;
     }
-    .hero-subtext span {
-        display: inline-flex;
-        padding: 9px 13px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.16);
-        font-size: 12px;
-        font-weight: 800;
-        letter-spacing: 0.01em;
-        color: rgba(255,255,255,0.92);
-    }
-    .hero-evidence {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 8px;
-    }
-    .hero-evidence-card {
-        padding: 16px;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.1);
-        border: 1px solid rgba(255,255,255,0.15);
-        backdrop-filter: blur(8px);
-    }
-    .hero-evidence-card .label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: rgba(255,255,255,0.66);
-        font-weight: 800;
-    }
-    .hero-evidence-card strong {
+    .hero-points-inline {
         display: block;
-        margin-top: 9px;
-        font-size: 17px;
-        line-height: 1.25;
+        margin-top: 2px;
+        color: rgba(255,255,255,0.8);
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.5;
+    }
+    .hero-points-inline span {
+        position: relative;
+        padding-left: 16px;
+    }
+    .hero-points-inline span:not(:first-child) {
+        display: none;
+    }
+    .hero-points-inline span::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.9);
     }
     .hero-visual {
         position: relative;
         z-index: 1;
         min-height: 100%;
-        padding: 14px;
-        border-radius: 28px;
-        background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
-        border: 1px solid rgba(255,255,255,0.14);
-        box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
+        padding: 0;
     }
     .hero-visual-frame {
         position: relative;
-        min-height: 420px;
+        min-height: 360px;
         overflow: hidden;
         border-radius: 24px;
         background:
-            radial-gradient(circle at top right, rgba(63, 109, 128, 0.2), transparent 36%),
-            linear-gradient(145deg, rgba(255,255,255,0.94), rgba(235,242,246,0.92));
+            linear-gradient(145deg, rgba(255,255,255,0.88), rgba(235,242,246,0.82));
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
     }
     .hero-visual-frame img {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
-    }
-    .hero-visual-note {
-        position: absolute;
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
-        padding: 16px 18px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.92);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        color: var(--ink);
-        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
-    }
-    .hero-visual-note strong {
-        display: block;
-        margin-bottom: 6px;
-        color: var(--brand-deep);
-        font-size: 13px;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-    }
-    .hero-visual-note p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.55;
+        opacity: 0.88;
+        filter: saturate(0.88) contrast(0.96);
     }
     .story-grid {
         display: grid;
@@ -1074,46 +1041,14 @@
         color: var(--muted);
         line-height: 1.68;
     }
-    .process-rail {
-        display: grid;
-        gap: 14px;
-        margin-top: 20px;
-    }
-    .process-card {
-        display: grid;
-        grid-template-columns: 42px 1fr;
-        gap: 14px;
-        padding: 16px;
-        border-radius: 18px;
-        background: linear-gradient(180deg, rgba(244,248,250,0.92), rgba(235,242,246,0.9));
-        border: 1px solid rgba(16, 42, 67, 0.08);
-    }
-    .process-card-number {
-        width: 42px;
-        height: 42px;
-        border-radius: 14px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
-        color: #fff;
-        font-weight: 900;
-    }
-    .process-card strong {
-        display: block;
-        color: var(--brand-deep);
-        margin-bottom: 5px;
-    }
-    .process-card span {
-        color: var(--muted);
-        line-height: 1.58;
-        font-size: 14px;
+    .route-panel .cta-row {
+        margin-top: 18px;
     }
     .materials-mini-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
-        margin-top: 20px;
+        margin-top: 18px;
     }
     .materials-mini-card {
         overflow: hidden;
@@ -1223,7 +1158,6 @@
         .home-hero {
             padding: 24px;
         }
-        .hero-evidence,
         .pricing-grid,
         .faq-grid,
         .materials-mini-grid {
@@ -1235,16 +1169,18 @@
         .closing-cta .button {
             width: 100%;
         }
-        .hero-actions,
-        .hero-subtext {
+        .hero-actions {
             display: grid;
+            justify-items: start;
+        }
+        .hero-points-inline {
+            display: block;
+        }
+        .hero-points-inline span {
+            padding-left: 14px;
         }
         .hero-visual-frame {
-            min-height: 280px;
-        }
-        .hero-visual-note {
-            position: static;
-            margin-top: 12px;
+            min-height: 260px;
         }
         .price-line {
             flex-direction: column;
@@ -1284,43 +1220,20 @@
         <section class="hero-card home-hero">
             <div class="hero-layout">
                 <div class="hero-copy">
-                    <div class="eyebrow">Instant Online Quoting</div>
                     <h1>upload your DXF and get an instant laser cutting quote</h1>
                     <p>
-                        Built for one-off parts, repeat jobs, and small runs. Upload your file, choose the material, and go straight to pricing online.
+                        Built for one-off parts, repeat jobs, and small runs, with a straightforward route from file upload to online pricing.
                     </p>
                     <div class="hero-actions">
-                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
-                        <a class="button light" href="https://www.cutitout.uk/guidelines">Check File Guidelines</a>
+                        <a class="button white" href="https://app.cutitout.uk/quote">Get Started</a>
                     </div>
-                    <div class="hero-subtext">
-                        <span>One-off parts welcome</span>
-                        <span>From £0.50 on simple parts</span>
-                        <span>Steel, stainless, aluminium, acrylic</span>
-                        <span>UK-made and delivered</span>
-                    </div>
-                    <div class="hero-evidence">
-                        <div class="hero-evidence-card">
-                            <div class="label">Quote Speed</div>
-                            <strong>Instant online pricing</strong>
-                        </div>
-                        <div class="hero-evidence-card">
-                            <div class="label">Order Size</div>
-                            <strong>From one-off parts upwards</strong>
-                        </div>
-                        <div class="hero-evidence-card">
-                            <div class="label">Lead Time</div>
-                            <strong>Faster route from file to order</strong>
-                        </div>
+                    <div class="hero-points-inline">
+                        <span>One-off parts welcome, with simple parts from £0.50 depending on geometry and quantity.</span>
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="hero-visual-frame">
                         <img src="/static/img/home/hero-parts.webp" alt="Laser cut parts" loading="lazy" onerror="this.style.display='none';">
-                        <div class="hero-visual-note">
-                            <strong>Simple Online Ordering</strong>
-                            <p>Upload your DXF, choose the specification, and move straight into pricing if the file is ready.</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1418,40 +1331,17 @@
         <section class="content-block">
             <div class="quick-route-grid">
                 <article class="route-panel">
-                    <div class="eyebrow-dark">Fastest Route</div>
-                    <h2>if the file is ready, the quote page should be your first stop</h2>
-                    <p>For standard jobs, the fastest route is simple: upload the drawing, choose the specification, and go straight to an online price.</p>
-                    <div class="process-rail">
-                        <div class="process-card">
-                            <div class="process-card-number">1</div>
-                            <div>
-                                <strong>Prepare the file</strong>
-                                <span>Use a clean DXF with the part at final size and only the intended cut geometry included.</span>
-                            </div>
-                        </div>
-                        <div class="process-card">
-                            <div class="process-card-number">2</div>
-                            <div>
-                                <strong>Choose the specification</strong>
-                                <span>Select the material, thickness, quantity, and any finishing needed for the job.</span>
-                            </div>
-                        </div>
-                        <div class="process-card">
-                            <div class="process-card-number">3</div>
-                            <div>
-                                <strong>Order when ready</strong>
-                                <span>See the price online and move straight into checkout if everything looks right.</span>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="eyebrow-dark">Ready To Quote?</div>
+                    <h2>go straight to the quote page</h2>
+                    <p>If your file is ready, upload the DXF, choose the specification, and get the price online.</p>
                     <div class="cta-row">
                         <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
                     </div>
                 </article>
                 <article class="route-panel">
                     <div class="eyebrow-dark">Need Help First?</div>
-                    <h2>guidance is easy to find, but it does not get in the way of quoting</h2>
-                    <p>If the part needs checking first, or you want to confirm the material before uploading, the next best route is still quick and clear.</p>
+                    <h2>check the file rules or materials first</h2>
+                    <p>If you want to confirm the material or make sure the file is ready, the key guidance is here.</p>
                     <div class="materials-mini-grid">
                         <article class="materials-mini-card">
                             <div class="media-frame">
