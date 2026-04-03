@@ -762,16 +762,6 @@
 }
 </script>
 <style>
-    .home-banner {
-        display: flex;
-        justify-content: space-between;
-        gap: 18px;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-    .home-banner .button {
-        min-height: 48px;
-    }
     .home-hero {
         padding: 42px;
     }
@@ -788,30 +778,30 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
         gap: 26px;
-        align-items: stretch;
+        align-items: center;
     }
     .hero-copy {
         display: grid;
-        gap: 18px;
+        gap: 16px;
         align-content: start;
     }
     .hero-copy h1 {
-        max-width: 760px;
+        max-width: 720px;
         margin-bottom: 0;
     }
     .hero-copy p {
-        max-width: 640px;
+        max-width: 600px;
     }
     .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 8px;
+        margin-top: 6px;
     }
     .hero-actions .button {
-        min-height: 60px;
+        min-height: 58px;
         padding: 16px 26px;
         font-size: 17px;
         box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
@@ -823,15 +813,15 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        margin-top: 6px;
+        margin-top: 2px;
     }
     .hero-subtext span {
         display: inline-flex;
-        padding: 10px 14px;
+        padding: 9px 13px;
         border-radius: 999px;
         background: rgba(255,255,255,0.12);
         border: 1px solid rgba(255,255,255,0.16);
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 800;
         letter-spacing: 0.01em;
         color: rgba(255,255,255,0.92);
@@ -840,10 +830,10 @@
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 14px;
-        margin-top: 10px;
+        margin-top: 8px;
     }
     .hero-evidence-card {
-        padding: 18px;
+        padding: 16px;
         border-radius: 20px;
         background: rgba(255,255,255,0.1);
         border: 1px solid rgba(255,255,255,0.15);
@@ -859,118 +849,59 @@
     .hero-evidence-card strong {
         display: block;
         margin-top: 9px;
-        font-size: 19px;
+        font-size: 17px;
         line-height: 1.25;
     }
-    .quote-panel {
+    .hero-visual {
         position: relative;
         z-index: 1;
-        display: grid;
-        gap: 16px;
-        padding: 24px;
+        min-height: 100%;
+        padding: 14px;
         border-radius: 28px;
-        background: rgba(255,255,255,0.94);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        color: var(--ink);
+        background: linear-gradient(145deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
+        border: 1px solid rgba(255,255,255,0.14);
         box-shadow: 0 24px 40px rgba(15, 23, 42, 0.12);
     }
-    .quote-panel h2 {
-        margin: 0;
-        font-size: 28px;
-        letter-spacing: -0.03em;
-    }
-    .quote-panel p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-    }
-    .quote-steps {
-        display: grid;
-        gap: 12px;
-    }
-    .quote-step {
-        display: grid;
-        grid-template-columns: 40px 1fr;
-        gap: 14px;
-        align-items: start;
-        padding: 16px;
-        border-radius: 20px;
-        background: linear-gradient(180deg, rgba(244,248,250,0.92), rgba(235,242,246,0.92));
-        border: 1px solid rgba(16, 42, 67, 0.08);
-    }
-    .quote-step-number {
-        width: 40px;
-        height: 40px;
-        border-radius: 14px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
-        color: #fff;
-        font-weight: 900;
-        box-shadow: 0 12px 24px rgba(31, 78, 95, 0.14);
-    }
-    .quote-step strong {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 15px;
-        color: var(--brand-deep);
-    }
-    .quote-step span {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.55;
-    }
-    .quote-panel-cta {
-        display: grid;
-        gap: 12px;
-    }
-    .quote-panel-cta .button {
-        min-height: 58px;
-        font-size: 17px;
-    }
-    .quote-note {
-        padding: 14px 16px;
-        border-radius: 18px;
-        background: rgba(31, 78, 95, 0.07);
-        color: var(--brand-deep);
-        font-size: 14px;
-        line-height: 1.55;
-        font-weight: 700;
-    }
-    .home-metric-band {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-    }
-    .home-metric {
-        padding: 22px;
+    .hero-visual-frame {
+        position: relative;
+        min-height: 420px;
+        overflow: hidden;
         border-radius: 24px;
-        background: rgba(255,255,255,0.9);
+        background:
+            radial-gradient(circle at top right, rgba(63, 109, 128, 0.2), transparent 36%),
+            linear-gradient(145deg, rgba(255,255,255,0.94), rgba(235,242,246,0.92));
+    }
+    .hero-visual-frame img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .hero-visual-note {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.92);
         border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
+        color: var(--ink);
+        box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
     }
-    .home-metric .label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        font-weight: 800;
-    }
-    .home-metric .value {
-        margin-top: 10px;
-        font-size: 28px;
-        line-height: 1.15;
-        letter-spacing: -0.03em;
+    .hero-visual-note strong {
+        display: block;
+        margin-bottom: 6px;
         color: var(--brand-deep);
-        font-weight: 900;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
     }
-    .home-metric p {
-        margin: 10px 0 0;
+    .hero-visual-note p {
+        margin: 0;
         color: var(--muted);
-        line-height: 1.55;
         font-size: 14px;
+        line-height: 1.55;
     }
     .story-grid {
         display: grid;
@@ -1276,48 +1207,6 @@
         font-size: 17px;
         box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
     }
-    .quote-dock {
-        position: fixed;
-        left: 50%;
-        bottom: 18px;
-        transform: translateX(-50%);
-        z-index: 80;
-        width: min(960px, calc(100% - 28px));
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 18px;
-        padding: 14px 16px;
-        border-radius: 24px;
-        background: rgba(12, 27, 37, 0.88);
-        color: #fff;
-        border: 1px solid rgba(255,255,255,0.12);
-        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.24);
-        backdrop-filter: blur(16px);
-    }
-    .quote-dock-copy strong {
-        display: block;
-        font-size: 15px;
-        margin-bottom: 4px;
-    }
-    .quote-dock-copy span {
-        color: rgba(255,255,255,0.76);
-        font-size: 13px;
-        line-height: 1.45;
-    }
-    .quote-dock-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-    .quote-dock .button {
-        min-height: 48px;
-        padding: 12px 18px;
-    }
-    .quote-dock .button.light {
-        background: rgba(255,255,255,0.1);
-        color: #fff;
-    }
     @media (max-width: 1120px) {
         .hero-layout,
         .story-grid,
@@ -1325,7 +1214,6 @@
         .closing-cta-inner {
             grid-template-columns: 1fr;
         }
-        .home-metric-band,
         .pricing-grid,
         .faq-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1336,40 +1224,27 @@
             padding: 24px;
         }
         .hero-evidence,
-        .home-metric-band,
         .pricing-grid,
         .faq-grid,
         .materials-mini-grid {
             grid-template-columns: 1fr;
         }
-        .quote-dock {
-            width: calc(100% - 20px);
-            bottom: 10px;
-            padding: 12px;
-            border-radius: 20px;
-        }
-        .quote-dock,
-        .quote-dock-actions {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        .quote-dock .button {
-            width: 100%;
-        }
     }
     @media (max-width: 640px) {
-        .home-banner {
-            align-items: flex-start;
-        }
-        .home-banner .button,
         .hero-actions .button,
-        .quote-panel-cta .button,
         .closing-cta .button {
             width: 100%;
         }
         .hero-actions,
         .hero-subtext {
             display: grid;
+        }
+        .hero-visual-frame {
+            min-height: 280px;
+        }
+        .hero-visual-note {
+            position: static;
+            margin-top: 12px;
         }
         .price-line {
             flex-direction: column;
@@ -1406,17 +1281,6 @@
             </nav>
         </header>
 
-
-        <section class="site-banner">
-            <div class="home-banner">
-                <div>
-                    <strong>Need a price quickly?</strong>
-                    <p>Upload a DXF, choose the material, and go straight to an instant quote without waiting around for emails.</p>
-                </div>
-                <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
-            </div>
-        </section>
-
         <section class="hero-card home-hero">
             <div class="hero-layout">
                 <div class="hero-copy">
@@ -1450,62 +1314,16 @@
                         </div>
                     </div>
                 </div>
-                <aside class="quote-panel">
-                    <div class="eyebrow-dark">Go Straight To Quote</div>
-                    <h2>the fastest route is simple</h2>
-                    <p>If the file is ready, go straight to quote online.</p>
-                    <div class="quote-steps">
-                        <div class="quote-step">
-                            <div class="quote-step-number">1</div>
-                            <div>
-                                <strong>Upload your DXF</strong>
-                                <span>Start with a clean drawing at full size in millimetres.</span>
-                            </div>
-                        </div>
-                        <div class="quote-step">
-                            <div class="quote-step-number">2</div>
-                            <div>
-                                <strong>Choose material and thickness</strong>
-                                <span>Select the specification, quantity, and any finishing needed.</span>
-                            </div>
-                        </div>
-                        <div class="quote-step">
-                            <div class="quote-step-number">3</div>
-                            <div>
-                                <strong>See the price and order</strong>
-                                <span>Move straight into checkout if the job is ready to go.</span>
-                            </div>
+                <div class="hero-visual">
+                    <div class="hero-visual-frame">
+                        <img src="/static/img/home/hero-parts.webp" alt="Laser cut parts" loading="lazy" onerror="this.style.display='none';">
+                        <div class="hero-visual-note">
+                            <strong>Simple Online Ordering</strong>
+                            <p>Upload your DXF, choose the specification, and move straight into pricing if the file is ready.</p>
                         </div>
                     </div>
-                    <div class="quote-panel-cta">
-                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
-                        <div class="quote-note">Simple small parts can be from £0.50 depending on geometry, material, and quantity.</div>
-                    </div>
-                </aside>
+                </div>
             </div>
-        </section>
-
-        <section class="home-metric-band">
-            <article class="home-metric">
-                <div class="label">Built For</div>
-                <div class="value">One-offs</div>
-                <p>Useful when you only need a single part and still want a fast route to ordering.</p>
-            </article>
-            <article class="home-metric">
-                <div class="label">File Type</div>
-                <div class="value">DXF</div>
-                <p>The quote flow is built around clean DXF drawings prepared at final size.</p>
-            </article>
-            <article class="home-metric">
-                <div class="label">Materials</div>
-                <div class="value">4 main ranges</div>
-                <p>Mild steel, stainless steel, aluminium, and acrylic can all be priced online.</p>
-            </article>
-            <article class="home-metric">
-                <div class="label">After Cutting</div>
-                <div class="value">Powder Coat</div>
-                <p>Add powder coating during quoting where a finished result is needed.</p>
-            </article>
         </section>
 
         <section class="content-block">
@@ -1706,17 +1524,6 @@
                 </div>
             </div>
         </section>
-
-        <div class="quote-dock">
-            <div class="quote-dock-copy">
-                <strong>Upload your DXF and quote online</strong>
-                <span>For standard jobs, this should be the obvious next step from anywhere on the page.</span>
-            </div>
-            <div class="quote-dock-actions">
-                <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
-                <a class="button light" href="https://www.cutitout.uk/guidelines">Check File Rules</a>
-            </div>
-        </div>
 
 
         <footer class="site-footer">
