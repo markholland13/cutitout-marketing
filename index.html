@@ -37,6 +37,9 @@
             --shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
         }
         * { box-sizing: border-box; }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
             font-family: "Avenir Next", "Segoe UI", sans-serif;
@@ -65,7 +68,8 @@
             padding: 24px;
         }
         .site-header {
-            position: relative;
+            position: sticky;
+            top: 16px;
             z-index: 30;
             display: flex;
             align-items: center;
@@ -78,6 +82,12 @@
             border: 1px solid rgba(31, 78, 95, 0.1);
             box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
             backdrop-filter: blur(16px);
+            transition: background 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+        }
+        .site-header.is-scrolled {
+            background: rgba(255,255,255,0.88);
+            border-color: rgba(31, 78, 95, 0.14);
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
         }
         .site-logo {
             display: inline-flex;
@@ -807,6 +817,21 @@
         font-size: 17px;
         box-shadow: 0 18px 30px rgba(15, 23, 42, 0.18);
     }
+    .hero-actions .hero-primary-cta {
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.16);
+        box-shadow: 0 22px 36px rgba(154, 52, 18, 0.34);
+        padding: 17px 30px;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.01em;
+    }
+    .hero-actions .hero-primary-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 26px 42px rgba(154, 52, 18, 0.42);
+        border-color: rgba(255,255,255,0.22);
+    }
     .hero-actions .button.light {
         background: transparent;
         border-color: transparent;
@@ -869,100 +894,25 @@
         object-fit: cover;
         opacity: 0.88;
         filter: saturate(0.88) contrast(0.96);
+        transform: scale(1.01);
+        transition: transform 0.7s ease, filter 0.7s ease;
     }
-    .story-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
-        gap: 22px;
-        margin-top: 24px;
+    .home-hero:hover .hero-visual-frame img {
+        transform: scale(1.03);
+        filter: saturate(0.92) contrast(0.98);
     }
-    .story-panel {
-        position: relative;
-        overflow: hidden;
-        padding: 30px;
-        border-radius: 28px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(239,244,247,0.92));
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 22px 40px rgba(15, 23, 42, 0.07);
+    .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+            opacity 0.72s ease,
+            transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--reveal-delay, 0ms);
+        will-change: opacity, transform;
     }
-    .story-panel h2 {
-        margin: 12px 0 14px;
-        font-size: clamp(30px, 3vw, 42px);
-        letter-spacing: -0.03em;
-    }
-    .story-panel p {
-        margin: 0;
-        max-width: 680px;
-        color: var(--muted);
-        font-size: 16px;
-        line-height: 1.72;
-    }
-    .story-list {
-        display: grid;
-        gap: 12px;
-        margin-top: 20px;
-    }
-    .story-list div {
-        display: flex;
-        gap: 12px;
-        align-items: flex-start;
-        padding: 15px 16px;
-        border-radius: 18px;
-        background: rgba(255,255,255,0.82);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        color: var(--ink);
-    }
-    .story-list div::before {
-        content: "";
-        width: 10px;
-        height: 10px;
-        margin-top: 8px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
-        flex: 0 0 auto;
-    }
-    .spotlight-stack {
-        display: grid;
-        gap: 16px;
-    }
-    .spotlight-card {
-        padding: 24px;
-        border-radius: 24px;
-        background: linear-gradient(135deg, rgba(31, 78, 95, 0.98), rgba(63, 109, 128, 0.94));
-        color: #fff;
-        box-shadow: 0 22px 42px rgba(19, 46, 64, 0.14);
-    }
-    .spotlight-card h3 {
-        margin: 0 0 8px;
-        font-size: 22px;
-        letter-spacing: -0.02em;
-    }
-    .spotlight-card p {
-        margin: 0;
-        color: rgba(255,255,255,0.84);
-        line-height: 1.65;
-    }
-    .spotlight-grid {
-        display: grid;
-        gap: 14px;
-    }
-    .spotlight-tile {
-        padding: 18px;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.9);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.05);
-    }
-    .spotlight-tile strong {
-        display: block;
-        color: var(--brand-deep);
-        font-size: 17px;
-        margin-bottom: 6px;
-    }
-    .spotlight-tile p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
+    .reveal-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
     .section-heading-row {
         display: flex;
@@ -1017,62 +967,6 @@
     }
     .price-line strong {
         color: var(--ink);
-    }
-    .quick-route-grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 22px;
-        margin-top: 24px;
-    }
-    .route-panel {
-        padding: 28px;
-        border-radius: 28px;
-        background: rgba(255,255,255,0.94);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-        box-shadow: 0 18px 34px rgba(15, 23, 42, 0.06);
-    }
-    .route-panel h2 {
-        margin: 12px 0 10px;
-        font-size: 30px;
-        letter-spacing: -0.03em;
-    }
-    .route-panel p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.68;
-    }
-    .route-panel .cta-row {
-        margin-top: 18px;
-    }
-    .materials-mini-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-        margin-top: 18px;
-    }
-    .materials-mini-card {
-        overflow: hidden;
-        padding: 0;
-        border-radius: 22px;
-        background: rgba(255,255,255,0.96);
-        border: 1px solid rgba(16, 42, 67, 0.08);
-    }
-    .materials-mini-card .media-frame {
-        min-height: 160px;
-    }
-    .materials-mini-card .body {
-        padding: 16px 18px 18px;
-    }
-    .materials-mini-card strong {
-        display: block;
-        margin-bottom: 6px;
-        font-size: 18px;
-        color: var(--ink);
-    }
-    .materials-mini-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.58;
     }
     .faq-grid {
         display: grid;
@@ -1144,8 +1038,6 @@
     }
     @media (max-width: 1120px) {
         .hero-layout,
-        .story-grid,
-        .quick-route-grid,
         .closing-cta-inner {
             grid-template-columns: 1fr;
         }
@@ -1159,8 +1051,7 @@
             padding: 24px;
         }
         .pricing-grid,
-        .faq-grid,
-        .materials-mini-grid {
+        .faq-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -1187,10 +1078,26 @@
             align-items: flex-start;
             gap: 4px;
         }
-        .story-panel,
-        .route-panel,
         .closing-cta {
             padding: 22px;
+        }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        .site-header,
+        .hero-visual-frame img,
+        .reveal-on-scroll {
+            transition: none;
+        }
+        .reveal-on-scroll {
+            opacity: 1;
+            transform: none;
+        }
+        .home-hero:hover .hero-visual-frame img {
+            transform: none;
+            filter: saturate(0.88) contrast(0.96);
         }
     }
 </style>
@@ -1217,7 +1124,7 @@
             </nav>
         </header>
 
-        <section class="hero-card home-hero">
+        <section class="hero-card home-hero reveal-on-scroll">
             <div class="hero-layout">
                 <div class="hero-copy">
                     <h1>upload your DXF and get an instant laser cutting quote</h1>
@@ -1225,7 +1132,7 @@
                         Built for one-off parts, repeat jobs, and small runs, with a straightforward route from file upload to online pricing.
                     </p>
                     <div class="hero-actions">
-                        <a class="button white" href="https://app.cutitout.uk/quote">Get Started</a>
+                        <a class="button white hero-primary-cta" href="https://app.cutitout.uk/quote">Get Started</a>
                     </div>
                     <div class="hero-points-inline">
                         <span>One-off parts welcome, with simple parts from £0.50 depending on geometry and quantity.</span>
@@ -1239,41 +1146,7 @@
             </div>
         </section>
 
-        <section class="content-block">
-            <div class="story-grid">
-                <article class="story-panel">
-                    <div class="eyebrow-dark">Why This Site Exists</div>
-                    <h2>built to get customers to a usable quote fast, not to trap them in email chains</h2>
-                    <p>
-                        A lot of customers do not want a drawn-out quoting process. They just want to upload a file, choose the material, and know whether the part is worth making. Cut It Out is built around that need, especially for one-off parts and smaller runs where waiting on emails can slow everything down.
-                    </p>
-                    <div class="story-list">
-                        <div><strong>Fast first step:</strong> upload a usable DXF and move straight into pricing if the job is ready.</div>
-                        <div><strong>Real examples:</strong> actual parts and pricing guidance make the service feel grounded rather than generic.</div>
-                        <div><strong>Useful fallback:</strong> if the job is unusual, you can still get guidance without losing momentum.</div>
-                    </div>
-                </article>
-                <div class="spotlight-stack">
-                    <article class="spotlight-card">
-                        <div class="eyebrow">Best Route</div>
-                        <h3>ready file, ready quote</h3>
-                        <p>If the drawing is clean and the material is standard, the fastest route is to go straight to quote and order online.</p>
-                    </article>
-                    <div class="spotlight-grid">
-                        <article class="spotlight-tile">
-                            <strong>One-offs welcome</strong>
-                            <p>The service is useful even when you only need a single part rather than a large production order.</p>
-                        </article>
-                        <article class="spotlight-tile">
-                            <strong>Less waiting around</strong>
-                            <p>The goal is to reduce the usual delay before pricing, so customers can decide more quickly.</p>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="content-block">
+        <section class="content-block reveal-on-scroll">
             <div class="section-heading-row">
                 <div>
                     <div class="eyebrow-dark">Pricing Examples</div>
@@ -1283,7 +1156,7 @@
                 <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
             </div>
             <div class="pricing-grid">
-                <article class="card pricing-card">
+                <article class="card pricing-card reveal-on-scroll">
                     <div class="media-frame">
                         <img src="/static/img/home/Parts.webp" alt="Small laser cut steel parts" loading="lazy" onerror="this.style.display='none';">
                     </div>
@@ -1297,7 +1170,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="card pricing-card">
+                <article class="card pricing-card reveal-on-scroll">
                     <div class="media-frame">
                         <img src="/static/img/home/car.webp" alt="Laser cut car model powder coated black" loading="lazy" onerror="this.style.display='none';">
                     </div>
@@ -1311,7 +1184,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="card pricing-card">
+                <article class="card pricing-card reveal-on-scroll">
                     <div class="media-frame">
                         <img src="/static/img/home/Acrylic Part.webp" alt="Small acrylic part" loading="lazy" onerror="this.style.display='none';">
                     </div>
@@ -1328,81 +1201,39 @@
             </div>
         </section>
 
-        <section class="content-block">
-            <div class="quick-route-grid">
-                <article class="route-panel">
-                    <div class="eyebrow-dark">Ready To Quote?</div>
-                    <h2>go straight to the quote page</h2>
-                    <p>If your file is ready, upload the DXF, choose the specification, and get the price online.</p>
-                    <div class="cta-row">
-                        <a class="button white" href="https://app.cutitout.uk/quote">Start Quote</a>
-                    </div>
-                </article>
-                <article class="route-panel">
-                    <div class="eyebrow-dark">Need Help First?</div>
-                    <h2>check the file rules or materials first</h2>
-                    <p>If you want to confirm the material or make sure the file is ready, the key guidance is here.</p>
-                    <div class="materials-mini-grid">
-                        <article class="materials-mini-card">
-                            <div class="media-frame">
-                                <img src="/static/img/home/Mild-steel.webp" alt="Mild steel laser cutting material" loading="lazy" onerror="this.style.display='none';">
-                            </div>
-                            <div class="body">
-                                <strong>Check Materials</strong>
-                                <p>Review the available metals and acrylic options before you price the part.</p>
-                            </div>
-                        </article>
-                        <article class="materials-mini-card">
-                            <div class="media-frame">
-                                <img src="/static/img/home/example-parts.webp" alt="DXF and laser cut part examples" loading="lazy" onerror="this.style.display='none';">
-                            </div>
-                            <div class="body">
-                                <strong>Check File Rules</strong>
-                                <p>Make sure the drawing is clean enough to move straight into quoting and production.</p>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="cta-row">
-                        <a class="button white" href="https://www.cutitout.uk/guidelines">Read Guidelines</a>
-                        <a class="button light" href="https://www.cutitout.uk/materials">View Materials</a>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section class="content-block">
+        <section class="content-block reveal-on-scroll">
             <div class="eyebrow-dark">Frequently Asked Questions</div>
             <h2 class="section-heading">the main questions customers ask before they upload a file</h2>
             <p class="section-copy">These stay on the homepage because they remove hesitation, but the main action is still to move the customer toward the quote page.</p>
             <div class="faq-grid">
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>What file types do you accept?</h3>
                     <p>The quote flow is built around DXF files. Start with a clean DXF and check the file guidance before upload.</p>
                 </article>
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>What materials can I quote online?</h3>
                     <p>Common online options include mild steel, stainless steel, aluminium, and acrylic, with material and thickness selected during quoting.</p>
                 </article>
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>Can I order one-offs as well as batches?</h3>
                     <p>Yes. The service is set up for one-off parts, repeat jobs, and small production runs, with quantity affecting the price per part.</p>
                 </article>
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>Can I add powder coating?</h3>
                     <p>Yes, where supported. Finishing can be added during quoting so the total price reflects both cutting and coating requirements.</p>
                 </article>
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>Do you deliver across the UK?</h3>
                     <p>Yes, the service is aimed at UK mainland delivery, and shipping is included as part of the online order flow.</p>
                 </article>
-                <article class="faq-item">
+                <article class="faq-item reveal-on-scroll">
                     <h3>Can I reorder a part later?</h3>
                     <p>Yes. Previous jobs can be found again through your account, which makes repeat ordering much quicker.</p>
                 </article>
             </div>
         </section>
 
-        <section class="content-block">
+        <section class="content-block reveal-on-scroll">
             <div class="closing-cta">
                 <div class="closing-cta-inner">
                     <div>
@@ -1416,7 +1247,7 @@
         </section>
 
 
-        <footer class="site-footer">
+        <footer class="site-footer reveal-on-scroll">
         <div class="site-footer-copy">
             <strong>Cut It Out</strong>
             Upload DXF files, get instant pricing, and order custom laser cut parts online with fast UK turnaround.
@@ -1465,6 +1296,43 @@
                     collapseMenu();
                 }
             });
+        }
+
+        const siteHeader = document.querySelector('.site-header');
+        if (siteHeader) {
+            const syncHeaderState = () => {
+                siteHeader.classList.toggle('is-scrolled', window.scrollY > 12);
+            };
+
+            syncHeaderState();
+            window.addEventListener('scroll', syncHeaderState, { passive: true });
+        }
+
+        const revealItems = Array.from(document.querySelectorAll('.reveal-on-scroll'));
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion && revealItems.length) {
+            revealItems.forEach((item, index) => {
+                item.style.setProperty('--reveal-delay', `${Math.min(index * 45, 220)}ms`);
+            });
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                });
+            }, {
+                threshold: 0.14,
+                rootMargin: '0px 0px -8% 0px'
+            });
+
+            revealItems.forEach((item) => revealObserver.observe(item));
+        } else {
+            revealItems.forEach((item) => item.classList.add('is-visible'));
         }
     </script>
 </body>
