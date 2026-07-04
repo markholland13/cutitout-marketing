@@ -1,7 +1,7 @@
 /* Shared header and shell rules for the marketing pages. */
 .shell {
-    width: min(1280px, calc(100% - 36px));
-    max-width: 1280px;
+    width: calc(100% - 16px) !important;
+    max-width: none !important;
     margin: 0 auto;
 }
 
@@ -29,6 +29,8 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    min-width: 0;
+    flex: 1 1 auto;
 }
 
 .brand img,
@@ -53,6 +55,7 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(244,246,247,0.92);
+    white-space: nowrap;
 }
 
 .brand-meta span,
@@ -134,7 +137,7 @@
     .topbar,
     .site-header {
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
     }
     .site-menu-toggle {
@@ -143,7 +146,7 @@
     }
     .nav,
     .site-nav {
-        display: none;
+        display: none !important;
         width: 100%;
         border-radius: 24px;
         padding: 10px;
@@ -152,7 +155,7 @@
     }
     .nav.is-open,
     .site-nav.is-open {
-        display: grid;
+        display: grid !important;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .nav a,
@@ -185,11 +188,17 @@
 
 @media (max-width: 640px) {
     .shell {
-        width: min(100% - 16px, 1280px);
+        width: calc(100% - 12px) !important;
     }
     .brand img,
     .site-logo img {
-        height: 36px;
+        height: 34px;
+        padding: 5px 8px;
+    }
+    .brand-meta strong,
+    .site-brand-text strong {
+        font-size: 11px;
+        letter-spacing: 0.12em;
     }
     .nav,
     .site-nav {

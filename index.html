@@ -73,7 +73,7 @@
                 radial-gradient(circle at 50% 0%, rgba(147,212,255,0.08), transparent 26%);
         }
         .shell {
-            width: min(1280px, calc(100% - 28px));
+            width: calc(100% - 16px);
             margin: 0 auto;
             padding: 18px 0 40px;
             position: relative;
@@ -456,13 +456,12 @@
             .section-head h2 { max-width: none; }
         }
         @media (max-width: 720px) {
-            .shell { width: min(100% - 16px, 1280px); padding-top: 10px; }
+            .shell { width: calc(100% - 12px); padding-top: 10px; }
             .topbar {
                 padding: 12px 14px;
                 border-radius: 20px;
                 flex-wrap: wrap;
             }
-            .nav { width: 100%; justify-content: flex-start; overflow-x: auto; }
             .hero h1 { font-size: clamp(38px, 15vw, 58px); max-width: 100%; }
             .hero-copy p { font-size: 16px; }
             .hero-visual { min-height: 420px; }
