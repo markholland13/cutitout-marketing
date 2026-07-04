@@ -683,13 +683,51 @@
             }
         }
     </style>
-    
+
+<style>
+    body {
+        background:
+            radial-gradient(circle at top left, rgba(142, 205, 255, 0.10), transparent 28%),
+            radial-gradient(circle at 78% 0%, rgba(120, 198, 181, 0.08), transparent 22%),
+            linear-gradient(180deg, #12181d 0%, #161d23 48%, #1b2329 100%);
+    }
+    body::before { background: linear-gradient(180deg, rgba(18,24,28,0.52), rgba(18,24,28,0.36)); }
+    .shell { max-width: 1280px; padding-top: 18px; }
+    .site-header { position: sticky; top: 14px; background: rgba(22, 28, 34, 0.76); border-color: rgba(255,255,255,0.10); box-shadow: 0 30px 80px rgba(0,0,0,0.18); }
+    .site-logo { gap: 12px; align-items: center; }
+    .site-logo img { height: 38px; display: block; padding: 6px 10px; border-radius: 14px; background: rgba(255,255,255,0.94); }
+    .site-brand-text { display: grid; gap: 2px; }
+    .site-brand-text strong { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,246,247,0.92); }
+    .site-nav { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.10); }
+    .site-nav a, .account-trigger { color: rgba(244,246,247,0.86); }
+    .site-nav a.active, .site-nav a.primary, .account-menu:hover .account-trigger, .account-menu:focus-within .account-trigger { color: #051119; background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%); box-shadow: 0 14px 28px rgba(91, 176, 232, 0.20); }
+    .account-dropdown { background: rgba(22, 28, 34, 0.96); border-color: rgba(255,255,255,0.08); box-shadow: 0 28px 80px rgba(0,0,0,0.28); }
+    .hero-card, .card, .surface-panel, .stats-band .stat, .site-footer { background: linear-gradient(180deg, rgba(24, 30, 36, 0.92), rgba(18, 24, 29, 0.96)); border-color: rgba(255,255,255,0.08); box-shadow: 0 28px 80px rgba(0,0,0,0.28); }
+    .hero-card::after, .highlight-card::after { background: rgba(145, 208, 255, 0.08); }
+    .eyebrow, .eyebrow-dark { background: rgba(255,255,255,0.06); color: rgba(244,246,247,0.92); }
+    .hero-card h1, .page-intro h1, .section-heading, .card h2, .card h3, .surface-panel h2, .surface-panel h3, .media-caption h3, .site-footer strong { color: #fff; }
+    .hero-card p, .page-intro p, .section-copy, .card p, .card li, .surface-panel p, .media-caption p, .site-footer, .site-footer-copy, .check-list div { color: rgba(244,246,247,0.74); }
+    .button.white { background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%); color: #051119; border-color: transparent; box-shadow: 0 16px 30px rgba(91, 176, 232, 0.22); }
+    .button.light { background: rgba(255,255,255,0.05); color: #fff; }
+    .metric { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+    .metric .label, .stats-band .stat-label { color: rgba(244,246,247,0.58); }
+    .metric .value, .stats-band .stat-value { color: #fff; }
+    .highlight-card { background: linear-gradient(180deg, rgba(24, 30, 36, 0.92), rgba(18, 24, 29, 0.96)); }
+    .pill-row span, .site-footer-links a { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); color: #fff; }
+    .media-frame { background: radial-gradient(circle at top right, rgba(147,212,255,0.12), transparent 34%), linear-gradient(145deg, #1d252c 0%, #171f25 65%, #12191f 100%); }
+    .media-frame img { opacity: 0.98; }
+    .site-banner { display: none; }
+</style>
+
 </head>
 <body>
     <div class="shell">
         <header class="site-header">
             <a class="site-logo" href="https://www.cutitout.uk/">
                 <img src="https://static.wixstatic.com/media/af18ab_fc9dd1013070496da0aac5b4783e25b2~mv2.png" alt="Cut It Out">
+                <div class="site-brand-text">
+                    <strong>Laser Cutting</strong>
+                </div>
             </a>
             <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">Menu</button>
             <nav class="site-nav" id="siteMenu">
