@@ -1,8 +1,9 @@
 /* Shared header and shell rules for the marketing pages. */
 .shell {
-    width: calc(100% - 16px) !important;
+    width: calc(100% - 12px) !important;
     max-width: none !important;
     margin: 0 auto;
+    padding: 18px 18px 24px !important;
 }
 
 .topbar,
@@ -184,11 +185,16 @@
     .account-dropdown a:first-child {
         display: none;
     }
+    .brand-meta strong,
+    .site-brand-text strong {
+        display: none !important;
+    }
 }
 
 @media (max-width: 640px) {
     .shell {
-        width: calc(100% - 12px) !important;
+        width: calc(100% - 8px) !important;
+        padding: 14px 14px 18px !important;
     }
     .brand img,
     .site-logo img {
