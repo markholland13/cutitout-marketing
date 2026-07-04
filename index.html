@@ -73,7 +73,7 @@
                 radial-gradient(circle at 50% 0%, rgba(147,212,255,0.08), transparent 26%);
         }
         .shell {
-            width: min(1320px, calc(100% - 28px));
+            width: min(1280px, calc(100% - 28px));
             margin: 0 auto;
             padding: 18px 0 40px;
             position: relative;
@@ -86,8 +86,8 @@
             gap: 18px;
             padding: 14px 18px;
             border-radius: 24px;
-            background: rgba(4, 10, 14, 0.52);
-            border: 1px solid var(--line);
+            background: rgba(22, 28, 34, 0.76);
+            border: 1px solid rgba(255,255,255,0.10);
             backdrop-filter: blur(18px);
             box-shadow: var(--shadow);
             position: sticky;
@@ -107,19 +107,19 @@
             background: rgba(255,255,255,0.94);
             display: block;
         }
-        .brand-meta {
+        .site-brand-text {
             display: grid;
             gap: 2px;
             min-width: 0;
         }
-        .brand-meta strong {
+        .site-brand-text strong {
             font-size: 13px;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
+            color: rgba(244,246,247,0.92);
         }
-        .brand-meta span {
-            color: var(--muted-2);
-            font-size: 12px;
+        .site-brand-text span {
+            display: none;
         }
         .nav {
             display: inline-flex;
@@ -456,7 +456,7 @@
             .section-head h2 { max-width: none; }
         }
         @media (max-width: 720px) {
-            .shell { width: min(100% - 16px, 1320px); padding-top: 10px; }
+            .shell { width: min(100% - 16px, 1280px); padding-top: 10px; }
             .topbar {
                 padding: 12px 14px;
                 border-radius: 20px;
@@ -475,6 +475,7 @@
             .reveal { transition: none; opacity: 1; transform: none; }
         }
     </style>
+    <link rel="stylesheet" href="/static/css/shared-header.css">
 </head>
 <body>
     <div class="page">
@@ -484,14 +485,15 @@
         <div class="overlay"></div>
 
         <div class="shell">
-            <header class="topbar reveal">
-                <div class="brand">
+            <header class="topbar site-header reveal">
+                <div class="brand site-logo">
                     <img src="https://static.wixstatic.com/media/af18ab_fc9dd1013070496da0aac5b4783e25b2~mv2.png" alt="Cut It Out">
-                    <div class="brand-meta">
+                    <div class="site-brand-text">
                         <strong>Laser Cutting</strong>
                     </div>
                 </div>
-                <nav class="nav" aria-label="Primary">
+                <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">Menu</button>
+                <nav class="nav site-nav" id="siteMenu" aria-label="Primary">
                     <a class="primary" href="https://app.cutitout.uk/quote">Quote</a>
                     <a href="https://www.cutitout.uk/guidelines">Guidelines</a>
                     <a href="https://www.cutitout.uk/materials">Materials</a>
@@ -628,6 +630,40 @@
             });
         } else {
             revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+
+        const siteMenu = document.getElementById('siteMenu');
+        const siteMenuToggle = document.getElementById('siteMenuToggle');
+
+        if (siteMenu && siteMenuToggle) {
+            const collapseMenu = () => {
+                siteMenu.classList.remove('is-open');
+                siteMenuToggle.setAttribute('aria-expanded', 'false');
+            };
+
+            siteMenuToggle.addEventListener('click', () => {
+                const isOpen = !siteMenu.classList.contains('is-open');
+                if (isOpen) {
+                    siteMenu.classList.add('is-open');
+                    siteMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    collapseMenu();
+                }
+            });
+
+            siteMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (window.matchMedia('(max-width: 900px)').matches) {
+                        collapseMenu();
+                    }
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                if (!window.matchMedia('(max-width: 900px)').matches) {
+                    collapseMenu();
+                }
+            });
         }
     </script>
 </body>
