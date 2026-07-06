@@ -107,10 +107,18 @@
 .site-nav a.active,
 .site-nav a.primary,
 .nav a.active {
-    color: #051119;
-    background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%);
+    color: #fff;
+    background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
     border-color: transparent;
-    box-shadow: 0 14px 28px rgba(91, 176, 232, 0.20);
+    box-shadow: 0 14px 28px rgba(31, 78, 95, 0.20);
+}
+
+.account-menu:hover .account-trigger,
+.account-menu:focus-within .account-trigger {
+    color: #fff;
+    background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
+    border-color: transparent;
+    box-shadow: 0 14px 28px rgba(31, 78, 95, 0.20);
 }
 
 .site-menu-toggle {

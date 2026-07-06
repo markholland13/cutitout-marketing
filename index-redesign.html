@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18042857892"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18042857892');
+    </script>
+    <title>Cut It Out Laser Cutting | Instant Online Quotes UK</title>
+    <meta name="description" content="Upload a DXF and get an instant online laser cutting quote. UK manufacturing for one-off parts, repeat jobs and small production runs.">
+    <link rel="canonical" href="https://www.cutitout.uk/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.cutitout.uk/">
+    <meta property="og:title" content="Cut It Out Laser Cutting | Instant Online Quotes UK">
+    <meta property="og:description" content="Upload a DXF and get an instant online laser cutting quote. UK manufacturing for one-off parts, repeat jobs and small production runs.">
+    <meta property="og:site_name" content="Cut It Out Laser Cutting">
+    <meta property="og:image" content="https://www.cutitout.uk/static/img/home/hero-parts.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cut It Out Laser Cutting | Instant Online Quotes UK">
+    <meta name="twitter:description" content="Upload a DXF and get an instant online laser cutting quote. UK manufacturing for one-off parts, repeat jobs and small production runs.">
+    <meta name="twitter:image" content="https://www.cutitout.uk/static/img/home/hero-parts.webp">
+    <style>
+        :root {
+            --bg: #071015;
+            --panel: rgba(10, 18, 24, 0.76);
+            --panel-2: rgba(12, 22, 29, 0.88);
+            --line: rgba(255,255,255,0.10);
+            --text: #f4f6f7;
+            --muted: rgba(244,246,247,0.72);
+            --muted-2: rgba(244,246,247,0.56);
+            --accent: #b7e9df;
+            --accent-2: #93d4ff;
+            --shadow: 0 28px 80px rgba(0,0,0,0.34);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: "Avenir Next", "Segoe UI", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 8% 0%, rgba(147,212,255,0.08), transparent 30%),
+                radial-gradient(circle at 92% 10%, rgba(183,233,223,0.08), transparent 28%),
+                linear-gradient(180deg, #12181d 0%, #161d23 52%, #1b2329 100%);
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        .page { position: relative; min-height: 100vh; }
+        .video-bg {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+            filter: saturate(0.72) contrast(0.9) brightness(0.42);
+            transform: scale(1.02);
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(180deg, rgba(18,24,28,0.62) 0%, rgba(20,27,32,0.74) 52%, rgba(24,31,37,0.88) 100%),
+                radial-gradient(circle at 50% 0%, rgba(147,212,255,0.08), transparent 28%);
+        }
+        .shell {
+            width: min(1240px, calc(100% - 18px));
+            margin: 0 auto;
+            padding: 18px 0 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 14px 18px;
+            border-radius: 24px;
+            background: rgba(22, 28, 34, 0.76);
+            border: 1px solid rgba(255,255,255,0.10);
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 14px;
+            z-index: 10;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .brand img {
+            height: 38px;
+            padding: 6px 10px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.94);
+            display: block;
+        }
+        .site-brand-text strong {
+            font-size: 13px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(244,246,247,0.92);
+        }
+        .nav {
+            display: inline-flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 38px;
+            padding: 0 14px;
+            border-radius: 999px;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+            transition: background 0.18s ease, transform 0.18s ease;
+        }
+        .nav a:hover { background: rgba(255,255,255,0.07); transform: translateY(-1px); }
+        .nav a.primary {
+            color: #041016;
+            background: linear-gradient(135deg, #c7fff0 0%, #8be3ff 55%, #6bbcff 100%);
+        }
+        .nav .secondary-extra { display: none; }
+
+        .hero {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.03fr) minmax(360px, 0.97fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+        .panel {
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, var(--panel), var(--panel-2));
+            backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+        }
+        .hero-copy {
+            border-radius: 32px;
+            padding: clamp(30px, 4.6vw, 58px);
+            min-height: 610px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-copy::after {
+            content: "";
+            position: absolute;
+            inset: auto -150px -180px auto;
+            width: 440px;
+            height: 440px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(147,212,255,0.13), transparent 68%);
+            pointer-events: none;
+        }
+        .eyebrow {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 9px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(244,246,247,0.86);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 20px 0 16px;
+            max-width: 10ch;
+            font-size: clamp(48px, 7vw, 92px);
+            line-height: 0.92;
+            letter-spacing: -0.075em;
+        }
+        .hero-copy p {
+            margin: 0;
+            max-width: 640px;
+            color: var(--muted);
+            font-size: clamp(17px, 1.7vw, 21px);
+            line-height: 1.58;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 24px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+        }
+        .button:hover { transform: translateY(-1px); }
+        .button.primary {
+            color: #041016;
+            background: linear-gradient(135deg, #c7fff0 0%, #8be3ff 55%, #6bbcff 100%);
+            border-color: rgba(255,255,255,0.14);
+            box-shadow: 0 18px 40px rgba(107,188,255,0.24);
+        }
+        .button.secondary {
+            color: var(--text);
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.10);
+        }
+        .hero-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .hero-actions .button.primary { min-width: 210px; }
+        .trust-strip {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 13px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(244,246,247,0.84);
+            font-size: 13px;
+            font-weight: 800;
+        }
+        .pill::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .hero-visual {
+            border-radius: 32px;
+            min-height: 610px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.9) contrast(0.96) brightness(0.84);
+        }
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(3,7,10,0.08) 0%, rgba(3,7,10,0.72) 100%),
+                radial-gradient(circle at 20% 20%, rgba(183,233,223,0.10), transparent 34%);
+        }
+        .quote-card {
+            position: absolute;
+            z-index: 2;
+            left: 22px;
+            right: 22px;
+            bottom: 22px;
+            display: grid;
+            gap: 10px;
+            padding: 18px;
+            border-radius: 22px;
+            background: rgba(4, 10, 14, 0.66);
+            border: 1px solid rgba(255,255,255,0.10);
+            backdrop-filter: blur(14px);
+        }
+        .quote-card strong {
+            color: rgba(183,233,223,0.96);
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .quote-step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 12px 13px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.07);
+            color: rgba(244,246,247,0.88);
+            font-size: 14px;
+            font-weight: 800;
+        }
+        .quote-step span:last-child { color: var(--accent); }
+
+        .section {
+            margin-top: 22px;
+            border-radius: 28px;
+            overflow: hidden;
+        }
+        .section-inner { padding: 28px; }
+        .section-head {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        h2 {
+            margin: 0;
+            font-size: clamp(28px, 3vw, 42px);
+            line-height: 1;
+            letter-spacing: -0.05em;
+        }
+        .section-head p {
+            margin: 0;
+            max-width: 660px;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 15px;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+        .step {
+            padding: 22px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .step-number {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: rgba(183,233,223,0.12);
+            border: 1px solid rgba(183,233,223,0.26);
+            color: var(--accent);
+            font-weight: 900;
+            margin-bottom: 42px;
+        }
+        .step h3 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            letter-spacing: -0.03em;
+        }
+        .step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.62;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .material {
+            padding: 16px 16px 18px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .material strong {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+        .material span {
+            color: var(--muted-2);
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        .cta-band {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            padding: 28px;
+        }
+        .cta-band h2 { max-width: 12ch; }
+        .cta-band p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .faq-list { display: grid; gap: 0; }
+        .faq-row {
+            display: grid;
+            grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .faq-row:first-child { border-top: 0; padding-top: 0; }
+        .faq-row h3 {
+            margin: 0;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+        }
+        .faq-row p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 15px;
+        }
+
+        .footer {
+            margin: 22px 0 8px;
+            padding: 22px 24px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-copy {
+            max-width: 640px;
+            line-height: 1.6;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .footer-copy strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 15px;
+        }
+        .footer-links {
+            display: inline-flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: var(--text);
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22,1,0.36,1);
+        }
+        .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+        .site-menu-toggle { display: none; }
+
+        @media (max-width: 1100px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-copy, .hero-visual { min-height: 0; }
+            .hero-visual { min-height: 520px; }
+            h1 { max-width: 12ch; }
+            .steps { grid-template-columns: 1fr; }
+            .step-number { margin-bottom: 22px; }
+            .materials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 900px) {
+            .topbar { align-items: flex-start; }
+            .site-menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 38px;
+                padding: 0 14px;
+                border-radius: 999px;
+                border: 1px solid rgba(255,255,255,0.10);
+                background: rgba(255,255,255,0.04);
+                color: var(--text);
+                font-weight: 900;
+            }
+            .nav {
+                display: none;
+                width: 100%;
+                border-radius: 18px;
+                align-items: stretch;
+            }
+            .nav.is-open { display: grid; }
+            .nav a { justify-content: flex-start; }
+        }
+        @media (max-width: 720px) {
+            .shell { width: calc(100% - 10px); padding-top: 10px; }
+            .topbar { padding: 12px 14px; border-radius: 20px; flex-wrap: wrap; }
+            .brand img { height: 34px; }
+            h1 { font-size: clamp(44px, 15vw, 64px); max-width: 100%; }
+            .hero-copy p { font-size: 16px; }
+            .hero-copy { border-radius: 26px; padding: 28px; }
+            .hero-visual { min-height: 400px; border-radius: 26px; }
+            .hero-actions { display: grid; }
+            .hero-actions .button { width: 100%; }
+            .section-inner, .cta-band { padding: 22px; }
+            .materials-grid { grid-template-columns: 1fr; }
+            .faq-row { grid-template-columns: 1fr; gap: 8px; }
+            .footer-links { width: 100%; }
+            .footer-links a { flex: 1 1 calc(50% - 10px); text-align: center; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .reveal { transition: none; opacity: 1; transform: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="/static/css/shared-header.css?v=20260706a">
+</head>
+<body>
+    <div class="page">
+        <video class="video-bg" autoplay muted loop playsinline poster="/static/img/home/hero-parts.webp">
+            <source src="/static/img/home/video.mp4" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+
+        <div class="shell">
+            <header class="topbar site-header reveal">
+                <a class="brand site-logo" href="https://www.cutitout.uk/" aria-label="Cut It Out home">
+                    <img src="https://static.wixstatic.com/media/af18ab_fc9dd1013070496da0aac5b4783e25b2~mv2.png" alt="Cut It Out">
+                    <div class="site-brand-text">
+                        <strong>Laser Cutting</strong>
+                    </div>
+                </a>
+                <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">Menu</button>
+                <nav class="nav site-nav" id="siteMenu" aria-label="Primary">
+                    <a class="primary" href="https://app.cutitout.uk/quote">Start Quote</a>
+                    <a href="https://www.cutitout.uk/materials">Materials</a>
+                    <a href="https://www.cutitout.uk/guidelines">Guidelines</a>
+                    <a href="https://www.cutitout.uk/services">Services</a>
+                    <a href="https://www.cutitout.uk/contact">Contact</a>
+                    <a class="secondary-extra" href="https://app.cutitout.uk/cart">Cart</a>
+                    <a class="secondary-extra" href="https://app.cutitout.uk/my-account">My Account</a>
+                    <a href="https://app.cutitout.uk/account/login">Login</a>
+                </nav>
+            </header>
+
+            <main>
+                <section class="hero" aria-labelledby="hero-title">
+                    <div class="hero-copy panel reveal">
+                        <span class="eyebrow">Online laser cutting quotes</span>
+                        <h1 id="hero-title">Upload DXF. Get a price.</h1>
+                        <p>
+                            Instant UK laser cutting quotes for one-off parts, repeat jobs and small production runs.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="button primary" href="https://app.cutitout.uk/quote">Upload DXF</a>
+                            <a class="button secondary" href="https://www.cutitout.uk/materials">View Materials</a>
+                        </div>
+                        <div class="trust-strip" aria-label="Key benefits">
+                            <span class="pill">Instant pricing</span>
+                            <span class="pill">UK manufactured</span>
+                            <span class="pill">One-offs from £0.50</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual panel reveal" aria-label="Laser cutting in progress">
+                        <video autoplay muted loop playsinline poster="/static/img/home/hero-carousel-01.webp">
+                            <source src="/static/img/home/video.mp4" type="video/mp4">
+                        </video>
+                        <div class="quote-card" aria-hidden="true">
+                            <strong>Quote flow</strong>
+                            <div class="quote-step"><span>DXF uploaded</span><span>✓</span></div>
+                            <div class="quote-step"><span>Material selected</span><span>✓</span></div>
+                            <div class="quote-step"><span>Instant price ready</span><span>✓</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section panel reveal" aria-labelledby="how-it-works-title">
+                    <div class="section-inner">
+                        <div class="section-head">
+                            <h2 id="how-it-works-title">How it works</h2>
+                            <p>A simple route from drawing to delivered parts. No email quote request needed.</p>
+                        </div>
+                        <div class="steps">
+                            <article class="step">
+                                <span class="step-number">1</span>
+                                <h3>Upload your DXF</h3>
+                                <p>Start with a clean 1:1 DXF drawing of the part you want cut.</p>
+                            </article>
+                            <article class="step">
+                                <span class="step-number">2</span>
+                                <h3>Choose material</h3>
+                                <p>Select the material, thickness and any available finishing options.</p>
+                            </article>
+                            <article class="step">
+                                <span class="step-number">3</span>
+                                <h3>Order online</h3>
+                                <p>Get the price instantly, checkout online and we manufacture your parts.</p>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section panel reveal" aria-labelledby="materials-title">
+                    <div class="section-inner">
+                        <div class="section-head">
+                            <h2 id="materials-title">Materials</h2>
+                            <p>Quote common laser cutting materials online, including metals and acrylic.</p>
+                        </div>
+                        <div class="materials-grid">
+                            <div class="material"><strong>Mild steel</strong><span>Brackets, plates, panels and general fabrication parts.</span></div>
+                            <div class="material"><strong>Stainless steel</strong><span>Clean, durable parts for practical and visible applications.</span></div>
+                            <div class="material"><strong>Aluminium</strong><span>Lightweight parts for prototypes, panels and assemblies.</span></div>
+                            <div class="material"><strong>Acrylic</strong><span>Clear and coloured plastic parts with simple online pricing.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section panel reveal">
+                    <div class="cta-band">
+                        <div>
+                            <h2>Ready for a quote?</h2>
+                            <p>Upload your DXF and see your price online.</p>
+                        </div>
+                        <a class="button primary" href="https://app.cutitout.uk/quote">Start Quote</a>
+                    </div>
+                </section>
+
+                <section class="section panel reveal" aria-labelledby="questions-title">
+                    <div class="section-inner">
+                        <div class="section-head">
+                            <h2 id="questions-title">Questions</h2>
+                        </div>
+                        <div class="faq-list">
+                            <div class="faq-row">
+                                <h3>What file types do you accept?</h3>
+                                <p>DXF files.</p>
+                            </div>
+                            <div class="faq-row">
+                                <h3>What materials can I quote online?</h3>
+                                <p>Mild steel, stainless steel, aluminium and acrylic.</p>
+                            </div>
+                            <div class="faq-row">
+                                <h3>Can I order one-offs as well as batches?</h3>
+                                <p>Yes. The service is built for one-off parts, repeat jobs and small production runs.</p>
+                            </div>
+                            <div class="faq-row">
+                                <h3>Can I add powder coating?</h3>
+                                <p>Yes, powder coating is available for suitable jobs.</p>
+                            </div>
+                            <div class="faq-row">
+                                <h3>Do you deliver across the UK?</h3>
+                                <p>Yes, UK mainland delivery is available.</p>
+                            </div>
+                            <div class="faq-row">
+                                <h3>Can I reorder a part later?</h3>
+                                <p>Yes, repeat jobs can be ordered again through your account.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="footer panel reveal">
+                <div class="footer-copy">
+                    <strong>Cut It Out</strong>
+                    You design it. We'll Cut It Out.
+                </div>
+                <div class="footer-links">
+                    <a href="https://app.cutitout.uk/quote">Start Quote</a>
+                    <a href="https://www.cutitout.uk/guidelines">Guidelines</a>
+                    <a href="https://www.cutitout.uk/contact">Contact</a>
+                    <a href="https://www.cutitout.uk/terms">Terms</a>
+                    <a href="https://www.cutitout.uk/privacy">Privacy</a>
+                    <a href="https://www.cutitout.uk/delivery-returns">Delivery & Returns</a>
+                    <a href="https://www.cutitout.uk/company">Company</a>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const revealItems = Array.from(document.querySelectorAll('.reveal'));
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+            revealItems.forEach((item, index) => {
+                item.style.transitionDelay = `${Math.min(index * 50, 200)}ms`;
+                observer.observe(item);
+            });
+        } else {
+            revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+
+        const siteMenu = document.getElementById('siteMenu');
+        const siteMenuToggle = document.getElementById('siteMenuToggle');
+
+        if (siteMenu && siteMenuToggle) {
+            const collapseMenu = () => {
+                siteMenu.classList.remove('is-open');
+                siteMenuToggle.setAttribute('aria-expanded', 'false');
+            };
+
+            siteMenuToggle.addEventListener('click', () => {
+                const isOpen = !siteMenu.classList.contains('is-open');
+                if (isOpen) {
+                    siteMenu.classList.add('is-open');
+                    siteMenuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    collapseMenu();
+                }
+            });
+
+            siteMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (window.matchMedia('(max-width: 900px)').matches) {
+                        collapseMenu();
+                    }
+                });
+            });
+
+            window.addEventListener('resize', () => {
+                if (!window.matchMedia('(max-width: 900px)').matches) {
+                    collapseMenu();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

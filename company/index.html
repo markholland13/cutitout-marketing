@@ -60,7 +60,7 @@
         .shell {
             position: relative;
             z-index: 1;
-            max-width: 1220px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 24px;
         }
@@ -149,7 +149,7 @@
         .site-nav a.active,
         .site-nav a.primary {
             color: #fff;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             border-color: transparent;
             box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
         }
@@ -190,7 +190,7 @@
         .account-menu:hover .account-trigger,
         .account-menu:focus-within .account-trigger {
             color: #fff;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             border-color: transparent;
             box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
         }
@@ -417,7 +417,7 @@
             height: 10px;
             margin-top: 7px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             flex: 0 0 auto;
         }
         .stats-band {
@@ -742,15 +742,15 @@
     .site-brand-text strong { font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,246,247,0.92); }
     .site-nav { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.10); }
     .site-nav a, .account-trigger { color: rgba(244,246,247,0.86); }
-    .site-nav a.active, .site-nav a.primary, .account-menu:hover .account-trigger, .account-menu:focus-within .account-trigger { color: #051119; background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%); box-shadow: 0 14px 28px rgba(91, 176, 232, 0.20); }
+    .site-nav a.active, .site-nav a.primary, .account-menu:hover .account-trigger, .account-menu:focus-within .account-trigger { color: #fff; background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%); box-shadow: 0 14px 28px rgba(31,78,95,0.20); }
     .account-dropdown { background: rgba(22, 28, 34, 0.96); border-color: rgba(255,255,255,0.08); box-shadow: 0 28px 80px rgba(0,0,0,0.28); }
     .hero-card, .card, .surface-panel, .stats-band .stat, .site-footer { background: linear-gradient(180deg, rgba(24, 30, 36, 0.92), rgba(18, 24, 29, 0.96)); border-color: rgba(255,255,255,0.08); box-shadow: 0 28px 80px rgba(0,0,0,0.28); }
     .hero-card::after, .highlight-card::after { background: rgba(145, 208, 255, 0.08); }
     .eyebrow, .eyebrow-dark { background: rgba(255,255,255,0.06); color: rgba(244,246,247,0.92); }
     .hero-card h1, .page-intro h1, .section-heading, .card h2, .card h3, .surface-panel h2, .surface-panel h3, .media-caption h3, .site-footer strong { color: #fff; }
     .hero-card p, .page-intro p, .section-copy, .card p, .card li, .surface-panel p, .media-caption p, .site-footer, .site-footer-copy, .check-list div { color: rgba(244,246,247,0.74); }
-    .button.white { background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%); color: #051119; border-color: transparent; box-shadow: 0 16px 30px rgba(91, 176, 232, 0.22); }
-    .button.light { background: rgba(255,255,255,0.05); color: #fff; }
+    .button.white { background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%); color: #fff; border-color: transparent; box-shadow: 0 16px 30px rgba(31,78,95,0.22); }
+    .button.light { background: rgba(255,255,255,0.88); color: #1f4e5f; border-color: rgba(31,78,95,0.14); }
     .metric { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
     .metric .label, .stats-band .stat-label { color: rgba(244,246,247,0.58); }
     .metric .value, .stats-band .stat-value { color: #fff; }
@@ -764,7 +764,7 @@
     .company-photo-copy p { color: rgba(244,246,247,0.74); }
 </style>
 
-    <link rel="stylesheet" href="/static/css/shared-header.css">
+    <link rel="stylesheet" href="/static/css/shared-header.css?v=20260706a">
 </head>
 <body>
     <div class="shell">

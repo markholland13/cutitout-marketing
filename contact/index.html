@@ -60,7 +60,7 @@
         .shell {
             position: relative;
             z-index: 1;
-            max-width: 1220px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 24px;
         }
@@ -149,7 +149,7 @@
         .site-nav a.active,
         .site-nav a.primary {
             color: #fff;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             border-color: transparent;
             box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
         }
@@ -190,7 +190,7 @@
         .account-menu:hover .account-trigger,
         .account-menu:focus-within .account-trigger {
             color: #fff;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             border-color: transparent;
             box-shadow: 0 10px 22px rgba(31, 78, 95, 0.18);
         }
@@ -278,13 +278,15 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         .button.light {
-            background: rgba(255,255,255,0.14);
-            color: #fff;
+            background: rgba(255,255,255,0.88);
+            color: #1f4e5f;
+            border-color: rgba(31,78,95,0.14);
         }
         .button.white {
-            background: #fff;
-            color: var(--brand-deep);
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
+            color: #fff;
             border-color: transparent;
+            box-shadow: 0 10px 22px rgba(31,78,95,0.18);
         }
         .section-grid {
             display: grid;
@@ -417,7 +419,7 @@
             height: 10px;
             margin-top: 7px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--brand-deep), var(--brand-mid));
+            background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
             flex: 0 0 auto;
         }
         .stats-band {
@@ -738,9 +740,9 @@
     .site-nav a.primary,
     .account-menu:hover .account-trigger,
     .account-menu:focus-within .account-trigger {
-        color: #051119;
-        background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%);
-        box-shadow: 0 14px 28px rgba(91, 176, 232, 0.20);
+        color: #fff;
+        background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
+        box-shadow: 0 14px 28px rgba(31,78,95,0.20);
     }
     .account-dropdown {
         background: rgba(22, 28, 34, 0.96);
@@ -789,14 +791,15 @@
         color: rgba(244,246,247,0.74);
     }
     .button.white {
-        background: linear-gradient(135deg, #d9fff6 0%, #95e5ff 52%, #73bfff 100%);
-        color: #051119;
+        background: linear-gradient(135deg, #1f4e5f 0%, #3f6d80 100%);
+        color: #fff;
         border-color: transparent;
-        box-shadow: 0 16px 30px rgba(91, 176, 232, 0.22);
+        box-shadow: 0 16px 30px rgba(31,78,95,0.22);
     }
     .button.light {
-        background: rgba(255,255,255,0.05);
-        color: #fff;
+        background: rgba(255,255,255,0.88);
+        color: #1f4e5f;
+        border-color: rgba(31,78,95,0.14);
     }
     .metric {
         background: rgba(255,255,255,0.04);
@@ -832,7 +835,7 @@
     }
 </style>
 
-    <link rel="stylesheet" href="/static/css/shared-header.css">
+    <link rel="stylesheet" href="/static/css/shared-header.css?v=20260706a">
 </head>
 <body>
     <div class="shell">
