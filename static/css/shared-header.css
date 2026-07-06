@@ -146,7 +146,7 @@
     .topbar,
     .site-header {
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: center;
     }
     .site-menu-toggle {
@@ -165,7 +165,8 @@
     .nav.is-open,
     .site-nav.is-open {
         display: grid !important;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+        margin-top: 10px;
     }
     .nav a,
     .site-nav a,
@@ -214,8 +215,8 @@
         font-size: 11px;
         letter-spacing: 0.12em;
     }
-    .nav,
-    .site-nav {
+    .nav.is-open,
+    .site-nav.is-open {
         grid-template-columns: 1fr;
     }
 }
