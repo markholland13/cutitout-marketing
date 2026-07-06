@@ -142,7 +142,7 @@
     transform: translateY(-1px);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .topbar,
     .site-header {
         flex-direction: row;
