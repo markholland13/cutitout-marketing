@@ -3,7 +3,7 @@
     width: calc(100% - 12px) !important;
     max-width: none !important;
     margin: 0 auto;
-    padding: 18px 18px 24px !important;
+    padding: 18px 0 40px !important;
 }
 
 .topbar,
@@ -203,7 +203,7 @@
 @media (max-width: 640px) {
     .shell {
         width: calc(100% - 8px) !important;
-        padding: 14px 14px 18px !important;
+        padding: 10px 0 0 !important;
     }
     .brand img,
     .site-logo img {
