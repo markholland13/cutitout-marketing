@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cut It Out Mobile Header</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --ink: #f4f6f7;
+            --muted: rgba(244, 246, 247, 0.86);
+            --panel: rgba(22, 28, 34, 0.76);
+            --line: rgba(255, 255, 255, 0.10);
+            --accent: #1f4e5f;
+            --accent-2: #3f6d80;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 10px 4px;
+            background: #f4f6f7;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 10px;
+            z-index: 30;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            background: var(--panel);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(18px);
+        }
+
+        .site-logo {
+            display: inline-flex;
+            align-items: center;
+            flex: 1 1 auto;
+            min-width: 0;
+            text-decoration: none;
+        }
+
+        .site-logo img {
+            display: block;
+            height: 34px;
+            padding: 5px 8px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.94);
+        }
+
+        .site-menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .site-nav {
+            display: none;
+            width: 100%;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .site-nav.is-open {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .site-nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 44px;
+            padding: 0 14px;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            text-align: center;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .site-nav a.primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            box-shadow: 0 14px 28px rgba(31, 78, 95, 0.20);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <a class="site-logo" href="https://www.cutitout.uk/" aria-label="Cut It Out home">
+            <img src="https://static.wixstatic.com/media/af18ab_fc9dd1013070496da0aac5b4783e25b2~mv2.png" alt="Cut It Out">
+        </a>
+
+        <button type="button" class="site-menu-toggle" id="siteMenuToggle" aria-controls="siteMenu" aria-expanded="false">
+            Menu
+        </button>
+
+        <nav class="site-nav" id="siteMenu" aria-label="Primary">
+            <a class="primary" href="https://app.cutitout.uk/quote">Start Quote</a>
+            <a href="https://www.cutitout.uk/materials">Materials</a>
+            <a href="https://www.cutitout.uk/guidelines">Guidelines</a>
+            <a href="https://www.cutitout.uk/services">Services</a>
+            <a href="https://www.cutitout.uk/contact">Contact</a>
+            <a href="https://app.cutitout.uk/cart">Cart</a>
+            <a href="https://app.cutitout.uk/my-account">My Account</a>
+            <a href="https://app.cutitout.uk/account/login">Customer Login</a>
+        </nav>
+    </header>
+
+    <script>
+        const siteMenu = document.getElementById('siteMenu');
+        const siteMenuToggle = document.getElementById('siteMenuToggle');
+
+        if (siteMenu && siteMenuToggle) {
+            siteMenuToggle.addEventListener('click', () => {
+                const isOpen = siteMenu.classList.toggle('is-open');
+                siteMenuToggle.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            siteMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    siteMenu.classList.remove('is-open');
+                    siteMenuToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+    </script>
+</body>
+</html>
