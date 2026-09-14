@@ -1,0 +1,212 @@
+(() => {
+    'use strict';
+    const section = document.getElementById('manufacturingJourney');
+    if (!section) return;
+    const canvas = document.getElementById('journeyCanvas');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const title = document.getElementById('journeyTitle');
+    const caption = document.getElementById('journeyCaption');
+    const kicker = document.getElementById('journeyKicker');
+    const loading = document.getElementById('journeyLoading');
+    const progressBar = document.getElementById('journeyProgress');
+    const steps = [...section.querySelectorAll('.journey-step')];
+    const sticky = section.querySelector('.journey-sticky');
+    const fallback = section.querySelector('.journey-fallback');
+    section.querySelector('.journey-skip').addEventListener('click', event => {
+        const next = document.getElementById('afterJourney');
+        if (!next) return;
+        event.preventDefault();
+        next.tabIndex = -1;
+        next.scrollIntoView({ behavior: 'instant', block: 'start' });
+        next.focus({ preventScroll: true });
+        history.replaceState(null, '', '#afterJourney');
+    });
+    const stages = [
+        { frame: 1, step: 0, kicker: '01 / UPLOAD YOUR DRAWING', title: 'Your design. Our expertise.', caption: 'Upload your DXF for an instant laser cutting quote.' },
+        { frame: 40, step: 1, kicker: '02 / FIBRE LASER CUTTING', title: 'Precision, from the start.', caption: 'Your design guides every cut.' },
+        { frame: 55, step: 1, kicker: '02 / FIBRE LASER CUTTING', title: 'Cut to your design.', caption: 'Clean profiles. Intricate details. Precision in every part.' },
+        { frame: 140, step: 2, kicker: '03 / YOUR PART', title: 'Designed by you. Made by us.', caption: 'From sheet metal to a component for your next project.' },
+        { frame: 161, step: 3, kicker: '04 / SURFACE & EDGE FINISHING', title: 'A finish you can feel.', caption: 'Abrasive finishing refines the surface and softens cut edges.' },
+        { frame: 193, step: 4, kicker: '05 / PACKED FOR DISPATCH', title: 'Care, all the way to your door.', caption: 'Protective packaging keeps your parts ready for what’s next.' },
+        { frame: 252, step: 4, kicker: 'FROM DRAWING TO DELIVERY', title: 'Your next part starts here.', caption: 'Upload your drawing. Get an instant quote.' }
+    ];
+    let activeStage = -1;
+    const updateCopy = frame => {
+        const index = stages.findLastIndex(stage => frame >= stage.frame);
+        if (index === activeStage) return;
+        activeStage = index;
+        const stage = stages[Math.max(index, 0)];
+        title.textContent = stage.title;
+        caption.textContent = stage.caption;
+        kicker.textContent = stage.kicker;
+        steps.forEach((step, i) => {
+            step.classList.toggle('is-active', i === stage.step);
+            if (i === stage.step) step.setAttribute('aria-current', 'step');
+            else step.removeAttribute('aria-current');
+        });
+        section.classList.toggle('is-final', frame >= 252);
+        section.classList.toggle('is-upload', frame < 40);
+        section.classList.toggle('is-cutting', frame >= 51 && frame < 140);
+    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let staticMode = false;
+    const staticView = () => {
+        staticMode = true;
+        section.classList.add('is-static');
+        section.classList.remove('is-ready', 'is-buffering');
+        fallback.removeAttribute('aria-hidden');
+        loading.hidden = true;
+        updateCopy(280);
+        section.classList.remove('is-final');
+        section.style.removeProperty('--end-opacity');
+        section.style.removeProperty('--copy-opacity');
+        section.style.removeProperty('--ui-opacity');
+        kicker.textContent = 'FROM DRAWING TO DISPATCH';
+        title.textContent = 'Your drawing. Made real.';
+        caption.textContent = 'We cut your part from sheet metal, finish the edges and pack it for dispatch.';
+    };
+    if (!ctx || reduced.matches || navigator.connection?.saveData) {
+        staticView();
+        return;
+    }
+    const mobile = window.matchMedia('(max-width: 680px)');
+    let variant = mobile.matches ? 'mobile' : 'desktop';
+    const cache = new Map();
+    const pending = new Set();
+    const failures = new Map();
+    let queue = [], inflight = 0, targetFrame = 1, timelineFrame = 1, paintedFrame = 0, started = false, raf = 0, generation = 0;
+    const MAX_CACHED = 28;
+    const sceneCuts = [40, 51, 161, 193];
+    const url = frame => `/static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.jpg?v=customer-finish-4`;
+    function draw(frame) {
+        const img = cache.get(frame);
+        if (!img) return false;
+        const w = sticky.clientWidth, h = sticky.clientHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        if (canvas.width !== Math.round(w*dpr) || canvas.height !== Math.round(h*dpr)) {
+            canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
+        }
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.fillStyle = '#22292f'; ctx.fillRect(0, 0, w, h);
+        // Separate portrait renders keep the subject in frame on small screens.
+        const paint = image => {
+            const scale = Math.max(w/image.naturalWidth, h/image.naturalHeight);
+            const iw = image.naturalWidth*scale, ih = image.naturalHeight*scale;
+            ctx.drawImage(image, (w-iw)/2, (h-ih)/2, iw, ih);
+        };
+        const cut = sceneCuts.find(cut => frame>=cut && frame<cut+3);
+        const previous = cut ? cache.get(cut-1) : null;
+        if (previous) {
+            paint(previous);
+            ctx.globalAlpha = Math.min(1, (frame-cut+1)/3);
+        }
+        paint(img);
+        ctx.globalAlpha = 1;
+        paintedFrame = frame;
+        canvas.dataset.frame = String(frame);
+        section.classList.add('is-ready');
+        fallback.setAttribute('aria-hidden', 'true');
+        const buffering = frame !== targetFrame && Math.abs(frame-targetFrame)>8;
+        section.classList.toggle('is-buffering', buffering);
+        loading.setAttribute('aria-hidden', String(!buffering));
+        if (frame === targetFrame) loading.style.opacity = '';
+        const smooth = value => { const t = Math.max(0, Math.min(1, value)); return t*t*(3-2*t); };
+        const storyFrame = frame===240 ? timelineFrame : frame;
+        section.style.setProperty('--end-opacity', smooth((storyFrame-244)/12));
+        section.style.setProperty('--ui-opacity', 1-smooth((storyFrame-244)/6));
+        section.style.setProperty('--copy-opacity', storyFrame<252 ? 1-smooth((storyFrame-244)/6) : smooth((storyFrame-252)/8));
+        updateCopy(storyFrame);
+        return true;
+    }
+    function prune() {
+        if (cache.size <= MAX_CACHED) return;
+        const farthest = [...cache.keys()].sort((a,b) => Math.abs(b-targetFrame)-Math.abs(a-targetFrame));
+        for (const frame of farthest) {
+            if (cache.size <= MAX_CACHED) break;
+            if (frame !== paintedFrame && frame !== targetFrame) cache.delete(frame);
+        }
+    }
+    function pump() {
+        while (!staticMode && inflight < 4 && queue.length) {
+            const frame = queue.shift();
+            if (cache.has(frame) || pending.has(frame) || (failures.get(frame)||0)>=2) continue;
+            inflight++; pending.add(frame);
+            const token = generation;
+            const img = new Image(); img.decoding = 'async';
+            img.onload = async () => {
+                try { await img.decode(); } catch (_) { /* onload still supplies a drawable frame */ }
+                inflight--;
+                if (token !== generation) { pump(); return; }
+                pending.delete(frame);
+                if (staticMode) return;
+                cache.set(frame, img);
+                if (frame === targetFrame || !paintedFrame) draw(frame);
+                prune(); pump();
+            };
+            img.onerror = () => {
+                inflight--;
+                if (token !== generation) { pump(); return; }
+                pending.delete(frame);
+                if (staticMode) return;
+                failures.set(frame, (failures.get(frame)||0)+1);
+                if (frame === targetFrame && failures.get(frame)<2) queue.unshift(frame);
+                if (frame === targetFrame && failures.get(frame)>=2) {
+                    section.classList.remove('is-buffering');
+                    loading.hidden = false;
+                    loading.removeAttribute('aria-hidden');
+                    loading.textContent = 'This moment couldn’t load. Keep scrolling to continue.';
+                    loading.style.opacity = '1';
+                    if (!paintedFrame) staticView();
+                }
+                pump();
+            };
+            img.src = url(frame);
+        }
+    }
+    function requestFrames() {
+        queue = [targetFrame];
+        for (const cut of sceneCuts) {
+            if (targetFrame>=cut && targetFrame<cut+3) queue.push(cut-1);
+        }
+        for (let offset=1; offset<=10; offset++) {
+            if (targetFrame+offset<=240) queue.push(targetFrame+offset);
+            if (targetFrame-offset>=1) queue.push(targetFrame-offset);
+        }
+        pump();
+    }
+    function update() {
+        raf = 0;
+        if (!started || staticMode || reduced.matches) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.bottom <= 0 || rect.top > window.innerHeight+600) return;
+        const travel = Math.max(1, section.offsetHeight-sticky.clientHeight);
+        const progress = Math.max(0, Math.min(1, -rect.top/travel));
+        // Let the sealed, labelled parcel finish before fading to a held end card.
+        timelineFrame = 1+Math.round(progress*279);
+        targetFrame = Math.min(240, timelineFrame);
+        canvas.dataset.targetFrame = String(targetFrame);
+        progressBar.style.transform = `scaleX(${progress})`;
+        if (!draw(targetFrame)) {
+            const nearest = [...cache.keys()].sort((a,b)=>Math.abs(a-targetFrame)-Math.abs(b-targetFrame))[0];
+            if (nearest !== undefined) draw(nearest);
+            loading.textContent = 'Loading the next moment…';
+        } else {
+            loading.style.opacity = '';
+        }
+        requestFrames();
+    }
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+            started = true; schedule(); observer.disconnect();
+        }
+    }, { rootMargin: '600px' });
+    observer.observe(section);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule, { passive: true });
+    mobile.addEventListener('change', () => {
+        variant = mobile.matches ? 'mobile' : 'desktop'; generation++;
+        cache.clear(); pending.clear(); failures.clear(); queue=[]; paintedFrame=0; schedule();
+    });
+    reduced.addEventListener('change', () => { if (reduced.matches) staticView(); });
+})();

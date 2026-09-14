@@ -362,6 +362,167 @@
             line-height: 1.5;
         }
 
+        .journey-scroll {
+            position: relative;
+            height: 620svh;
+            margin-top: 22px;
+        }
+        .journey-sticky {
+            position: sticky;
+            top: 0;
+            height: 100svh;
+            min-height: 620px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 28px;
+            background: #03070a;
+            box-shadow: 0 32px 90px rgba(0,0,0,0.46);
+            isolation: isolate;
+        }
+        .journey-canvas,
+        .journey-fallback {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .journey-canvas {
+            z-index: 1;
+            display: block;
+            opacity: 0;
+            transition: opacity .55s ease;
+        }
+        .journey-scroll.is-ready .journey-canvas { opacity: 1; }
+        .journey-fallback {
+            z-index: 0;
+            object-fit: cover;
+            filter: brightness(.64) saturate(.72);
+            transition: opacity .55s ease;
+        }
+        .journey-scroll.is-ready .journey-fallback { opacity: 0; }
+        .journey-shade {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(2,6,9,.64) 0%, rgba(2,6,9,.08) 38%, transparent 64%),
+                linear-gradient(0deg, rgba(2,6,9,.58) 0%, transparent 33%),
+                radial-gradient(circle at 50% 48%, transparent 46%, rgba(0,0,0,.20) 100%);
+        }
+        .journey-copy {
+            position: absolute;
+            z-index: 3;
+            top: clamp(86px, 12vh, 132px);
+            left: clamp(24px, 5vw, 76px);
+            width: min(430px, calc(100% - 48px));
+            pointer-events: none;
+            transition: opacity .35s ease, transform .35s ease;
+        }
+        .journey-kicker {
+            display: block;
+            margin-bottom: 14px;
+            color: #9eddf4;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+        .journey-copy h2 {
+            margin: 0;
+            max-width: 9ch;
+            color: #fff;
+            font-size: clamp(42px, 5vw, 76px);
+            line-height: .94;
+            letter-spacing: -.06em;
+        }
+        .journey-copy p {
+            margin: 18px 0 0;
+            max-width: 34ch;
+            color: rgba(255,255,255,.72);
+            font-size: 16px;
+            line-height: 1.55;
+        }
+        .journey-steps {
+            position: absolute;
+            z-index: 3;
+            right: clamp(22px, 4vw, 58px);
+            top: 50%;
+            display: grid;
+            gap: 13px;
+            width: min(230px, 28vw);
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            transform: translateY(-50%);
+            transition: opacity .35s ease;
+        }
+        .journey-scroll.is-intro .journey-copy,
+        .journey-scroll.is-intro .journey-steps {
+            opacity: 0;
+        }
+        .journey-step {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            gap: 11px;
+            align-items: center;
+            color: rgba(255,255,255,.38);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .01em;
+            transition: color .25s ease, transform .25s ease;
+        }
+        .journey-step::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background: currentColor;
+            transition: width .25s ease, background .25s ease;
+        }
+        .journey-step.is-active {
+            color: #fff;
+            transform: translateX(-6px);
+        }
+        .journey-step.is-active::before {
+            width: 28px;
+            background: #9eddf4;
+        }
+        .journey-progress {
+            position: absolute;
+            z-index: 3;
+            left: clamp(24px, 5vw, 76px);
+            right: clamp(24px, 5vw, 76px);
+            bottom: clamp(24px, 5vh, 52px);
+            height: 2px;
+            overflow: hidden;
+            background: rgba(255,255,255,.16);
+        }
+        .journey-progress span {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #75c7e7, #d8fbf4);
+            transform: scaleX(0);
+            transform-origin: left center;
+            will-change: transform;
+        }
+        .journey-loading {
+            position: absolute;
+            z-index: 4;
+            left: 50%;
+            bottom: 84px;
+            padding: 10px 14px;
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 999px;
+            color: rgba(255,255,255,.78);
+            background: rgba(3,7,10,.72);
+            backdrop-filter: blur(12px);
+            font-size: 13px;
+            transform: translateX(-50%);
+            transition: opacity .25s ease;
+        }
+        .journey-scroll.is-ready .journey-loading { opacity: 0; }
+
         .section {
             margin-top: 22px;
             border-radius: 24px;
@@ -874,12 +1035,53 @@
                 text-align: center;
                 justify-content: center;
             }
+            .journey-scroll { height: 560svh; }
+            .journey-sticky {
+                min-height: 540px;
+                border-radius: 20px;
+            }
+            .journey-copy {
+                top: 82px;
+                left: 22px;
+            }
+            .journey-copy h2 { font-size: clamp(38px, 12vw, 54px); }
+            .journey-copy p { max-width: 26ch; font-size: 15px; }
+            .journey-steps {
+                top: auto;
+                right: 22px;
+                bottom: 52px;
+                left: 22px;
+                width: auto;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 6px;
+                transform: none;
+            }
+            .journey-step {
+                display: block;
+                overflow: hidden;
+                color: transparent;
+                font-size: 0;
+                white-space: nowrap;
+            }
+            .journey-step::before {
+                display: block;
+                width: 100%;
+                height: 2px;
+                background: rgba(255,255,255,.22);
+            }
+            .journey-step.is-active { transform: none; }
+            .journey-step.is-active::before { width: 100%; background: #9eddf4; }
+            .journey-progress { bottom: 28px; left: 22px; right: 22px; }
         }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .reveal { transition: none; opacity: 1; transform: none; }
+            .journey-scroll { height: 100svh; }
+            .journey-loading,
+            .journey-canvas { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="/static/css/manufacturing-film.css?v=20260914-customer-signoff-5">
 </head>
 <body>
     <div class="page">
@@ -954,7 +1156,34 @@
                 </div>
             </section>
 
-            <section class="section panel reveal" aria-labelledby="services-title">
+            <section class="journey-scroll journey-film" id="manufacturingJourney" aria-labelledby="journeyTitle">
+                <div class="journey-sticky">
+                    <img class="journey-fallback" src="/static/img/home/journey-film/poster.jpg" alt="Your thin steel part lifting from the sheet, revealing the cutting bed underneath" loading="lazy">
+                    <canvas class="journey-canvas" id="journeyCanvas" role="img" aria-label="Follow a sample part from drawing to laser cutting, edge finishing and protective packaging"></canvas>
+                    <div class="journey-shade"></div>
+                    <div class="journey-end-shade" aria-hidden="true"></div>
+                    <div class="journey-topline"><span>YOUR PART. FROM START TO FINISH.</span><a href="#afterJourney" class="journey-skip">Skip the journey <span aria-hidden="true">↗</span></a></div>
+                    <div class="journey-copy">
+                        <span class="journey-kicker" id="journeyKicker">01 / UPLOAD YOUR DRAWING</span>
+                        <h2 id="journeyTitle">Your design. Our expertise.</h2>
+                        <p id="journeyCaption">Upload your DXF for an instant laser cutting quote.</p>
+                        <span class="journey-signoff">Let’s <img src="/static/img/home/cut-it-out-white.svg" alt="Cut It Out" width="925" height="146" decoding="async"></span>
+                        <a class="journey-cta" href="https://app.cutitout.uk/quote">Get Started <span aria-hidden="true">↗</span></a>
+                    </div>
+                    <ol class="journey-steps" aria-label="Manufacturing stages">
+                        <li class="journey-step is-active">Your drawing</li>
+                        <li class="journey-step">Cut to shape</li>
+                        <li class="journey-step">Made real</li>
+                        <li class="journey-step">Finished</li>
+                        <li class="journey-step">Packed for you</li>
+                    </ol>
+                    <div class="journey-progress" aria-hidden="true"><span id="journeyProgress"></span></div>
+                    <div class="journey-loading" id="journeyLoading" role="status">Preparing your journey…</div>
+                    <span class="journey-scroll-hint">SCROLL TO FOLLOW YOUR PART ↓</span>
+                </div>
+            </section>
+
+            <section class="section panel reveal" id="afterJourney" aria-labelledby="services-title">
                 <div class="section-inner">
                     <div class="section-head">
                         <div>
@@ -1204,5 +1433,6 @@
         }
 
     </script>
+    <script src="/static/js/manufacturing-film.js?v=20260914-customer-signoff-5" defer></script>
 </body>
 </html>
