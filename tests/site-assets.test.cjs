@@ -20,7 +20,7 @@ test('static asset references from every HTML, CSS and JavaScript file exist', (
 test('all dynamically loaded film and stencil frames remain available', () => {
   for (const variant of ['desktop', 'mobile']) {
     for (let frame = 1; frame <= 240; frame++) {
-      assert.ok(fs.existsSync(path.join(root, `static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.jpg`)));
+      assert.ok(fs.existsSync(path.join(root, `static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.webp`)));
     }
   }
   for (let frame = 1; frame <= 36; frame++) {

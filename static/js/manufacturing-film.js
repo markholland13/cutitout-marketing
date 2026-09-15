@@ -54,8 +54,10 @@
     };
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let staticMode = false;
+    let stopLoading = () => {};
     const staticView = () => {
         endStop?.destroy();
+        stopLoading();
         staticMode = true;
         section.classList.add('is-static');
         section.classList.remove('is-ready', 'is-buffering');
@@ -85,12 +87,46 @@
     const mobile = window.matchMedia('(max-width: 680px)');
     let variant = mobile.matches ? 'mobile' : 'desktop';
     const cache = new Map();
-    const pending = new Set();
+    let wanted = new Set();
+    const pending = new Map();
     const failures = new Map();
     let queue = [], inflight = 0, targetFrame = 1, timelineFrame = 1, paintedFrame = 0, started = false, raf = 0, generation = 0;
-    const MAX_CACHED = 28;
+    let direction = 1, loadingTimer = 0, warmTimer = 0, lastPaint = '';
+    // Bound decoded memory, not just compressed download size (about 156 MB
+    // desktop / 63 MB mobile; smaller still on memory-constrained devices).
+    const cacheLimit = () => navigator.deviceMemory <= 4 ? 22 : mobile.matches ? 32 : 40;
+    loading.hidden = true;
+    const setBuffering = waiting => {
+        if (!waiting || staticMode || timelineFrame >= 260 || endStop?.held) {
+            clearTimeout(loadingTimer); loadingTimer = 0;
+            loading.hidden = true;
+            loading.setAttribute('aria-hidden', 'true');
+            section.classList.remove('is-buffering');
+        } else if (!loadingTimer) {
+            loadingTimer = setTimeout(() => {
+                if (staticMode || timelineFrame >= 260 || cache.has(targetFrame)) return;
+                loading.hidden = false;
+                loading.style.opacity = '';
+                loading.textContent = 'Loading the next moment…';
+                loading.setAttribute('aria-hidden', 'false');
+                section.classList.add('is-buffering');
+            }, 450);
+        }
+    };
+    function cancelRequests(keep = new Set()) {
+        for (const [frame, request] of pending) {
+            if (!keep.has(frame)) request.cancel();
+        }
+    }
+    stopLoading = () => {
+        clearTimeout(warmTimer);
+        setBuffering(false);
+        queue = [];
+        cancelRequests();
+        cache.clear();
+    };
     const sceneCuts = [40, 51, 161, 193];
-    const url = frame => `/static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.jpg?v=customer-finish-4`;
+    const url = frame => `/static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.webp?v=20260915-optimized`;
     function draw(frame) {
         const img = cache.get(frame);
         if (!img) return false;
@@ -99,30 +135,32 @@
         if (canvas.width !== Math.round(w*dpr) || canvas.height !== Math.round(h*dpr)) {
             canvas.width = Math.round(w*dpr); canvas.height = Math.round(h*dpr);
         }
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.fillStyle = '#22292f'; ctx.fillRect(0, 0, w, h);
-        // Separate portrait renders keep the subject in frame on small screens.
-        const paint = image => {
-            const scale = Math.max(w/image.naturalWidth, h/image.naturalHeight);
-            const iw = image.naturalWidth*scale, ih = image.naturalHeight*scale;
-            ctx.drawImage(image, (w-iw)/2, (h-ih)/2, iw, ih);
-        };
         const cut = sceneCuts.find(cut => frame>=cut && frame<cut+3);
         const previous = cut ? cache.get(cut-1) : null;
-        if (previous) {
-            paint(previous);
-            ctx.globalAlpha = Math.min(1, (frame-cut+1)/3);
+        const paintKey = `${generation}:${frame}:${w}:${h}:${dpr}:${!!previous}`;
+        if (lastPaint !== paintKey) {
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.fillStyle = '#22292f'; ctx.fillRect(0, 0, w, h);
+            // Separate portrait renders keep the subject in frame on small screens.
+            const paint = image => {
+                const scale = Math.max(w/image.naturalWidth, h/image.naturalHeight);
+                const iw = image.naturalWidth*scale, ih = image.naturalHeight*scale;
+                ctx.drawImage(image, (w-iw)/2, (h-ih)/2, iw, ih);
+            };
+            if (previous) {
+                paint(previous);
+                ctx.globalAlpha = Math.min(1, (frame-cut+1)/3);
+            }
+            paint(img);
+            ctx.globalAlpha = 1;
+            lastPaint = paintKey;
         }
-        paint(img);
-        ctx.globalAlpha = 1;
         paintedFrame = frame;
         canvas.dataset.frame = String(frame);
         section.classList.add('is-ready');
         fallback.setAttribute('aria-hidden', 'true');
         const buffering = frame !== targetFrame && Math.abs(frame-targetFrame)>8;
-        section.classList.toggle('is-buffering', buffering);
-        loading.setAttribute('aria-hidden', String(!buffering));
-        if (frame === targetFrame) loading.style.opacity = '';
+        setBuffering(buffering);
         const smooth = value => { const t = Math.max(0, Math.min(1, value)); return t*t*(3-2*t); };
         const storyFrame = endStop?.held ? 270 : frame===240 ? timelineFrame : frame;
         section.style.setProperty('--end-opacity', smooth((storyFrame-244)/12));
@@ -132,38 +170,53 @@
         return true;
     }
     function prune() {
-        if (cache.size <= MAX_CACHED) return;
-        const farthest = [...cache.keys()].sort((a,b) => Math.abs(b-targetFrame)-Math.abs(a-targetFrame));
+        if (cache.size <= cacheLimit()) return;
+        const distance = frame => Math.abs(frame-targetFrame) * ((frame-targetFrame)*direction < 0 ? 1.5 : 1);
+        const farthest = [...cache.keys()].sort((a,b) =>
+            Number(wanted.has(a))-Number(wanted.has(b)) || distance(b)-distance(a));
         for (const frame of farthest) {
-            if (cache.size <= MAX_CACHED) break;
+            if (cache.size <= cacheLimit()) break;
             if (frame !== paintedFrame && frame !== targetFrame) cache.delete(frame);
         }
     }
     function pump() {
-        while (!staticMode && inflight < 4 && queue.length) {
+        while (!staticMode && inflight < (started ? 6 : 2) && queue.length) {
             const frame = queue.shift();
             if (cache.has(frame) || pending.has(frame) || (failures.get(frame)||0)>=2) continue;
-            inflight++; pending.add(frame);
+            inflight++;
             const token = generation;
             const img = new Image(); img.decoding = 'async';
+            img.fetchPriority = started && frame === targetFrame ? 'high' : 'low';
+            let settled = false;
+            const finish = () => {
+                if (settled) return false;
+                settled = true; inflight--;
+                pending.delete(frame);
+                return true;
+            };
+            pending.set(frame, {cancel() {
+                if (!finish()) return;
+                img.onload = img.onerror = null;
+                img.src = '';
+            }});
             img.onload = async () => {
                 try { await img.decode(); } catch (_) { /* onload still supplies a drawable frame */ }
-                inflight--;
+                if (!finish()) return;
                 if (token !== generation) { pump(); return; }
-                pending.delete(frame);
                 if (staticMode) return;
                 cache.set(frame, img);
-                if (frame === targetFrame || !paintedFrame) draw(frame);
+                if (frame === targetFrame || !paintedFrame || Math.abs(frame-targetFrame) < Math.abs(paintedFrame-targetFrame)) draw(frame);
+                if (timelineFrame >= 260 || endStop?.held) showEndCard();
                 prune(); pump();
             };
             img.onerror = () => {
-                inflight--;
+                if (!finish()) return;
                 if (token !== generation) { pump(); return; }
-                pending.delete(frame);
                 if (staticMode) return;
                 failures.set(frame, (failures.get(frame)||0)+1);
                 if (frame === targetFrame && failures.get(frame)<2) queue.unshift(frame);
                 if (frame === targetFrame && failures.get(frame)>=2) {
+                    setBuffering(false);
                     section.classList.remove('is-buffering');
                     loading.hidden = false;
                     loading.removeAttribute('aria-hidden');
@@ -176,34 +229,44 @@
             img.src = url(frame);
         }
     }
-    function requestFrames() {
+    function requestFrames(warm = false) {
         queue = [targetFrame];
         for (const cut of sceneCuts) {
             if (targetFrame>=cut && targetFrame<cut+3) queue.push(cut-1);
         }
-        for (let offset=1; offset<=10; offset++) {
-            if (targetFrame+offset<=240) queue.push(targetFrame+offset);
-            if (targetFrame-offset>=1) queue.push(targetFrame-offset);
+        const ahead = warm ? 11 : cacheLimit()-10;
+        const behind = warm ? 0 : 6;
+        const add = frame => { if (frame >= 1 && frame <= 240) queue.push(frame); };
+        for (let offset=1; offset<=ahead; offset++) {
+            add(targetFrame+offset*direction);
+            if (offset<=behind) add(targetFrame-offset*direction);
         }
+        // Fast jumps must not wait behind downloads for an abandoned scene.
+        wanted = new Set(queue);
+        cancelRequests(wanted);
         pump();
     }
     function update() {
         raf = 0;
         if (!started || staticMode || reduced.matches) return;
         const rect = section.getBoundingClientRect();
-        if (rect.bottom <= 0 || rect.top > window.innerHeight+600) return;
+        if (rect.bottom <= 0 || rect.top > window.innerHeight+1400) {
+            setBuffering(false); queue = []; cancelRequests(); return;
+        }
         const travel = Math.max(1, section.offsetHeight-sticky.clientHeight);
         const progress = Math.max(0, Math.min(1, -rect.top/travel));
         // Let the sealed, labelled parcel finish before fading to a held end card.
         timelineFrame = 1+Math.round(progress*279);
         if (timelineFrame >= 260) showEndCard();
-        targetFrame = Math.min(240, timelineFrame);
+        const nextFrame = Math.min(240, timelineFrame);
+        if (nextFrame !== targetFrame) direction = Math.sign(nextFrame-targetFrame);
+        targetFrame = nextFrame;
         canvas.dataset.targetFrame = String(targetFrame);
         progressBar.style.transform = `scaleX(${progress})`;
         if (!draw(targetFrame)) {
             const nearest = [...cache.keys()].sort((a,b)=>Math.abs(a-targetFrame)-Math.abs(b-targetFrame))[0];
             if (nearest !== undefined) draw(nearest);
-            loading.textContent = 'Loading the next moment…';
+            if (nearest === undefined) setBuffering(true);
         } else {
             loading.style.opacity = '';
         }
@@ -212,17 +275,22 @@
         if (timelineFrame >= 260 || endStop?.held) showEndCard();
     }
     const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    // Small, low-priority opening buffer while the visitor is still at the hero.
+    warmTimer = setTimeout(() => { if (!started && !staticMode) requestFrames(true); }, 150);
     const observer = new IntersectionObserver(entries => {
         if (entries.some(entry => entry.isIntersecting)) {
             started = true; schedule(); observer.disconnect();
         }
-    }, { rootMargin: '600px' });
+    }, { rootMargin: '1400px' });
     observer.observe(section);
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule, { passive: true });
     mobile.addEventListener('change', () => {
+        cancelRequests(); setBuffering(false);
         variant = mobile.matches ? 'mobile' : 'desktop'; generation++;
         cache.clear(); pending.clear(); failures.clear(); queue=[]; paintedFrame=0; schedule();
     });
+    window.addEventListener('pagehide', stopLoading);
+    window.addEventListener('pageshow', schedule);
     reduced.addEventListener('change', () => { if (reduced.matches) staticView(); });
 })();

@@ -6,3 +6,7 @@ __pycache__/
 # Blender autosave backups; keep the editable .blend masters tracked separately
 *.blend1
 *.blend2
+
+# Intermediate film renders; publish the optimised WebP sequence instead.
+static/img/home/journey-film/desktop/frame-*.jpg
+static/img/home/journey-film/mobile/frame-*.jpg

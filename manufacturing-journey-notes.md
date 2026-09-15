@@ -27,8 +27,8 @@ The animation is a sample manufacturing story, not a live simulation of a custom
 
 - `build_cinematic_journey.py` builds the new scene. It reuses the quote-vignette helpers in `build_cut_it_out_journey.py`; retain both files.
 - `manufacturing-journey-cinematic.blend` is the editable master.
-- `static/img/home/journey-film/desktop/frame-0001.jpg` through `frame-0240.jpg` are the desktop film.
-- `static/img/home/journey-film/mobile/frame-0001.jpg` through `frame-0240.jpg` use a separate portrait framing.
+- `static/img/home/journey-film/desktop/frame-0001.webp` through `frame-0240.webp` are the desktop film.
+- `static/img/home/journey-film/mobile/frame-0001.webp` through `frame-0240.webp` use a separate portrait framing.
 - `static/img/home/journey-film/poster.jpg` is the independently available still fallback.
 - `static/js/manufacturing-film.js` maps native page scrolling to the rendered frames and customer-facing copy.
 - `static/css/manufacturing-film.css` controls the presentation.

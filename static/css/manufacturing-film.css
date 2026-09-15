@@ -67,6 +67,7 @@
 .journey-film.is-cutting .journey-shade { background: linear-gradient(0deg, rgba(10,16,21,.9), transparent 13%), linear-gradient(270deg, rgba(10,16,21,.62), transparent 49%); }
 .journey-topline > span,.journey-skip { background: rgba(10,16,21,.62); padding: 9px 12px; border-radius: 24px; backdrop-filter: blur(12px); }
 .journey-film .journey-loading { bottom: auto; top: 46%; height: fit-content; max-width: 85%; text-align: center; }
+.journey-loading[hidden] { display:none; }
 .journey-film.is-buffering .journey-loading { opacity: 1; }
 .journey-film.is-static { height: 100svh; }
 .journey-film.is-static .journey-scroll-hint, .journey-film.is-static .journey-steps, .journey-film.is-static .journey-progress { display: none; }
