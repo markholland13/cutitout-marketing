@@ -36,12 +36,25 @@
 
 .brand img,
 .site-logo img {
-    height: 38px;
+    height: 27px;
     display: block;
-    padding: 6px 10px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.94);
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
 }
+
+/* The same transparent white SVG is used in every marketing header. The
+   extra specificity also overrides older page-local logo badge rules. */
+.site-header .site-logo img {
+    width: auto;
+    height: 27px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.site-header .site-brand-text { color: rgba(244,246,247,.92); }
 
 .brand-meta,
 .site-brand-text {
@@ -206,9 +219,10 @@
         padding: 10px 0 0 !important;
     }
     .brand img,
-    .site-logo img {
-        height: 34px;
-        padding: 5px 8px;
+    .site-logo img,
+    .site-header .site-logo img {
+        height: 24px;
+        padding: 0;
     }
     .brand-meta strong,
     .site-brand-text strong {

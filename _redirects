@@ -1,0 +1,13 @@
+# Optional redirects for old bookmarks on compatible static hosts; no old HTML pages are retained.
+/guidelines-visual /guidelines 301
+/guidelines-visual/ /guidelines 301
+/guidelines-visual/index.html /guidelines 301
+/guidelines-2 /guidelines 301
+/guidelines-2/ /guidelines 301
+/guidelines-2/index.html /guidelines 301
+/guidelines/hole-sizes /guidelines#holes 301
+/guidelines/hole-sizes/ /guidelines#holes 301
+/guidelines/bolt-hole-sizes /guidelines#bolts 301
+/guidelines/bolt-hole-sizes/ /guidelines#bolts 301
+/guidelines/part-size-limits /guidelines#size 301
+/guidelines/part-size-limits/ /guidelines#size 301

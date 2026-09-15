@@ -1,0 +1,137 @@
+/* Cut It Out palette and shared site chrome.
+   Keep the handbook layout independent; use the same shared header stylesheet
+   as the homepage, Materials and Services. Green remains a semantic success cue. */
+:root {
+  --brand-deep: #1f4e5f;
+  --brand-mid: #3f6d80;
+  --brand-soft: #dbe8ee;
+  --brand-mist: #eef3f6;
+  --paper: #f7f8f6;
+  --ink: #203640;
+  --muted: #62727b;
+  --line: #d7dfe1;
+  --dark: #17232c;
+  --mint: #bde8f7;
+  --header-height: 73px;
+}
+
+html { scroll-padding-top: calc(var(--header-height) + 100px); }
+.cover {
+  margin-top: 0;
+  padding-top: 0;
+  overflow: clip;
+  background: radial-gradient(ellipse at 78% 38%, #24404b 0%, #17232c 60%);
+}
+.chapter-nav {
+  top: var(--header-height);
+  background: rgba(247, 248, 246, .97);
+}
+
+/* Familiar blue-grey at the main points of emphasis. */
+h1 span { color: #bde8f7; }
+.hero-copy .eyebrow { color: #b8d1de; }
+.tiny-cross, .hero-footnote > span { color: #bde8f7; }
+.hero-description { color: #b9c8d0; }
+.hero-footnote, .cover-bottom { color: #9db3c0; }
+.cover-bottom i { color: #60818f; }
+.hero-visual figcaption { color: #c3d5dd; }
+.button-mint { color: #163b4b; background: #bde8f7; }
+.button-mint:hover { background: #dbf4ff; box-shadow: 0 4px 24px #93d4ff1a; }
+.chapter-links a { color: #667b85; }
+.chapter-links a > span { color: #8b9ca5; }
+.chapter-links a:hover, .chapter-links a[aria-current] {
+  color: var(--brand-deep);
+  border-bottom-color: var(--brand-mid);
+}
+.section-heading .eyebrow, .feature-controls .eyebrow,
+.overall-copy > .eyebrow { color: #6d8691; }
+.play-button { border-color: #c2d1d9; }
+.play-button:hover { background: #e8f1f5; }
+.text-link { color: var(--brand-deep); border-bottom-color: #adc6d1; }
+.text-link:hover { color: var(--brand-mid); }
+.field-hint, .small-copy, .feature-render figcaption,
+.feature-render figcaption > span:last-child, .size-answer p,
+.fit-results p, .limit-result p, .overall-drawing figcaption,
+.file-facts p, .final-check > div > p:not(.eyebrow),
+.faq details p, .footer > span, .footer nav { color: #6c808a; }
+.diagram-eyebrow, .bolt-render figcaption { color: #556f7b; }
+.control-row label, .size-answer > span, .fit-results > div > span,
+.limit-result > span { color: #647e8b; }
+select {
+  border-color: #c9d6dd;
+  color: var(--brand-deep);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='10'%3E%3Cpath d='m3 3 4 4 4-4' fill='none' stroke='%233f6d80' stroke-width='1.5'/%3E%3C/svg%3E");
+}
+.size-answer > strong, .fit-results strong, .limit-result strong { color: var(--brand-deep); }
+.feature-controls, .bolt-copy, .drawing-workbench { background: #fcfdfc; }
+.note-strip { background: #e7f0f4; color: #54717f; }
+.note-strip strong { color: var(--brand-deep); }
+.drawing-tabs button { color: #738994; }
+.drawing-tabs button[aria-selected=true] { border-color: var(--brand-mid); color: var(--brand-deep); }
+.drawing-caption { background: #edf3f5; color: #4e717f; }
+.file-facts > div > span { color: #7e96a1; }
+.overall-drawing { background: #eef2f3; }
+.check-box { border-color: #b3c8d1; }
+.checklist-items input:checked + .check-box { background: var(--brand-deep); border-color: var(--brand-deep); }
+.checklist-items input:focus-visible + .check-box { outline-color: var(--brand-mid); }
+.upload-panel { background: linear-gradient(115deg, #172c37, #244c5c); }
+.upload-panel .eyebrow { color: #b1cfdd; }
+.upload-panel p:not(.eyebrow), .upload-actions > a:last-child { color: #b7cdd8; }
+button:focus-visible, a:focus-visible, summary:focus-visible,
+select:focus-visible, [tabindex]:focus-visible { outline-color: #4383a0; }
+.footer-logo img { filter: brightness(0) saturate(100%) invert(25%) sepia(17%) saturate(1329%) hue-rotate(151deg) brightness(92%) contrast(92%); }
+.footer.footer-complete { display:grid; grid-template-columns:minmax(190px,1fr) minmax(0,2fr); align-items:start; gap:48px; padding-block:42px; }
+.footer-complete .footer-brand p { font-size:12px; line-height:1.7; color:var(--muted); margin-top:15px; }
+.footer-complete .footer-top { display:inline-flex; align-items:center; gap:16px; min-height:44px; margin-top:16px; font-size:12px; color:var(--brand-deep); }
+.footer.footer-complete nav { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:28px; margin:0; width:100%; font-size:14px; }
+.footer-complete .footer-link-group { display:flex; flex-direction:column; align-items:flex-start; gap:3px; min-width:0; }
+.footer-complete .footer-link-group h3 { font-family:inherit; font-size:13px; font-weight:600; letter-spacing:0; color:var(--ink); margin:0 0 10px; }
+.footer-complete .footer-link-group a { display:flex; align-items:center; min-height:32px; font-size:14px; line-height:1.5; color:var(--muted); }
+.footer-complete a:hover { color:var(--brand-deep); text-decoration:underline; text-underline-offset:4px; }
+@media(max-width:800px) {
+  .footer.footer-complete { grid-template-columns:1fr; gap:30px; }
+  .footer-complete .footer-top { margin-top:8px; }
+  .footer-complete .footer-link-group a { min-height:44px; }
+}
+@media(max-width:480px) {
+  .footer.footer-complete { padding-block:32px; }
+  .footer.footer-complete nav { grid-template-columns:repeat(2,minmax(0,1fr)); gap:25px 20px; }
+}
+
+/* Drawing measurements use the brand blue; success/failure comparisons retain
+   their green/red meaning, so colour never becomes the only instruction. */
+.feature-measure g[stroke], .bolt-diagram > path[stroke],
+.overall-drawing g[stroke] { stroke: #3f6d80; }
+.feature-measure g[fill]:not([stroke]), .bolt-diagram text,
+.overall-drawing g[fill] { fill: #3f6d80; }
+
+@media (max-width: 640px) {
+  :root { --header-height: 65px; }
+  .chapter-nav { top: var(--header-height); }
+  html { scroll-padding-top: calc(var(--header-height) + 85px); }
+}
+.subsection-heading { margin: 42px 0 25px; max-width: 650px; }
+.subsection-heading .eyebrow { font-size: 9px; color: var(--brand-mid); margin-bottom: 12px; }
+.subsection-heading h3 { font-size: clamp(23px, 3vw, 30px); letter-spacing: -.035em; font-weight: 500; }
+.subsection-heading > p:last-child { margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+.example-note { font-size: 12px; color: var(--muted); line-height: 1.8; margin-top: 22px; max-width: 790px; }
+.example-note a { color: var(--brand-deep); text-decoration: underline; text-underline-offset: 3px; }
+.reference-details { margin-top: 18px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--brand-deep); }
+.reference-details summary { display: flex; justify-content: space-between; align-items: center; min-height: 55px; cursor: pointer; gap: 20px; }
+.reference-details summary::marker { content: ''; }
+.reference-details summary::-webkit-details-marker { display: none; }
+.reference-table { max-width: 100%; overflow-x: auto; margin: 5px 0 16px; border: 1px solid var(--line); border-radius: 9px; }
+.reference-table table { width: 100%; min-width: 590px; border-collapse: collapse; font-size: 12px; text-align: left; }
+.reference-table th, .reference-table td { padding: 13px 17px; white-space: nowrap; border-bottom: 1px solid var(--line); }
+.reference-table th { background: var(--brand-mist); font-weight: 550; }
+.reference-table tr:last-child td { border-bottom: 0; }
+.reference-details > p { font-size: 11px; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+.drawing-tabs { overflow-x: auto; justify-content: flex-start; }
+.drawing-tabs button { flex: 0 0 auto; white-space: nowrap; }
+.drawing-tabs button:focus-visible { outline-offset: -4px; }
+.micro-example { margin: 0 0 18px; }
+.micro-example img { display: block; width: 100%; height: auto; border-radius: 9px; }
+.micro-example figcaption { font-size: 11px; line-height: 1.7; color: var(--muted); margin-top: 12px; }
+@media print {
+  .cio-header { display: none !important; }
+}

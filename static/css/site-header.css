@@ -1,0 +1,48 @@
+/* Portable Cut It Out header. All rules are scoped to avoid app style conflicts. */
+.cio-header, .cio-header * { box-sizing:border-box; }
+.cio-header { position:sticky; top:0; z-index:100; width:100%; margin:0; color:#edf4f7; background:#17232c; border:0; border-bottom:1px solid #ffffff18; border-radius:0; box-shadow:none; font-family:"Avenir Next","Segoe UI",Arial,sans-serif; font-size:14px; line-height:1.4; text-align:left; isolation:isolate; }
+.cio-header .cio-header-inner { width:100%; max-width:1392px; min-height:72px; margin:0 auto; padding:0 56px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+.cio-header .cio-logo { display:inline-flex; align-items:center; flex:0 0 auto; padding:10px 0; margin:0; border:0; text-decoration:none; background:none; }
+.cio-header .cio-logo img { display:block; width:170px; height:auto; max-width:none; margin:0; padding:0; border:0; border-radius:0; background:none; box-shadow:none; }
+.cio-header .cio-nav { display:flex; align-items:center; justify-content:flex-end; flex:1; gap:42px; margin:0; padding:0; border:0; background:none; }
+.cio-header .cio-nav-links, .cio-header .cio-nav-actions { display:flex; align-items:center; gap:26px; }
+.cio-header .cio-nav-actions { gap:22px; border-left:1px solid #ffffff20; padding-left:28px; }
+.cio-header .cio-nav a { position:relative; display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin:0; padding:0; border:0; border-radius:0; background:none; box-shadow:none; color:#c5d0d7; text-decoration:none; font:inherit; font-size:14px; font-weight:400; letter-spacing:0; text-transform:none; white-space:nowrap; transition:color .15s ease,background-color .15s ease; }
+.cio-header .cio-nav a:hover { color:#fff; transform:none; }
+.cio-header .cio-nav a[aria-current="page"] { color:#fff; }
+.cio-header .cio-nav a[aria-current="page"]::after { content:""; position:absolute; bottom:3px; left:0; right:0; height:2px; background:#bde8f7; }
+.cio-header .cio-nav .cio-quote { min-height:40px; padding:0 20px; border-radius:5px; background:#bde8f7; color:#173846; font-weight:600; }
+.cio-header .cio-nav .cio-quote:hover { background:#d9f3fc; color:#173846; }
+.cio-header .cio-nav .cio-quote[aria-current="page"]::after { display:none; }
+.cio-header .cio-menu-toggle { display:none; align-items:center; justify-content:center; gap:12px; min-height:44px; padding:0; margin:0; border:0; border-radius:0; background:none; box-shadow:none; color:#edf4f7; font:inherit; font-size:14px; font-weight:400; text-transform:none; letter-spacing:0; cursor:pointer; appearance:none; }
+.cio-header .cio-menu-toggle:hover { transform:none; color:#bde8f7; }
+.cio-header .cio-menu-icon { width:18px; height:12px; position:relative; display:block; }
+.cio-header .cio-menu-icon::before, .cio-header .cio-menu-icon::after { content:""; position:absolute; left:0; width:18px; height:1px; background:currentColor; top:2px; }
+.cio-header .cio-menu-icon::after { top:10px; }
+.cio-header .cio-menu-toggle[aria-expanded="true"] .cio-menu-icon::before { top:6px; transform:rotate(45deg); }
+.cio-header .cio-menu-toggle[aria-expanded="true"] .cio-menu-icon::after { top:6px; transform:rotate(-45deg); }
+.cio-header a:focus-visible, .cio-header button:focus-visible { outline:2px solid #bde8f7; outline-offset:5px; }
+@media(max-width:1150px) { .cio-header .cio-header-inner { padding-inline:32px; gap:28px; } .cio-header .cio-nav { gap:26px; } .cio-header .cio-nav-links { gap:20px; } .cio-header .cio-nav-actions { gap:18px; padding-left:22px; } }
+@media(max-width:1023px) {
+  .cio-header .cio-header-inner { min-height:64px; padding:0 24px; gap:0; flex-wrap:wrap; }
+  .cio-header .cio-logo { min-height:63px; }
+  .cio-header .cio-logo img { width:152px; }
+  .cio-header.cio-enhanced .cio-menu-toggle { display:inline-flex; }
+  .cio-header .cio-nav { flex:0 0 100%; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; gap:14px; padding:10px 0 24px; max-height:calc(100dvh - 64px); overflow-y:auto; }
+  .cio-header.cio-enhanced .cio-nav {
+    display:none; position:absolute; top:calc(100% + 8px); right:24px;
+    width:min(380px, calc(100% - 48px)); max-height:calc(100dvh - 89px);
+    padding:18px 20px 20px; gap:12px; background:#17232c;
+    border:1px solid #ffffff1a; border-radius:8px;
+    box-shadow:0 12px 32px #07131d26; overscroll-behavior:contain;
+  }
+  .cio-header.cio-enhanced .cio-nav.is-open { display:flex; }
+  .cio-header .cio-nav-links { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 18px; }
+  .cio-header .cio-nav a { justify-content:flex-start; min-height:44px; white-space:normal; }
+  .cio-header .cio-nav-links a { border:0; }
+  .cio-header .cio-nav a[aria-current="page"]::after { display:none; }
+  .cio-header .cio-nav-links a[aria-current="page"] { color:#bde8f7; }
+  .cio-header .cio-nav-actions { border:0; border-top:1px solid #ffffff20; padding:8px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; }
+  .cio-header .cio-nav .cio-quote { grid-column:1 / -1; justify-content:center; min-height:44px; }
+}
+@media(prefers-reduced-motion:reduce) { .cio-header * { transition:none !important; } }

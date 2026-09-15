@@ -12,15 +12,19 @@
     const steps = [...section.querySelectorAll('.journey-step')];
     const sticky = section.querySelector('.journey-sticky');
     const fallback = section.querySelector('.journey-fallback');
-    section.querySelector('.journey-skip').addEventListener('click', event => {
+    let endStop = null;
+    const continueJourney = event => {
         const next = document.getElementById('afterJourney');
         if (!next) return;
         event.preventDefault();
+        endStop?.skip();
         next.tabIndex = -1;
         next.scrollIntoView({ behavior: 'instant', block: 'start' });
         next.focus({ preventScroll: true });
         history.replaceState(null, '', '#afterJourney');
-    });
+    };
+    section.querySelector('.journey-skip').addEventListener('click', continueJourney);
+    section.querySelector('.journey-continue')?.addEventListener('click', continueJourney);
     const stages = [
         { frame: 1, step: 0, kicker: '01 / UPLOAD YOUR DRAWING', title: 'Your design. Our expertise.', caption: 'Upload your DXF for an instant laser cutting quote.' },
         { frame: 40, step: 1, kicker: '02 / FIBRE LASER CUTTING', title: 'Precision, from the start.', caption: 'Your design guides every cut.' },
@@ -51,6 +55,7 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let staticMode = false;
     const staticView = () => {
+        endStop?.destroy();
         staticMode = true;
         section.classList.add('is-static');
         section.classList.remove('is-ready', 'is-buffering');
@@ -69,6 +74,14 @@
         staticView();
         return;
     }
+    const showEndCard = () => {
+        updateCopy(270);
+        section.style.setProperty('--end-opacity', 1);
+        section.style.setProperty('--copy-opacity', 1);
+        section.style.setProperty('--ui-opacity', 0);
+        loading.style.opacity = '0';
+    };
+    endStop = window.createJourneyEndStop?.({section, sticky, onHold:showEndCard});
     const mobile = window.matchMedia('(max-width: 680px)');
     let variant = mobile.matches ? 'mobile' : 'desktop';
     const cache = new Map();
@@ -111,7 +124,7 @@
         loading.setAttribute('aria-hidden', String(!buffering));
         if (frame === targetFrame) loading.style.opacity = '';
         const smooth = value => { const t = Math.max(0, Math.min(1, value)); return t*t*(3-2*t); };
-        const storyFrame = frame===240 ? timelineFrame : frame;
+        const storyFrame = endStop?.held ? 270 : frame===240 ? timelineFrame : frame;
         section.style.setProperty('--end-opacity', smooth((storyFrame-244)/12));
         section.style.setProperty('--ui-opacity', 1-smooth((storyFrame-244)/6));
         section.style.setProperty('--copy-opacity', storyFrame<252 ? 1-smooth((storyFrame-244)/6) : smooth((storyFrame-252)/8));
@@ -183,6 +196,7 @@
         const progress = Math.max(0, Math.min(1, -rect.top/travel));
         // Let the sealed, labelled parcel finish before fading to a held end card.
         timelineFrame = 1+Math.round(progress*279);
+        if (timelineFrame >= 260) showEndCard();
         targetFrame = Math.min(240, timelineFrame);
         canvas.dataset.targetFrame = String(targetFrame);
         progressBar.style.transform = `scaleX(${progress})`;
@@ -194,6 +208,8 @@
             loading.style.opacity = '';
         }
         requestFrames();
+        // The quote action remains visible even if the final render is still loading.
+        if (timelineFrame >= 260 || endStop?.held) showEndCard();
     }
     const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
     const observer = new IntersectionObserver(entries => {
