@@ -32,7 +32,7 @@
         { frame: 140, step: 2, kicker: '03 / YOUR PART', title: 'Designed by you. Made by us.', caption: 'From sheet metal to a component for your next project.' },
         { frame: 161, step: 3, kicker: '04 / SURFACE & EDGE FINISHING', title: 'A finish you can feel.', caption: 'Abrasive finishing refines the surface and softens cut edges.' },
         { frame: 193, step: 4, kicker: '05 / PACKED FOR DISPATCH', title: 'Care, all the way to your door.', caption: 'Protective packaging keeps your parts ready for what’s next.' },
-        { frame: 252, step: 4, kicker: 'FROM DRAWING TO DELIVERY', title: 'Your next part starts here.', caption: 'Upload your drawing. Get an instant quote.' }
+        { frame: 252, step: 4, kicker: 'FROM DRAWING TO DELIVERY', title: 'Your next part starts here.', caption: '' }
     ];
     let activeStage = -1;
     const updateCopy = frame => {

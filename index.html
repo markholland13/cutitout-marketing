@@ -26,12 +26,12 @@
     <meta name="twitter:image" content="https://cutitout.uk/static/img/company/workshop-team.webp">
     <link rel="stylesheet" href="/static/css/services-visual.css?v=20260915-1">
     <link rel="stylesheet" href="/static/css/home-visual.css?v=20260915-quote-emphasis">
-    <link rel="stylesheet" href="/static/css/manufacturing-film.css?v=20260915-buffered">
+    <link rel="stylesheet" href="/static/css/manufacturing-film.css?v=20260919-no-caption">
     <link rel="stylesheet" href="/static/css/site-header.css?v=20260915-public-routes">
     <script src="/static/js/shared-header.js?v=20260915-public-routes" defer></script>
     <script src="/static/js/home-video.js?v=20260915-background" defer></script>
     <script src="/static/js/journey-end-stop.js?v=20260915-1" defer></script>
-    <script src="/static/js/manufacturing-film.js?v=20260915-buffered" defer></script>
+    <script src="/static/js/manufacturing-film.js?v=20260919-no-caption" defer></script>
     <noscript><style>.journey-film{height:100svh}.journey-canvas,.journey-loading,.journey-steps,.journey-progress,.journey-scroll-hint{display:none}.journey-cta{display:block}</style></noscript>
 </head>
 <body id="top">
@@ -54,7 +54,7 @@
       <div class="cio-nav-actions">
         <a href="https://app.cutitout.uk/my-account">Account</a>
         <a href="https://app.cutitout.uk/cart">Cart</a>
-        <a class="cio-quote" href="https://app.cutitout.uk/quote">Start a quote</a>
+        <a class="cio-quote" href="https://app.cutitout.uk/quote">Get an instant quote</a>
       </div>
     </nav>
   </div>
@@ -68,18 +68,18 @@
         <p class="sv-eyebrow">Laser cutting / Made in the UK</p>
         <h1 id="hero-title">You design it.<br><span>We’ll Cut It Out.</span></h1>
         <p class="hv-intro">Custom laser-cut parts, priced online. Upload your DXF, choose your material and get an instant quote.</p>
-        <div class="hv-actions"><a class="sv-button" href="https://app.cutitout.uk/quote">Start your quote <span aria-hidden="true">↗</span></a><a href="#manufacturingJourney">See how it’s made <span aria-hidden="true">↓</span></a></div>
+        <div class="hv-actions"><a class="sv-button" href="https://app.cutitout.uk/quote">Get an instant quote <span aria-hidden="true">↗</span></a><a href="#manufacturingJourney">See how it’s made <span aria-hidden="true">↓</span></a></div>
         <p class="hv-hero-note">One-offs · Small runs · Repeat orders</p>
       </div>
-      <div class="hv-video-caption"><span>Behind the cut · Inside our workshop</span><button id="workshopVideoToggle" type="button" aria-controls="workshopVideo" hidden>Play workshop video</button></div>
+      <div class="hv-video-caption"><button id="workshopVideoToggle" type="button" aria-controls="workshopVideo" hidden>Play workshop video</button></div>
     </div>
   </section>
   <section class="hv-order sv-wrap" aria-label="How to order">
     <div><span class="hv-number" aria-hidden="true">01</span><div><h2>Upload your DXF.</h2><p>Your shape, drawn full size in millimetres.</p></div></div>
-    <div><span class="hv-number" aria-hidden="true">02</span><div><h2>Make it yours.</h2><p>Choose material, thickness and quantity.</p></div></div>
+    <div><span class="hv-number" aria-hidden="true">02</span><div><h2>Choose your options.</h2><p>Choose material, thickness and quantity.</p></div></div>
     <div><span class="hv-number" aria-hidden="true">03</span><div><h2>Order online.</h2><p>Review your price and follow progress in your account.</p></div></div>
   </section>
-  <div class="hv-heading hv-film-heading sv-wrap"><div><p class="sv-eyebrow">From file to finished part</p><h2>A closer look at the making.</h2></div></div>
+  <div class="hv-heading hv-film-heading sv-wrap"><div><p class="sv-eyebrow">From file to finished part</p><h2>See how your parts are made.</h2></div></div>
 <section class="journey-scroll journey-film" id="manufacturingJourney" aria-labelledby="journeyTitle">
                 <div class="journey-sticky">
                     <img class="journey-fallback" src="/static/img/home/journey-film/poster.jpg" alt="Your thin steel part lifting from the sheet, revealing the cutting bed underneath" loading="lazy">
@@ -92,15 +92,15 @@
                         <h2 id="journeyTitle">Your design. Our expertise.</h2>
                         <p id="journeyCaption">Upload your DXF for an instant laser cutting quote.</p>
                         <span class="journey-signoff">Let’s <img src="/static/img/home/cut-it-out-white.svg" alt="Cut It Out" width="925" height="146" decoding="async"></span>
-                        <a class="journey-cta" href="https://app.cutitout.uk/quote">Get Started <span aria-hidden="true">↗</span></a>
+                        <a class="journey-cta" href="https://app.cutitout.uk/quote">Get an instant quote <span aria-hidden="true">↗</span></a>
                         <a class="journey-continue" href="#afterJourney">Continue exploring <span aria-hidden="true">↓</span></a>
                     </div>
                     <ol class="journey-steps" aria-label="Manufacturing stages">
-                        <li class="journey-step is-active">Your drawing</li>
-                        <li class="journey-step">Cut to shape</li>
-                        <li class="journey-step">Made real</li>
-                        <li class="journey-step">Finished</li>
-                        <li class="journey-step">Packed for you</li>
+                        <li class="journey-step is-active">Your design</li>
+                        <li class="journey-step">Laser cut</li>
+                        <li class="journey-step">Part released</li>
+                        <li class="journey-step">Edges finished</li>
+                        <li class="journey-step">Packed for delivery</li>
                     </ol>
                     <div class="journey-progress" aria-hidden="true"><span id="journeyProgress"></span></div>
                     <div class="journey-loading" id="journeyLoading" role="status">Preparing your journey…</div>
@@ -109,19 +109,19 @@
             </section>
   <div class="sv-wrap">
     <section class="hv-section" id="afterJourney" aria-labelledby="materials-title">
-      <div class="hv-heading"><div><p class="sv-eyebrow">01 / Start with the material</p><h2 id="materials-title">The right starting point.</h2></div><a class="sv-text-link" href="https://cutitout.uk/materials">Compare materials <span aria-hidden="true">↗</span></a></div>
+      <div class="hv-heading"><div><p class="sv-eyebrow">01 / Start with the material</p><h2 id="materials-title">Choose the material for your project.</h2></div><a class="sv-text-link" href="https://cutitout.uk/materials">Compare materials <span aria-hidden="true">↗</span></a></div>
       <div class="hv-materials"><a class="hv-material" href="https://cutitout.uk/materials#mild-steel"><img src="/static/img/materials/mild-steel.webp" width="1024" height="1024" alt="Mild steel sheet surface" loading="lazy"><div><h3>Mild steel<span aria-hidden="true">↗</span></h3><p>1–6 mm · 7 thicknesses</p></div></a><a class="hv-material" href="https://cutitout.uk/materials#stainless-steel"><img src="/static/img/materials/stainless-steel.webp" width="1024" height="1024" alt="Stainless steel sheet surface" loading="lazy"><div><h3>Stainless steel<span aria-hidden="true">↗</span></h3><p>1–4 mm · 5 thicknesses</p></div></a><a class="hv-material" href="https://cutitout.uk/materials#aluminium"><img src="/static/img/materials/aluminium.webp" width="1024" height="1024" alt="Aluminium sheet surface" loading="lazy"><div><h3>Aluminium<span aria-hidden="true">↗</span></h3><p>1–3 mm · 4 thicknesses</p></div></a><a class="hv-material" href="https://cutitout.uk/materials#acrylic"><img src="/static/img/materials/acrylic.webp" width="1024" height="1024" alt="Acrylic sheet surface" loading="lazy"><div><h3>Acrylic<span aria-hidden="true">↗</span></h3><p>3 mm &amp; 5 mm</p></div></a></div>
       <p class="hv-stock-note">Choose from our listed stock thicknesses. Your quote confirms current availability.</p>
     </section>
     <section class="hv-guide" aria-labelledby="guide-title">
-      <div class="hv-guide-copy"><p class="sv-eyebrow">02 / A little preparation</p><h2 id="guide-title">See what makes<br>a great cutting file.</h2><p>Small holes, lettering, clean outlines. Our visual guide shows the details that make your drawing ready to cut.</p><a class="sv-text-link" href="https://cutitout.uk/guidelines">Explore the design guide <span aria-hidden="true">↗</span></a></div>
+      <div class="hv-guide-copy"><p class="sv-eyebrow">02 / A little preparation</p><h2 id="guide-title">Get your drawing<br>ready to cut.</h2><p>Small holes, lettering, clean outlines. Our visual guide shows the details that make your drawing ready to cut.</p><a class="sv-text-link" href="https://cutitout.uk/guidelines">Explore the design guide <span aria-hidden="true">↗</span></a></div>
       <div class="hv-guide-images"><figure><img src="/static/img/guidelines/visual/stencil-before.jpg" width="1000" height="760" alt="Without bridges, the centre of the circular cut-out falls away" loading="lazy"><figcaption><span aria-hidden="true">×</span> Without bridges</figcaption></figure><figure><img src="/static/img/guidelines/visual/stencil-after.jpg" width="1000" height="760" alt="Two small bridges hold the centre in place" loading="lazy"><figcaption><span aria-hidden="true">✓</span> With bridges</figcaption></figure></div>
     </section>
     <section class="hv-features" aria-label="Finishing and the people behind your parts">
-      <article class="hv-feature"><img src="/static/img/home/powder-coated-parts.webp" width="1200" height="900" alt="Illustrated metal plate in textured black powder coat" loading="lazy"><p class="sv-eyebrow">03 / The finishing touch</p><h2>A texture you can see.</h2><p>We only stock textured powder coat. Add it to supported metal parts, with available colours shown in your quote.</p><a class="sv-text-link" href="https://cutitout.uk/services#coating">Explore our services <span aria-hidden="true">↗</span></a></article>
-      <article class="hv-feature"><img src="/static/img/company/workshop-team.webp" width="1536" height="1024" alt="Mark and his brother in Cut It Out uniform beside the workshop laser cutting machine" loading="lazy"><p class="sv-eyebrow">04 / The people behind your parts</p><h2>Family-run. Workshop-backed.</h2><p>Made in South Yorkshire, with real people to help with drawings, material questions and repeat work.</p><a class="sv-text-link" href="https://cutitout.uk/company">Meet Cut It Out <span aria-hidden="true">↗</span></a></article>
+      <article class="hv-feature"><img src="/static/img/home/powder-coated-parts.webp" width="1200" height="900" alt="Illustrated metal plate in textured black powder coat" loading="lazy"><p class="sv-eyebrow">03 / The finishing touch</p><h2>Finish with textured powder coating.</h2><p>Add a textured powder-coated finish to your metal parts. Available colours and eligible materials are shown when you build your quote.</p><a class="sv-text-link" href="https://cutitout.uk/services#coating">Explore powder coating <span aria-hidden="true">↗</span></a></article>
+      <article class="hv-feature"><img src="/static/img/company/workshop-team.webp" width="1536" height="1024" alt="Mark and his brother in Cut It Out uniform beside the workshop laser cutting machine" loading="lazy"><p class="sv-eyebrow">04 / The people behind your parts</p><h2>Family-run. Made in South Yorkshire.</h2><p>Talk to us about your drawing, choosing a material or ordering more of a part we’ve made before.</p><a class="sv-text-link" href="https://cutitout.uk/company">Meet Cut It Out <span aria-hidden="true">↗</span></a></article>
     </section>
-    <section class="sv-cta" aria-labelledby="quote-title"><div><p class="sv-eyebrow">Ready when you are</p><h2 id="quote-title">Let’s make your part.</h2><p>Start with your DXF. We’ll take it from there.</p></div><div class="sv-cta-actions"><a class="sv-button" href="https://app.cutitout.uk/quote">Start your quote <span aria-hidden="true">↗</span></a><a href="https://cutitout.uk/contact">Have a question? Talk to us</a></div></section>
+    <section class="sv-cta" aria-labelledby="quote-title"><div><p class="sv-eyebrow">Ready when you are</p><h2 id="quote-title">Let’s make your part.</h2><p>Start with your DXF. We’ll take it from there.</p></div><div class="sv-cta-actions"><a class="sv-button" href="https://app.cutitout.uk/quote">Get an instant quote <span aria-hidden="true">↗</span></a><a href="https://cutitout.uk/contact">Need help preparing your drawing? Talk to us.</a></div></section>
   </div>
 </main>
 <footer class="footer footer-complete sv-wrap" id="footer">
@@ -136,7 +136,7 @@
         <a href="https://cutitout.uk/materials">Materials</a>
         <a href="https://cutitout.uk/guidelines">Guidelines</a>
         <a href="https://cutitout.uk/services">Services</a>
-        <a href="https://app.cutitout.uk/quote">Start a quote</a>
+        <a href="https://app.cutitout.uk/quote">Get an instant quote</a>
       </div>
       <div class="footer-link-group">
         <h3>Information</h3>
