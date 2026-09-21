@@ -29,4 +29,4 @@ Root `_redirects` supplies optional permanent redirects for old bookmarks on com
 
 Navigation remains cross-domain-safe even if copied into the app. Public links in localhost previews intentionally lead to the public site; open local page URLs directly when reviewing unpublished designs.
 
-The app integration artifact is `shared-header.html`. The app repository itself was not modified, and no site was deployed. Deploy the marketing changes and replace the app's shared header as separate release steps. Live HTTP status codes and host-side redirect behaviour still require verification after deployment.
+The app integration artifact is `shared-header.html`. Publishing this repository updates the marketing site through GitHub Pages; replacing the app's shared header is a separate release step. Verify live URLs and canonical tags after each marketing deployment.
