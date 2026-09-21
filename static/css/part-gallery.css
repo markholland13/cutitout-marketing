@@ -1,0 +1,7 @@
+.part-gallery { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+.part-gallery figure { margin:0; overflow:hidden; border:1px solid var(--sv-line); border-radius:8px; background:#fcfdfc; }
+.part-gallery img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:contain; background:#111; }
+.part-gallery figcaption { padding:18px 20px; color:var(--sv-muted); font-size:14px; line-height:1.6; }
+.part-gallery-link { margin-top:24px; }
+@media(max-width:900px) { .part-gallery { grid-template-columns:repeat(2,minmax(0,1fr)); } .part-gallery figure:first-child { grid-column:1/-1; } .part-gallery figure:first-child img { max-height:420px; } }
+@media(max-width:600px) { .part-gallery { grid-template-columns:1fr; gap:20px; } .part-gallery figure:first-child { grid-column:auto; } .part-gallery figcaption { padding:16px 18px; } }
