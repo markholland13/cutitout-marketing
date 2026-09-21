@@ -14,7 +14,7 @@ const pages = ['index.html', 'materials/index.html', 'services/index.html', 'con
 function header({portable=false} = {}) {
   return template.replaceAll('{{HOME}}', 'https://cutitout.uk/')
     .replaceAll('{{MARKETING}}', 'https://cutitout.uk')
-    .replaceAll('{{GUIDELINES}}', 'https://cutitout.uk/guidelines')
+    .replaceAll('{{GUIDELINES}}', 'https://cutitout.uk/guidelines/')
     .replaceAll('{{LOGO}}', portable ? 'data:image/svg+xml;base64,' + Buffer.from(read('static/img/home/cut-it-out-white.svg')).toString('base64') : '/static/img/home/cut-it-out-white.svg');
 }
 for (const file of pages) {

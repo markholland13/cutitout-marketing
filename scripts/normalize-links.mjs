@@ -24,6 +24,7 @@ for (const file of pages) {
       pathname = destination.pathname;
       if (destination.hash) url.hash = destination.hash;
     }
+    if (pathname !== '/') pathname += '/';
     return before + url.origin + pathname + url.search + url.hash + after;
   });
   fs.writeFileSync(full, result);
