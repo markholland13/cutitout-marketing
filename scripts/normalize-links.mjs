@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pages = ['index.html', 'materials/index.html', 'services/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'privacy/index.html', 'terms/index.html', 'guidelines/index.html', 'mobile-header.html', 'shared-header.html', 'cloudflare_app_fallback/index.html'];
+const pages = ['index.html', 'materials/index.html', 'services/index.html', 'one-off-laser-cutting/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'privacy/index.html', 'terms/index.html', 'guidelines/index.html', 'mobile-header.html', 'shared-header.html', 'cloudflare_app_fallback/index.html'];
 const aliases = new Map([
   ['/guidelines-visual', '/guidelines'], ['/guidelines-2', '/guidelines'],
   ['/guidelines/hole-sizes', '/guidelines#holes'],

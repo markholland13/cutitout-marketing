@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'materials/index.html', 'services/index.html', 'guidelines/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'terms/index.html', 'privacy/index.html', 'shared-header.html', 'cloudflare_app_fallback/index.html'];
+const pages = ['index.html', 'materials/index.html', 'services/index.html', 'one-off-laser-cutting/index.html', 'guidelines/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'terms/index.html', 'privacy/index.html', 'shared-header.html', 'cloudflare_app_fallback/index.html'];
 for (const file of pages) test(`${file}: navigation resolves to the correct host and route`, () => {
   const html = read(file);
   for (const [, href] of html.matchAll(/<a\b[^>]*href="([^"]+)"/g)) {
@@ -36,7 +36,7 @@ test('visual guide is the indexable canonical guide and sitemap uses only public
   const sitemap = read('sitemap.xml');
   assert.ok(!/guidelines-visual|guidelines-2|guidelines\/(?:hole-sizes|bolt-hole-sizes|part-size-limits)/.test(sitemap));
   const listed = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, url]) => url);
-  assert.equal(listed.length, 9);
+  assert.equal(listed.length, 10);
   for (const url of listed) {
     const parsed = new URL(url);
     assert.equal(parsed.hostname, 'cutitout.uk');

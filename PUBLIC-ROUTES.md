@@ -4,7 +4,7 @@ All cross-page navigation in the marketing pages, shared header and offline app 
 
 ## Destinations
 
-- Marketing: `https://cutitout.uk/`, `/materials/`, `/services/`, `/guidelines/`, `/contact/`, `/company/`, `/delivery-returns/`, `/terms/`, `/privacy/`.
+- Marketing: `https://cutitout.uk/`, `/materials/`, `/services/`, `/one-off-laser-cutting/`, `/guidelines/`, `/contact/`, `/company/`, `/delivery-returns/`, `/terms/`, `/privacy/`.
 - App: `https://app.cutitout.uk/quote`, `/my-account`, `/cart`.
 - The redesigned guide is now `guidelines/index.html`, canonical `https://cutitout.uk/guidelines/`. It has normal indexable metadata, social tags and the original analytics configuration.
 - Sitemap lists the canonical public pages only, not the retired guide subpages or preview variants.

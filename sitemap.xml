@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://cutitout.uk/</loc></url>
+  <url><loc>https://cutitout.uk/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://cutitout.uk/company/</loc></url>
-  <url><loc>https://cutitout.uk/services/</loc></url>
+  <url><loc>https://cutitout.uk/services/</loc><lastmod>2026-09-21</lastmod></url>
+  <url><loc>https://cutitout.uk/one-off-laser-cutting/</loc><lastmod>2026-09-21</lastmod></url>
   <url><loc>https://cutitout.uk/materials/</loc></url>
   <url><loc>https://cutitout.uk/guidelines/</loc></url>
   <url><loc>https://cutitout.uk/contact/</loc></url>

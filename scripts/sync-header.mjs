@@ -10,7 +10,7 @@ const template = read('components/header.html');
 const css = read('static/css/site-header.css');
 const js = read('static/js/shared-header.js');
 const version = '20260915-public-routes';
-const pages = ['index.html', 'materials/index.html', 'services/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'privacy/index.html', 'terms/index.html', 'guidelines/index.html'];
+const pages = ['index.html', 'materials/index.html', 'services/index.html', 'one-off-laser-cutting/index.html', 'contact/index.html', 'company/index.html', 'delivery-returns/index.html', 'privacy/index.html', 'terms/index.html', 'guidelines/index.html'];
 function header({portable=false} = {}) {
   return template.replaceAll('{{HOME}}', 'https://cutitout.uk/')
     .replaceAll('{{MARKETING}}', 'https://cutitout.uk')
