@@ -126,7 +126,7 @@
         cache.clear();
     };
     const sceneCuts = [40, 51, 161, 193];
-    const url = frame => `/static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.webp?v=20260915-optimized`;
+    const url = frame => `/static/img/home/journey-film/${variant}/frame-${String(frame).padStart(4, '0')}.webp?v=20260922-desktop-refresh`;
     function draw(frame) {
         const img = cache.get(frame);
         if (!img) return false;
