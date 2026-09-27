@@ -26,7 +26,7 @@
     section.querySelector('.journey-skip').addEventListener('click', continueJourney);
     section.querySelector('.journey-continue')?.addEventListener('click', continueJourney);
     const stages = [
-        { frame: 1, step: 0, kicker: '01 / UPLOAD YOUR DRAWING', title: 'Your design. Our expertise.', caption: 'Upload your DXF for an instant laser cutting quote.' },
+        { frame: 1, step: 0, kicker: '01 / UPLOAD YOUR DRAWING', title: 'Your design. Our expertise.', caption: 'Upload your DXF, STEP or STP file for an instant laser cutting quote.' },
         { frame: 40, step: 1, kicker: '02 / FIBRE LASER CUTTING', title: 'Precision, from the start.', caption: 'Your design guides every cut.' },
         { frame: 55, step: 1, kicker: '02 / FIBRE LASER CUTTING', title: 'Cut to your design.', caption: 'Clean profiles. Intricate details. Precision in every part.' },
         { frame: 140, step: 2, kicker: '03 / YOUR PART', title: 'Designed by you. Made by us.', caption: 'From sheet metal to a component for your next project.' },

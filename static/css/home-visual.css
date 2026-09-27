@@ -69,3 +69,8 @@ html { scroll-padding-top:90px; }
 }
 @media(max-width:800px) { .hv-hero-inner { min-height:600px; padding-block:64px 24px; gap:44px; }.hv-hero-shade { background:linear-gradient(90deg,#071017d9,#071017a6),linear-gradient(0deg,#07101780,transparent); } }
 @media(max-width:600px) { .hv-hero-inner { min-height:calc(100svh - 64px); padding-block:55px 24px; gap:38px; }.hv-hero-video { object-position:58% center; }.hv-video-caption { font-size:11px; }.hv-intro { font-size:16px; } }
+
+.hv-workshop-link { margin-top:18px; color:#d8e2e8; font-size:14px; line-height:1.8; }
+.hv-workshop-link a { display:inline-block; color:#bde8f7; text-decoration:underline; text-underline-offset:4px; }
+.hv-workshop-link a:hover { color:#fff; }
+.hv-workshop-link a:focus-visible { outline:2px solid #bde8f7; outline-offset:4px; }

@@ -1,5 +1,14 @@
 (() => {
   'use strict';
+  // Preserve bookmarks from the former combined guide.
+  if (/^\/guidelines\/?$/.test(location.pathname)) {
+    const moved = { '#converter': '#converter', '#artwork': '#artwork' };
+    if (moved[location.hash]) {
+      location.replace(`/guidelines/convert-and-fix/${moved[location.hash]}`);
+      return;
+    }
+    if (location.hash === '#sheet-metal-example') location.replace('#step-guidance');
+  }
   // The same guide values used by the existing Design Centre pages.
   // These are reference values, not a live connection to the quote service.
   const guide = {
@@ -16,6 +25,7 @@
   };
   const $ = selector => document.querySelector(selector);
   const material = $('#material'), thickness = $('#thickness');
+  if (material && thickness) {
   function updateSizes() {
     const row = guide[material.value].find(row => row.t === Number(thickness.value));
     if (!row) return;
@@ -41,10 +51,16 @@
     $('#easy-fit').innerHTML = `${(size + .4).toFixed(1)} <small>mm</small>`;
   });
 
+  }
+
   const header = $('.cio-header');
-  const updateHeaderHeight = () => document.documentElement.style.setProperty('--header-height', `${header.getBoundingClientRect().height}px`);
+  const guideNav = $('.chapter-nav');
+  const updateHeaderHeight = () => {
+    document.documentElement.style.setProperty('--header-height', `${header.getBoundingClientRect().height}px`);
+    document.documentElement.style.setProperty('--guide-nav-height', `${guideNav.getBoundingClientRect().height}px`);
+  };
   updateHeaderHeight();
-  if ('ResizeObserver' in window) new ResizeObserver(updateHeaderHeight).observe(header);
+  if ('ResizeObserver' in window) { const observer = new ResizeObserver(updateHeaderHeight); observer.observe(header); observer.observe(guideNav); }
   else window.addEventListener('resize', updateHeaderHeight);
 
   const tabs = [...document.querySelectorAll('[role="tab"]')];
@@ -69,23 +85,36 @@
     });
   });
 
-  // Open the on-page reference when arriving from the part-size chapter.
-  const materialReference = $('#material-reference');
-  const revealReference = () => {
-    if (location.hash === '#material-reference') materialReference.open = true;
-  };
-  window.addEventListener('hashchange', revealReference);
-  document.querySelectorAll('a[href="#material-reference"]').forEach(link => {
-    link.addEventListener('click', () => { materialReference.open = true; });
+  // Reveal a disclosure before scrolling to a direct help link.
+  function revealDisclosure() {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target?.tagName === 'DETAILS') target.open = true;
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const target = document.getElementById(link.hash.slice(1));
+      if (target?.tagName === 'DETAILS') target.open = true;
+    });
   });
-  revealReference();
+  window.addEventListener('hashchange', revealDisclosure);
+  revealDisclosure();
+
+  const converterWidth = $('#converter-width');
+  function updateConverterSize() {
+    const width = Number(converterWidth.value);
+    const height = (width * 170 / 270).toFixed(1);
+    $('#converter-size-output').textContent = `${width} mm × ${height} mm`;
+    $('#converter-size-shape').setAttribute('transform', `translate(220 145) scale(${width / 250}) translate(-220 -145)`);
+    $('#converter-size-title').textContent = `Illustrative plate scaled proportionally to ${width} millimetres wide and ${height} millimetres high.`;
+  }
+  if (converterWidth) { converterWidth.addEventListener('input', updateConverterSize); updateConverterSize(); }
 
   const chapters = [...document.querySelectorAll('.chapter')];
   const chapterLinks = [...document.querySelectorAll('.chapter-links a')];
   let scrollPending = false;
   function updateChapter() {
     let active = chapters[0];
-    const threshold = header.getBoundingClientRect().height + 110;
+    const threshold = header.getBoundingClientRect().height + guideNav.getBoundingClientRect().height + 24;
     for (const chapter of chapters) if (chapter.getBoundingClientRect().top <= threshold) active = chapter;
     chapterLinks.forEach(link => {
       if (link.hash === `#${active.id}`) link.setAttribute('aria-current', 'location');
@@ -101,14 +130,37 @@
   const checks = [...document.querySelectorAll('.checklist-items input')];
   checks.forEach(input => input.addEventListener('change', () => {
     const done = checks.filter(input => input.checked).length;
-    $('#check-progress').textContent = done === 4 ? 'All four checked. Your drawing is ready for the quote check.' : `${done} of 4 checked. You can upload whenever you’re ready.`;
+    $('#check-progress').textContent = done === checks.length ? 'All reminders checked. Review the quote’s file and production checks before ordering.' : `${done} of ${checks.length} checked. These reminders do not replace the file checks.`;
   }));
+
+  const replay = $('#replay-double-cut');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (replay) {
+    let runs = [];
+    const stopReplay = () => { runs.forEach(run => run.cancel()); runs = []; };
+    replay.addEventListener('click', () => {
+      stopReplay();
+      const status = $('#repair-replay-status');
+      if (reduced.matches) {
+        status.textContent = 'Motion is off in your device settings. Left: two coincident paths. Right: one path.';
+        return;
+      }
+      for (const [index, path] of [...document.querySelectorAll('.repair-replay-path')].entries()) {
+        runs.push(path.animate([{ strokeDasharray: '1', strokeDashoffset: '1' }, { strokeDasharray: '1', strokeDashoffset: '0' }], { duration: 1800, iterations: index === 0 ? 2 : 1, easing: 'linear' }));
+      }
+      status.textContent = 'Left: the outside edge is traced twice. Right: it is traced once. Internal holes stay the same.';
+    });
+    reduced.addEventListener('change', () => { if (reduced.matches) { stopReplay(); $('#repair-replay-status').textContent = 'Motion is off. Compare the two still drawings.'; } });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stopReplay(); });
+  }
 
   // Frames are fetched only after an explicit play request; the comparison is
   // complete without motion, JavaScript, or any successful animation download.
-  const canvas = $('#stencil-canvas'), context = canvas.getContext('2d');
+  const canvas = $('#stencil-canvas');
+  if (!canvas) return;
+  const context = canvas.getContext('2d');
   const play = $('#stencil-play'), label = play.querySelector('.play-label');
-  const status = $('#motion-status'), reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const status = $('#motion-status');
   let frames = [], playing = false, frameIndex = 0, frameRequest = 0, lastTick = 0;
   if (context) $('.motion-control').hidden = false;
   function pause() {

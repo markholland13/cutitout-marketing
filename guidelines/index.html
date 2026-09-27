@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Design Guidelines | Cut It Out</title>
-  <meta name="description" content="See how to prepare your laser-cut parts. Visual guides to stencil bridges, hole sizes, bolt clearance and clean DXF files.">
+  <meta name="description" content="Prepare DXF and sheet-metal STEP/STP files for laser cutting. Visual guidance on holes, bridges, dimensions and clean cutting paths, with help for other formats.">
   <link rel="canonical" href="https://cutitout.uk/guidelines/">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cutitout.uk/guidelines/">
   <meta property="og:title" content="Design Guidelines | Cut It Out">
-  <meta property="og:description" content="Visual guides to stencil bridges, hole sizes, bolt clearance and clean DXF files.">
+  <meta property="og:description" content="Prepare DXF and sheet-metal STEP/STP files for laser cutting. Visual guidance on holes, bridges, dimensions and clean cutting paths, with help for other formats.">
   <meta property="og:image" content="https://cutitout.uk/static/img/guidelines/visual/cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Design Guidelines | Cut It Out">
-  <meta name="twitter:description" content="Visual guides to stencil bridges, hole sizes, bolt clearance and clean DXF files.">
+  <meta name="twitter:description" content="Prepare DXF and sheet-metal STEP/STP files for laser cutting. Visual guidance on holes, bridges, dimensions and clean cutting paths, with help for other formats.">
   <meta name="twitter:image" content="https://cutitout.uk/static/img/guidelines/visual/cover.jpg">
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18042857892"></script>
   <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-18042857892');</script>
@@ -21,9 +21,10 @@
   <link rel="stylesheet" href="/static/css/visual-guidelines.css?v=20260915">
   <link rel="stylesheet" href="/static/css/shared-header.css?v=20260914-white-logo">
   <link rel="stylesheet" href="/static/css/visual-guidelines-theme.css?v=20260915-footer">
-  <script src="/static/js/visual-guidelines.js?v=20260915-header" defer></script>
-  <link rel="stylesheet" href="/static/css/site-header.css?v=20260915-public-routes">
-  <script src="/static/js/shared-header.js?v=20260915-public-routes" defer></script>
+  <link rel="stylesheet" href="/static/css/converter-guidelines.css?v=20260927-two-guides">
+  <script src="/static/js/visual-guidelines.js?v=20260927-two-guides" defer></script>
+  <link rel="stylesheet" href="/static/css/site-header.css?v=20260927-header-alignment">
+  <script src="/static/js/shared-header.js?v=20260927-header-alignment" defer></script>
 </head>
 <body>
 <header class="cio-header" data-cio-header>
@@ -31,11 +32,12 @@
     <a class="cio-logo" href="https://cutitout.uk/" aria-label="Cut It Out home">
       <img src="/static/img/home/cut-it-out-white.svg" width="170" height="27" alt="Cut It Out">
     </a>
-    <button class="cio-menu-toggle" type="button" aria-controls="cioHeaderMenu" aria-expanded="false">
+    <button class="cio-menu-toggle" type="button" aria-controls="cioHeaderMenu" aria-expanded="false" aria-label="Open menu">
       Menu <span class="cio-menu-icon" aria-hidden="true"></span>
     </button>
     <nav class="cio-nav" id="cioHeaderMenu" aria-label="Primary">
       <div class="cio-nav-links">
+        <a href="https://app.cutitout.uk/file-workshop">File Workshop</a>
         <a href="https://cutitout.uk/materials/">Materials</a>
         <a href="https://cutitout.uk/guidelines/">Guidelines</a>
         <a href="https://cutitout.uk/services/">Services</a>
@@ -57,24 +59,20 @@
       <div class="hero-copy">
         <p class="eyebrow"><span class="tiny-cross" aria-hidden="true">+</span> THE VISUAL DESIGN GUIDE</p>
         <h1 id="hero-title">Good drawings.<br><span>Great parts.</span></h1>
-        <p class="hero-description">A few small details make all the difference.<br>See how to get your design ready to cut.</p>
+        <p class="hero-description">Prepare your DXF or sheet-metal STEP/STP for quoting.<br> Check the details that make your part work.</p>
         <a class="button button-mint" href="#guide">Explore the guide <span aria-hidden="true">↓</span></a>
-        <div class="hero-footnote"><span aria-hidden="true">⌁</span> Clear examples. Less guesswork.</div>
+        <a class="guide-hero-link" href="/guidelines/convert-and-fix/">Another format or a drawing problem? File Workshop guide ↗</a><div class="hero-footnote"><span aria-hidden="true">⌁</span> Clear examples. Less guesswork.</div>
       </div>
       <figure class="hero-visual">
         <img src="/static/img/guidelines/visual/cover.jpg" width="1440" height="1160" alt="A metal plate with two stencil bridges keeping its circular centre attached, above a second cut part" fetchpriority="high">
         <figcaption><span class="crosshair" aria-hidden="true">+</span> FROM THE DRAWING TO THE REAL THING <span>01—06</span></figcaption>
       </figure>
     </section>
-    <div class="cover-bottom wrap"><span>DESIGNED BY YOU. CUT BY US.</span><span>DXF <i aria-hidden="true">/</i> MILLIMETRES <i aria-hidden="true">/</i> 1:1 SCALE</span></div>
+    <div class="cover-bottom wrap"><span>DESIGNED BY YOU. CUT BY US.</span><span>DXF / STEP / STP <i aria-hidden="true">/</i> MILLIMETRES <i aria-hidden="true">/</i> REAL PARTS</span></div>
   </div>
 
-  <nav class="chapter-nav" aria-label="Guide chapters">
-    <div class="wrap chapter-links"><a href="#stencil" aria-current="location"><span>01</span> Text &amp; bridges</a><a href="#holes"><span>02</span> Holes &amp; slots</a><a href="#bolts"><span>03</span> Bolt fit</a><a href="#drawing"><span>04</span> Clean files</a><a href="#size"><span>05</span> Part size</a><a href="#checklist"><span>06</span> Final check</a></div>
-  </nav>
-
-  <main id="guide" class="wrap">
-    <section class="chapter" id="stencil" aria-labelledby="stencil-title">
+<div class="chapter-nav"><nav class="guide-switch wrap" aria-label="Guidelines pages"><a href="/guidelines/" aria-current="page"><strong>Design &amp; cutting</strong><span>DXF / STEP / STP · part requirements</span></a><a href="/guidelines/convert-and-fix/"><strong>File Workshop guide</strong><span>More formats · drawing repairs</span></a></nav><nav class="wrap chapter-links" aria-label="Guide chapters"><a href="#stencil"><span>01</span>Text & bridges</a><a href="#holes"><span>02</span>Holes & slots</a><a href="#bolts"><span>03</span>Bolt fit</a><a href="#drawing"><span>04</span>Clean files</a><a href="#size"><span>05</span>Part size</a><a href="#checklist"><span>06</span>Final check</a></nav></div>
+<main id="guide" class="wrap"><div class="guide-start"><p><strong>Two ways to get your file ready.</strong> The quote page accepts DXF and STEP/STP. For JPG, PNG, SVG, PDF or DWG — or a DXF that needs fixing — use <a href="/guidelines/convert-and-fix/">the File Workshop guide</a>.</p></div><aside class="guide-routes" aria-label="Choose your next step"><div><strong>Ready DXF, STEP or STP?</strong><p>Upload your cutting drawing or sheet-metal model.</p><a href="https://app.cutitout.uk/quote">Get a quote <span aria-hidden="true">↗</span></a></div><div><strong>Another format, or a drawing problem?</strong><p>Prepare artwork or review repairs to your cutting paths.</p><a href="https://app.cutitout.uk/file-workshop">Open File Workshop <span aria-hidden="true">↗</span></a></div></aside>      <details class="cg-sheet" id="step-guidance"><summary><span>Sheet metal: from a folded model to a flat drawing</span><span aria-hidden="true">＋</span></summary><div class="cg-sheet-content"><div class="comparison"><figure><img src="/static/img/guidelines/converter/folded.webp" width="1000" height="820" alt="Illustrative bent metal bracket with two holes in each face" loading="lazy"><figcaption><strong>Start with a sheet-metal STEP.</strong> One body. Consistent thickness.</figcaption></figure><figure><img src="/static/img/guidelines/converter/flat.webp" width="1000" height="820" alt="Illustrative flat bracket with four holes and a blue bend location" loading="lazy"><figcaption><strong>Review the prepared flat drawing.</strong> Check holes, outside edges and bends.</figcaption></figure></div><p class="cg-note">STEP/STP files first go through unfolding. The editor works on the resulting flat cutting drawing; it does not repair the original 3D model. These are illustrations, not a calculated production pattern. An arbitrary 3D model, assembly or STL mesh is not a sheet-metal blank. If the system cannot prepare a suitable flat pattern, it stops for review. Bend allowance depends on the part and process.</p></div></details>    <section class="chapter" id="stencil" aria-labelledby="stencil-title">
       <div class="section-heading"><div><p class="eyebrow">01 / TEXT &amp; BRIDGES</p><h2 id="stencil-title">Keep the centres in place.</h2></div><p>The middle of a letter is a separate piece.<br> A small bridge keeps it connected.</p></div>
       <div class="comparison">
         <figure class="render-card">
@@ -149,6 +147,7 @@
           </div><p class="drawing-caption"><span aria-hidden="true">✓</span> Set units to millimetres and export at 1:1. Reopen the DXF and measure a known feature before uploading.</p>
         </div>
       </div>
+      <p class="cg-note">Need help cleaning this up? <a href="/guidelines/convert-and-fix/#repairs">See what File Workshop can repair ↗</a></p>
       <div class="file-facts"><div><span>01</span><strong>DXF file</strong><p>Our preferred cutting format.</p></div><div><span>02</span><strong>Millimetres</strong><p>Set the drawing units to mm.</p></div><div><span>03</span><strong>1:1 scale</strong><p>Check a known dimension after export.</p></div></div>
       <noscript><p>Also close all open outlines, remove duplicate lines and convert editable text to outlines before exporting.</p></noscript>
     </section>
@@ -159,20 +158,18 @@
     </section>
 
     <span id="faq"></span>
-    <section class="chapter final-check" id="checklist" aria-labelledby="check-title"><div><p class="eyebrow">06 / ONE LAST LOOK</p><h2 id="check-title">Ready when you are.</h2><p>Four quick checks before you upload.</p></div><div class="checklist-items"><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Drawn at full size, in mm</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Only clean, closed cut paths</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Text outlined; centres bridged if needed</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Hole and part sizes checked</span></label><p id="check-progress" class="field-hint" aria-live="polite">A handy reminder — no need to tick these to get a quote.</p></div></section>
+    <section class="chapter final-check" id="checklist" aria-labelledby="check-title"><div><p class="eyebrow">06 / ONE LAST LOOK</p><h2 id="check-title">Ready when you are.</h2><p>Check your design before uploading a DXF, STEP or STP file.</p></div><div class="checklist-items"><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Finished size confirmed in millimetres</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Only clean, closed cut paths</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Text outlined; centres bridged if needed</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Hole and part sizes checked</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>Every outline and hole matches the original</span></label><label><input type="checkbox"><span class="check-box" aria-hidden="true"></span><span>File warnings reviewed; repairs checked if needed</span></label><p id="check-progress" class="field-hint" aria-live="polite">A handy reminder — no need to tick these to get a quote.</p></div></section>
 
-    <section class="upload-panel" aria-labelledby="upload-title"><div><p class="eyebrow">LET’S MAKE SOMETHING.</p><h2 id="upload-title">Ready to make<br>your part?</h2><p>Upload your DXF for an instant quote.</p></div><div class="upload-actions"><a class="button button-mint" href="https://app.cutitout.uk/quote">Upload your drawing <span aria-hidden="true">↗</span></a><a href="https://cutitout.uk/contact/">Not sure? Ask us about your part <span aria-hidden="true">↗</span></a></div></section>
-    <section class="faq" aria-label="A little more help">
+<section class="upload-panel" aria-labelledby="upload-title"><div><p class="eyebrow">LET’S MAKE SOMETHING.</p><h2 id="upload-title">Ready to make<br>your part?</h2><p>Upload a DXF or suitable sheet-metal STEP/STP for a quote.</p></div><div class="upload-actions"><a class="button button-mint" href="https://app.cutitout.uk/quote">Upload DXF, STEP or STP <span aria-hidden="true">↗</span></a><a href="/guidelines/convert-and-fix/">Another format or a drawing problem? File Workshop guide ↗</a></div></section>    <section class="faq" aria-label="A little more help">
       <h2>A little more help.</h2>
       <details><summary>What are micro-joints? <span aria-hidden="true">＋</span></summary>
         <figure class="micro-example"><img src="/static/img/guidelines/visual/micro-joint.jpg" width="1000" height="660" loading="lazy" alt="Close-up of a laser-cut line interrupted by a small uncut metal tab that connects the part to the surrounding sheet"><figcaption>The small uncut connection in the centre holds the part in the sheet. Enlarged for clarity.</figcaption></figure>
         <p>Micro-joints are temporary tabs used during manufacturing to hold a part securely in the sheet. A small mark can remain after removal. They are different from the permanent stencil bridges you draw to retain the centres of letters.</p>
       </details>
-      <details><summary>What if my quote flags a problem? <span aria-hidden="true">＋</span></summary><p>Review the highlighted feature, check the chosen material and thickness, then adjust your drawing and upload the revised DXF. If you are unsure, <a href="https://cutitout.uk/contact/">ask us to take a look</a>.</p></details>
+      <details><summary>What if my quote flags a problem? <span aria-hidden="true">＋</span></summary><p>Review the highlighted feature and check the chosen material and thickness. Use “Fix in file editor” when offered, or adjust your original drawing and upload it again. See the <a href="/guidelines/convert-and-fix/#repairs">visual repair guide</a>, then check any changes before continuing to quote. If you are unsure, <a href="https://cutitout.uk/contact/">ask us to take a look</a>.</p></details>
       <details><summary>My part needs a precise fit. Can you help? <span aria-hidden="true">＋</span></summary><p>For bearings, locating pins, threaded holes or other critical fits, <a href="https://cutitout.uk/contact/">contact us before ordering</a>. The clearance examples above are for bolts passing through the part.</p></details>
     </section>
-  </main>
-  <footer class="footer footer-complete wrap" id="footer">
+</main>  <footer class="footer footer-complete wrap" id="footer">
     <div class="footer-brand">
       <a class="footer-logo" href="https://cutitout.uk/" aria-label="Cut It Out home"><img src="/static/img/home/cut-it-out-white.svg" width="146" height="23" alt="Cut It Out"></a>
       <p>You design it. We’ll Cut It Out.</p>
@@ -182,7 +179,8 @@
       <div class="footer-link-group">
         <h3>Explore</h3>
         <a href="https://cutitout.uk/materials/">Materials</a>
-        <a href="#guide">Guidelines</a>
+        <a href="/guidelines/">Design &amp; cutting</a>
+        <a href="/guidelines/convert-and-fix/">File Workshop guide</a>
         <a href="https://cutitout.uk/services/">Services</a>
         <a href="https://app.cutitout.uk/quote">Start a quote</a>
       </div>
