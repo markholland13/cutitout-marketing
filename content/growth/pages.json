@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "open-dxf-contours",
+    "title": "Fix Open DXF Contours for Laser Cutting | Cut It Out",
+    "description": "DXF showing an open contour error? Find gaps in your outline, check repair options in File Workshop and make sure the shape is right before ordering.",
+    "breadcrumb": "Open DXF contours",
+    "heading": "A gap in your DXF?<br><span>Here’s how to check it.</span>",
+    "heading_text": "A gap in your DXF? Here’s how to check it",
+    "intro": "An ‘open contour’ is an outline with a gap. The lines around your part or a hole do not quite meet. This guide helps you find the gap and decide how to fix it.",
+    "cta_label": "Open File Workshop",
+    "cta_url": "https://app.cutitout.uk/file-workshop"
+  },
+  {
+    "slug": "duplicate-dxf-lines",
+    "title": "Remove Duplicate DXF Lines for Laser Cutting | Cut It Out",
+    "description": "DXF showing duplicate lines? Learn why overlapping lines are hard to spot and how to check and remove extra copies without changing your part.",
+    "breadcrumb": "Duplicate DXF lines",
+    "heading": "Duplicate lines in your DXF?<br><span>Remove the extra copies.</span>",
+    "heading_text": "Duplicate lines in your DXF? Remove the extra copies",
+    "intro": "A duplicate line is an extra copy of a line already in your drawing. The copies sit on top of each other, so they can be hard to spot. Here’s how to check them without removing a line your part needs.",
+    "cta_label": "Open File Workshop",
+    "cta_url": "https://app.cutitout.uk/file-workshop"
+  },
+  {
+    "slug": "dxf-scale-problems",
+    "title": "DXF Scale Problems: Check Inches, mm & Size | Cut It Out",
+    "description": "DXF too big or too small? Check the units, compare the correct size with the size shown and use our calculator to work out the scale change.",
+    "breadcrumb": "DXF scale problems",
+    "heading": "DXF the wrong size?<br><span>Check it before you order.</span>",
+    "heading_text": "DXF the wrong size? Check it before you order",
+    "intro": "Your drawing can look right but upload too big or too small. Start with a measurement you know, such as the overall width, and compare it with the size shown after uploading.",
+    "cta_label": "Open File Workshop",
+    "cta_url": "https://app.cutitout.uk/file-workshop",
+    "tool": true
+  },
+  {
+    "slug": "step-vs-dxf",
+    "title": "STEP vs DXF for Laser Cutting: Which File? | Cut It Out",
+    "description": "Not sure whether to upload DXF or STEP? Compare a flat 2D drawing with a 3D sheet-metal model and find the right starting point for your laser cutting quote.",
+    "breadcrumb": "STEP versus DXF",
+    "heading": "DXF or STEP?<br><span>Which file should you upload?</span>",
+    "heading_text": "DXF or STEP? Which file should you upload?",
+    "intro": "DXF is a flat 2D drawing of the shape to cut. STEP is a 3D model. We can use suitable sheet-metal STEP models too, but all parts are cut and supplied flat. Here’s how to choose your file.",
+    "cta_label": "Upload your file for a quote",
+    "cta_url": "https://app.cutitout.uk/quote"
+  }
+]

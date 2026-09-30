@@ -1,4 +1,5 @@
 /* Customer information pages: the same colours, type and spacing as Services. */
+.iv-policy-grid > * { min-width:0; }
 .ci-breadcrumbs { display:flex; flex-wrap:wrap; gap:8px; padding:22px 0 0; font-size:12px; color:#78909c; }
 .ci-breadcrumbs a { text-decoration:underline; text-underline-offset:3px; }
 .ci-hero-grid { display:grid; grid-template-columns:1.2fr .8fr; align-items:center; gap:65px; }

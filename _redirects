@@ -1,4 +1,5 @@
-# Optional redirects for old bookmarks on compatible static hosts; no old HTML pages are retained.
+# Permanent redirects on compatible static hosts. The build also emits tiny
+# instant-refresh fallbacks because the current host does not apply this file.
 /guidelines-visual /guidelines/ 301
 /guidelines-visual/ /guidelines/ 301
 /guidelines-visual/index.html /guidelines/ 301
@@ -16,3 +17,8 @@
 /concept / 301
 /concept/ / 301
 /concept/index.html / 301
+
+# The old marketing quote URL has a direct replacement in the quote application.
+/quote https://app.cutitout.uk/quote 301
+/quote/ https://app.cutitout.uk/quote 301
+/quote/index.html https://app.cutitout.uk/quote 301

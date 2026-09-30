@@ -1,0 +1,26 @@
+      <section class="ci-section" id="compare" aria-labelledby="compare-title"><h2 id="compare-title">Compare a measurement you know</h2>
+        <p>Choose a measurement from your original design, such as the overall width. Compare it with the same measurement shown after uploading. Use millimetres for both numbers.</p>
+        <p>For example, if your part should be 100 mm wide but the uploaded drawing shows 2540 mm, the size is wrong even if the shape looks right.</p>
+        <p>Check a second measurement, such as a hole diameter. Both should need the same scale change. If they do not, the drawing may have been stretched or changed in another way.</p>
+        <div class="ci-callout"><strong>Check inches and millimetres</strong><p>One inch is 25.4 mm. A drawing that is 25.4 times too big or too small may have been read in the wrong units. Check the units in your design software and compare the measurements before changing the size.</p></div>
+      </section>
+      <section class="ci-section" id="calculator" aria-labelledby="calculator-title"><h2 id="calculator-title">Work out the scale change</h2>
+        <p>Enter the size the part should be and the size shown after uploading. Use the same measurement for both, such as the overall width, in millimetres.</p>
+        <p>The result shows how much to shrink or enlarge your drawing. It does not change your file. For example, a result of 50% means half the current size; 200% means twice the current size.</p>
+        <div class="growth-tool">
+          <form id="dxf-scale-form" novalidate>
+            <div class="growth-fields"><label for="dxf-intended">Size it should be (mm)<input id="dxf-intended" name="intended" type="number" min="0" step="any" inputmode="decimal" value="100" required></label><label for="dxf-imported">Size shown after uploading (mm)<input id="dxf-imported" name="imported" type="number" min="0" step="any" inputmode="decimal" value="200" required></label></div>
+            <button class="sv-button" type="submit">Calculate scale change</button>
+            <p id="dxf-scale-result" role="status" aria-live="polite" aria-atomic="true">To change 200 mm to 100 mm, scale the drawing to 50% of its current size (multiply by 0.5). Check a second measurement before changing your file.</p>
+          </form>
+          <noscript><p>Divide the correct size by the size shown, then multiply by 100 for the scale percentage. For example: 100 ÷ 200 × 100 = 50%.</p></noscript>
+        </div>
+      </section>
+      <section class="ci-section" id="source" aria-labelledby="source-title"><h2 id="source-title">Fix the cause of the size problem</h2>
+        <div class="ci-table-wrap" role="region" aria-label="How to check drawing size problems" tabindex="0"><table class="ci-table"><caption>Where to look first</caption><thead><tr><th scope="col">Possible cause</th><th scope="col">What to do</th></tr></thead><tbody><tr><th scope="row">Incorrect units in your CAD software</th><td>Check the drawing and export units. Export at full size in millimetres, then reopen the DXF and measure it.</td></tr><tr><th scope="row">You exported a scaled drawing page</th><td>Export the part itself, rather than a page with dimensions, borders and notes. Set the export to full size (1:1).</td></tr><tr><th scope="row">You started with an image</th><td>An image does not tell us the part’s real size. Enter a known width or height in File Workshop and keep proportions locked so the shape does not stretch.</td></tr><tr><th scope="row">Width and height were changed separately</th><td>Go back to the original file. Stretching can make circles oval and move holes out of position.</td></tr></tbody></table></div>
+        <p>See the <a href="/guides/exporting-dxf/">DXF export checklist</a> for CAD drawings or the <a href="/guidelines/convert-and-fix/#artwork">artwork guide</a> for SVG, PDF and images. After correcting the units or size, check the file again before making another scale change.</p>
+      </section>
+      <section class="ci-section" id="verify" aria-labelledby="verify-title"><h2 id="verify-title">Check the final size before ordering</h2>
+        <ol><li>Check the overall width and height.</li><li>Check a hole diameter and the distance between two holes or other features.</li><li>Make sure all outlines still match your original design.</li><li>Check that holes and slots meet the <a href="/guidelines/#holes">minimum sizes for your material and thickness</a>.</li><li>Confirm the dimensions shown in the quote preview before placing your order.</li></ol>
+        <p>If you do not know any real measurements, measure the original part or <a href="/contact/">ask us for help</a>. A photograph alone cannot give File Workshop the exact size of a replacement part.</p>
+      </section>

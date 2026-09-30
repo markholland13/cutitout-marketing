@@ -16,3 +16,7 @@ assets/blender/
 *.blend1
 *.blend2
 *.bak
+
+# Local growth audit includes owner-authorized private Search Console aggregates.
+# Keep reports and review screenshots out of Git and the public static site.
+/docs/growth/
