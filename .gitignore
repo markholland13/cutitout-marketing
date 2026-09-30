@@ -1,17 +1,18 @@
-# Local operating-system and Python cache files
+# Local system and editor files
 .DS_Store
+Thumbs.db
+*.swp
+
+# Local development dependencies and caches
+node_modules/
 __pycache__/
 *.py[cod]
+.venv/
 
-# Blender autosave backups; keep the editable .blend masters tracked separately
+# Render sources, backups and local review output belong in the external archive
+output/
+assets/blender/
+*.blend
 *.blend1
 *.blend2
-
-# Intermediate film renders; publish the optimised WebP sequence instead.
-static/img/home/journey-film/desktop/frame-*.jpg
-static/img/home/journey-film/mobile/frame-*.jpg
-
-# Local review material and staged background renders
-output/journey-review/
-output/journey-final-render-*/
-output/journey-cut-correction-*/
+*.bak

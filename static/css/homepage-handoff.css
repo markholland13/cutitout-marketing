@@ -1,0 +1,34 @@
+/* Shared geometry travels across the two sections without intercepting scroll. */
+:root{--hero-overlap:clamp(240px,25vw,360px)}
+.hero-top{position:relative;z-index:4}
+.hero>.hero-object{margin-top:calc(64px - var(--hero-overlap))}
+.handoff-enabled .hero{z-index:12;background:transparent;overflow:visible;pointer-events:none}
+.handoff-enabled .hero a{pointer-events:auto}
+.hero-heading h1,.hero-intro{text-shadow:0 2px 18px #080d0f,0 0 5px #080d0f}
+.hero-intro{padding-top:0;position:absolute;right:0;top:calc(var(--hero-overlap) + 72px);width:235px;opacity:var(--hero-intro-opacity,1);transition:opacity .15s linear;pointer-events:none}
+.visual-flow{position:relative;margin-top:calc(-1 * var(--hero-overlap));height:calc(clamp(580px,calc(100svh - 72px),900px) + var(--handoff-distance,62vh) + var(--handoff-hold,45vh) + var(--hero-overlap));background:#080d0f}
+.visual-pin{position:sticky;top:var(--handoff-header,73px);height:clamp(580px,calc(100svh - 72px),900px);overflow:hidden}
+/* Leave clearance above the part for its raised corner throughout the rotation. */
+.visual-pin>.hero-object{margin-top:64px;z-index:2;mix-blend-mode:screen}
+.visual-pin>.journey{position:absolute;inset:0}
+.visual-pin .film-shell{height:100%}
+.visual-pin .journey:not(.handoff-film-visible) .film-shell{background:#080d0f}
+.visual-pin:has(.handoff-film-visible)>.hero-object{visibility:hidden}
+.visual-flow.handoff-bypassed .hero-object{visibility:hidden}
+.handoff-enabled .journey:not(.handoff-film-visible) .journey-overlay-top{opacity:0;pointer-events:none}
+.handoff-enabled .hero-bottom{display:none}
+@media(max-width:1023px){.visual-flow{height:calc(clamp(540px,calc(100svh - 64px),820px) + var(--handoff-distance,62vh) + var(--handoff-hold,45vh) + var(--hero-overlap))}.visual-pin{height:clamp(540px,calc(100svh - 64px),820px)}}
+@media(min-width:681px){.hero-object .hero-object-caption{position:absolute;left:0;bottom:-8px}.handoff-enabled .hero-lead .hero-actions .text-link{gap:18px}}
+@media(max-width:680px){:root{--hero-overlap:64px}.hero>.hero-object{margin-top:calc(32px - var(--hero-overlap))}.hero-heading h1,.hero-intro{text-shadow:none}.hero-intro{position:relative;top:0;right:auto;width:auto}.visual-pin>.hero-object{margin-top:32px}}
+.part-handoff{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:10;isolation:isolate}
+.handoff-metal,.handoff-wire{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,opacity;max-width:none}
+.handoff-metal{mix-blend-mode:screen;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 93%,transparent)}
+.handoff-wire{pointer-events:none}
+.handoff-plate{position:absolute;max-width:none;mix-blend-mode:lighten}
+.handoff-enabled .journey .cinematic-art{opacity:0}
+.handoff-enabled .journey.handoff-film-visible .cinematic-art{opacity:1}
+.handoff-active .part-stage{visibility:hidden}
+.handoff-active .hero-object-caption{opacity:var(--handoff-controls,0);pointer-events:none}
+.handoff-enabled .journey:not(.handoff-film-visible) .film-bottom,
+.handoff-enabled .journey:not(.handoff-film-visible) .journey-inline-controls{opacity:0;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.part-handoff{display:none}}

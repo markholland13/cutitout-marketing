@@ -11,3 +11,8 @@
 /guidelines/bolt-hole-sizes/ /guidelines/#bolts 301
 /guidelines/part-size-limits /guidelines/#size 301
 /guidelines/part-size-limits/ /guidelines/#size 301
+
+# The approved homepage now lives at the site root.
+/concept / 301
+/concept/ / 301
+/concept/index.html / 301
