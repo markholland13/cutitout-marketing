@@ -156,3 +156,75 @@ html{scroll-padding-top:96px}.skip-link{z-index:200}
 @media(max-width:600px){#footer.footer-complete{width:calc(100% - 40px);padding-block:32px}#footer nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 20px}}
 
 @media(max-width:360px){.tolerance-heading{align-items:start;flex-direction:column;gap:8px}.tolerance-result{align-items:start;flex-direction:column;gap:5px}.tolerance-result>span{max-width:none}}
+
+/* Give the first quote action a clear, calm priority over the film link. */
+.hero-lead .hero-actions{align-items:flex-start}
+.hero-quote-group{min-width:0}
+.hero-lead .hero-actions .hero-quote{
+  min-height:64px;padding:15px 20px 15px 26px;gap:32px;
+  font-size:15px;font-weight:800;white-space:nowrap;
+  border-color:#d5f3ff;
+  box-shadow:0 0 0 4px #bde8f709,0 0 30px #bde8f719,0 8px 22px #0003;
+  transition:background .2s,box-shadow .2s,transform .2s;
+}
+.hero-lead .hero-actions .hero-quote span{
+  display:grid;place-items:center;width:32px;height:32px;flex-shrink:0;
+  border-radius:4px;background:#18292f12;font-size:21px;
+  transition:transform .2s;
+}
+.hero-quote-note{margin-top:12px;font-size:12px;line-height:1.6;color:#bdcbd1}
+.hero-lead .hero-actions>.text-link{min-height:64px;color:#b7c3c9}
+.hero-lead .hero-actions>.text-link:hover{color:var(--blue)}
+.hero-lead .hero-actions .hero-quote:focus-visible{outline:3px solid #e5f8ff;outline-offset:7px}
+@media(hover:hover){
+  .hero-lead .hero-actions .hero-quote:hover{
+    background:#d7f2fc;box-shadow:0 0 0 4px #bde8f70c,0 0 36px #bde8f725,0 10px 24px #0004;
+    transform:translateY(-2px);
+  }
+  .hero-lead .hero-actions .hero-quote:hover span{transform:translateX(2px)}
+}
+@media(max-width:680px){
+  .hero-lead .hero-actions{gap:18px}
+  .hero-lead .hero-actions .hero-quote{min-height:58px;padding:12px 16px;gap:22px;font-size:14px}
+  .hero-lead .hero-actions>.text-link{min-height:58px}
+}
+@media(max-width:480px){
+  .hero-lead .hero-actions{display:grid;grid-template-columns:1fr;gap:6px}
+  .hero-lead .hero-actions .hero-quote{width:100%;padding-inline:20px}
+  .hero-quote-note{margin-top:10px}
+  .hero-lead .hero-actions>.text-link{min-height:44px;justify-self:start;font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-lead .hero-actions .hero-quote:hover,.hero-lead .hero-actions .hero-quote:hover span{transform:none}
+}
+
+/* Keep ordering details beside the final quote invitation. */
+.quote-details p+p{margin-top:8px;font-size:12px}
+
+/* A small pool of light follows the quote button's edge without covering its label. */
+.hero-lead .hero-actions .hero-quote{position:relative;isolation:isolate}
+.hero-quote::before,.hero-quote::after{
+  content:"";position:absolute;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,#effbffe6 0%,#bde8f766 35%,transparent 70%) -50px -50px / 100px 100px no-repeat;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+  animation:hero-quote-edge-light 10s linear infinite;
+}
+.hero-quote::before{inset:-2px;padding:2px;border-radius:7px;opacity:.7}
+.hero-quote::after{inset:-5px;padding:5px;border-radius:10px;filter:blur(4px);opacity:.45}
+@keyframes hero-quote-edge-light{
+  0%,100%{background-position:-50px -50px}
+  40%{background-position:calc(100% + 50px) -50px}
+  50%{background-position:calc(100% + 50px) calc(100% + 50px)}
+  90%{background-position:-50px calc(100% + 50px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-quote::before,.hero-quote::after{animation:none;opacity:0}
+}
+
+/* Keep the secondary journey link underneath the complete quote invitation. */
+.hero-lead .hero-actions{display:flex;flex-direction:column;gap:8px}
+.hero-lead .hero-actions>.text-link{min-height:44px}
+@media(max-width:480px){.hero-quote-group{width:100%}}
